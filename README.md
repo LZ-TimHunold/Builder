@@ -72,14 +72,14 @@ If you want to group many tasks, typing `c:\myrepo\gulp build` will run the task
 
 **Configure Package.json**
 
-This is a manifest file that contains things like name and ownership along with library versions. **You should not need to directly edit this file*** other than to perhaps add your name to the contributors list. 
+This is a manifest file that contains things like name and ownership along with library versions. You should not need to directly edit *this* file other than to perhaps add your name to the contributors list. 
 
 [GulpFiction](http://gulpfiction.divshot.io/) will also build a `package.json` file for you.
 
 
 ## Working
 
-Once you have defined a task in gulpfile.js you are able to call it from the command line.
+Once you have defined a task in gulpfile.js, in this example it is `mytask`, you are able to call it from the command line.
 `c:\myrepo\gulp mytask`
 
 If you get an error, please contact Tim. Most of the time it is a missing library, or you can add .pipe(plumber()) to your task to unstick it.
@@ -87,5 +87,6 @@ If you get an error, please contact Tim. Most of the time it is a missing librar
 #### Development Viewing
 
 There are two ways
-1) in explorer go to your dev folder and open your file
-2) if you push to Github and want to share
+1. In explorer go to your dev folder and open your file.
+2. If you push to Github and want to share, use the `ghpages` branch in your project.
+3. Remember that in your task `.pipe(gulp.dest("./"));` defines the destination *relative to* `gulpfile.js` where it outputs.
