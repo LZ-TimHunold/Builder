@@ -3,7 +3,7 @@ Gulp process for templates, JS and SASS. This documentation's premise is to docu
 
 # Development
 
-Development is done via [node.js](http://nodejs.org) powering a static server for rendering routed pages; along with tasks such as compiling `.scss` files into `.css` and building `.js` files from many others. This is needed for working on additional assets/pages. The process is doumented below.
+Development is done via [node.js](http://nodejs.org) and along with GulpJs for tasks such as compiling `.scss` files into `.css` and building `.js` files from many others. This is needed for working on additional assets/pages. The process is doumented below.
 
 ## Setup 
 
@@ -13,13 +13,37 @@ Development is done via [node.js](http://nodejs.org) powering a static server fo
 
 ### Install local dependencies via Terminal commands
 
-```bash
-npm install -g gulp
+CD to your working directory and run each of these commands. There will be a PowerShell or batch file coming shortly to do this for you. Until then go line by line. If there are errors, please contact Tim.
+
 ```
+npm install gulp -g
+npm install --save gulp-concat
+npm install --save-dev gulp-plumber
+npm install --save-dev gulp-inject
+npm install gulp-sass
+npm install --save-dev gulp-uglify
+npm install --save gulp-uglifycss
+npm install --save gulp-uglifyjs
+npm install gulp-htmlclean --save-dev
+npm install gulp-if
+npm update
+```
+
+** Configure your Gulp and Package files**
+
+You will need both a gulpfile.js and a package.json file.
+
+*** Gulpfile.js***
+
+This file holds all the tasks you can run from gulp. Just typing "gulp" will run the default function, but you can break these up.
+
+** Package.json**
+
+This is more of a manifest file that contains things like name and ownership along with library versions.
 
 ## Working
 
-Open a Terminal window and type: 
+Open a Terminal window and type:
 
 #### Development Viewing
 
