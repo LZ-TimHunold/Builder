@@ -44,10 +44,12 @@ The anantomy of the file is broken up in to two distinct areas. The top of the d
 You can build a `gulpfile.js` using an online tool such as [GulpFiction](http://gulpfiction.divshot.io/) and it will also build a `package.json` file for you.
 
 This is the `default` task, it is blank intentionally to avoid forcing yourself to create a "one task fits all" function.
+
 ```gulp.task("default", [], function () {
 });```
 
 Typing `c:\myrepo\gulp new_task` will run just `new_task`
+
 ```gulp.task("new_task", [], function () {
     gulp.src([{"path":".src/*.html"}])
         .pipe(inject(.src/header.html))
@@ -57,11 +59,13 @@ Typing `c:\myrepo\gulp new_task` will run just `new_task`
 Using `gulp.watch` to watch directories or files for a change and automatically run a specified function can be helpful, provided you don't make rapid changes like saving a file and then editing and saving again while the gulp task is still running. It's like trying to jam food into your already full mouth. You won't gulp, you'll choke.
 
 This task is called by typing `c:\myrepo\gulp watch` and it will watch a source directory for a change and then run the other task `new_task`. It is often used to watch for compiling `css` or `js`.
+
 ```gulp.task("watch", [], function () {
     gulp.watch("./src/**/*.html", ["new_task"]);
 });```
 
 If you want to group many tasks, typing `c:\myrepo\gulp build` will run the tasks `default` and `sass:build`.
+
 ```gulp.task('build', function() {
   gulp.start('default', sass:build', 'js:prod');
   });```
