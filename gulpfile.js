@@ -44,23 +44,7 @@ gulp.task('sass', function () {
   });
   
   
-gulp.task('needle',function(){
-  gulp.src('./src/template.html')
-    .pipe(inject(gulp.src(['./src/templates/fragments/meta.html']), {starttag: '<!-- inject:meta:{{ext}} -->',transform: function (filePath, file) {
-      // return file contents as string 
-      return file.contents.toString('utf8')
-      }
-      }))
-    .pipe(inject(gulp.src(['./src/templates/fragments/footer.html']), {starttag: '<!-- inject:footer:{{ext}} -->',transform: function (filePath, file) {
-      // return file contents as string 
-      return file.contents.toString('utf8')
-      }
-      }))
-    .pipe(htmlclean())
-    .pipe(gulp.dest('./'));
-
-      });
-
+////Bruteforce////
 gulp.task('html:dev',function(){
   gulp.src('./src/templates/*.html')//MAKE THIS YOUR FILENAME OR WILDCARD IT *.HTML
 .pipe(inject(gulp.src(['./src/templates/fragments/containers/span/cont_span_1col.html']), {starttag: '<!-- inject:cont_span_1col:{{ext}} -->',transform: function (filePath, file) { return file.contents.toString('utf8')} }))
@@ -116,6 +100,7 @@ gulp.task('css:dev', function () {
     .pipe(plumber())
     .pipe(concat("global.css"))
     .pipe(sass())
+    .pipe(uglifycss())
     .pipe(gulp.dest('./dev/css/'));
 });
 gulp.task('css:prod', function () {
