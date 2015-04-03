@@ -1,0 +1,123 @@
+// Modal
+
+//------------------------------------------------
+// Modal Default
+
+section.modal {
+	z-index: 1000;
+	display: none;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	&.modal-unfixed {
+		position: absolute;
+	}
+	.modal-margin {
+		@include center($max_width: 100%, $pad: 0);
+		@include breakpoint($mobile) {
+			@include center($max_width: 100%, $pad: 0);
+			padding-bottom: .5em;
+		}
+		//background-color: rgba(0,0,0,.87);
+		background-color: transparentize($legalzoom-blue, $hover-transparentize);
+		height: 100%;
+		width: 100%;
+	}
+	>div {
+		padding: 0;
+	}
+	article {
+		margin: auto;
+		max-width: 92%;
+		background: #fff;
+		height: 100%;
+		padding: 3.5em 3.8em 1.85em 3.8em;
+		//box-shadow: 0 1px 8px rgba(0,0,0,.5);
+		@include breakpoint($mobile) {
+			padding: 2em 2.3em 1em 2.3em !important;
+		}
+		&.video {
+			padding: 0 !important;
+			@include breakpoint($mobile) {
+				padding: 0 !important;
+			}
+		}
+	}
+	&.modal-sm {
+		article {
+			width: 540px;
+			padding: 3em 3.3em 1.35em 3.3em;
+			@include breakpoint($mobile) {
+				width: 92%;
+			}
+		}
+	}
+	&.modal-sm-med {
+		article {
+			width: 640px;
+			@include breakpoint($mobile) {
+				width: 92%;
+			}
+		}
+	}
+	&.modal-med {
+		article {
+			width: 720px;
+			@include breakpoint($mobile) {
+				width: 92%;
+			}
+		}
+	}
+	&.modal-med-lg {
+		article {
+			width: 960px;
+			@include breakpoint($mobile) {
+				width: 92%;
+			}
+		}
+	}
+	&.modal-lg {
+		article {
+			width: 1280px;
+			padding: 4em 4.5em 2.35em 4.5em;
+			@include breakpoint($mobile) {
+				width: 92%;
+			}
+		}
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5 {
+		margin: .25em 0 1em 0;
+	}
+	h1 {
+		font-size: 1.75em;
+	}
+	.modal-close {
+		position: absolute;
+		top: 25px;
+		right: 25px;
+		color: #fff;
+		padding: 0;
+		&:hover {
+			opacity: $hover-opacity;
+			cursor: pointer;
+		}
+		.font_icon {
+			position: relative;
+			top: 2px;
+			left: 1px;
+		}
+	}
+	article {
+		.modal-close {
+			top: -41px;
+			right: 0;
+			padding: .4em 0 .6em 0;
+		}
+	}
+}

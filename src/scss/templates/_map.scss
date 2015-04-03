@@ -1,0 +1,11 @@
+// Maps
+
+#map-canvas {
+	@include center($max_width: 100%, $pad: 0);
+	@include breakpoint($mobile) {
+		@include center($max_width: 100%, $pad: 0);
+	}
+	img {
+		max-width: none;
+	}
+}

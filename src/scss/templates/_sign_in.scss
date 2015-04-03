@@ -1,0 +1,11 @@
+// Sign in and Register
+
+//------------------------------------------------
+// Sign in and Register Modal
+
+section.modal-sign-in {
+	@extend section.modal;
+	article {
+		width: 480px;
+	}
+}

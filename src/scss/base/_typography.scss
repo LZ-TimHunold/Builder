@@ -1,0 +1,130 @@
+// Typography
+
+//------------------------------------------------
+// Base font
+
+$base_font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+// Pluto Sans Regular
+@font-face {
+	font-family: 'psRegular';
+	font-weight: normal;
+	font-style: normal;
+	src: url('../fonts/pluto_sans/27BAAD_13_0.eot');
+	src: url('../fonts/pluto_sans/27BAAD_13_0.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/pluto_sans/27BAAD_13_0.svg#wf') format('svg'),
+		url('../fonts/pluto_sans/27BAAD_13_0.woff') format('woff'),
+		url('../fonts/pluto_sans/27BAAD_13_0.ttf') format('truetype');
+}
+
+// Pluto Sans Light
+@font-face {
+	font-family: 'psLight';
+	src: url('../fonts/pluto_sans/27BAAD_1E_0.eot');
+	src: url('../fonts/pluto_sans/27BAAD_1E_0.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/pluto_sans/27BAAD_1E_0.svg#wf') format('svg'),
+		url('../fonts/pluto_sans/27BAAD_1E_0.woff') format('woff'),
+		url('../fonts/pluto_sans/27BAAD_1E_0.ttf') format('truetype');
+}
+
+// Pluto Sans Medium
+@font-face {
+	font-family: 'psMedium';
+	src: url('../fonts/pluto_sans/27BAAD_1F_0.eot');
+	src: url('../fonts/pluto_sans/27BAAD_1F_0.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/pluto_sans/27BAAD_1F_0.svg#wf') format('svg'),
+		url('../fonts/pluto_sans/27BAAD_1F_0.woff') format('woff'),
+		url('../fonts/pluto_sans/27BAAD_1F_0.ttf') format('truetype');
+}
+
+// Pluto Sans Condensed Regular
+@font-face {
+	font-family: 'psRegularCond';
+	src: url('../fonts/pluto_sans/27BAAD_1B_0.eot');
+	src: url('../fonts/pluto_sans/27BAAD_1B_0.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/pluto_sans/27BAAD_1B_0.svg#wf') format('svg'),
+		url('../fonts/pluto_sans/27BAAD_1B_0.woff') format('woff'),
+		url('../fonts/pluto_sans/27BAAD_1B_0.ttf') format('truetype');
+}
+
+// Pluto Sans Condensed Light
+@font-face {
+	font-family: 'psCondLight';
+	src: url('../fonts/pluto_sans/27BAAD_19_0.eot');
+	src: url('../fonts/pluto_sans/27BAAD_19_0.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/pluto_sans/27BAAD_19_0.woff') format('woff'),
+		url('../fonts/pluto_sans/27BAAD_19_0.ttf') format('truetype'),
+		url('../fonts/pluto_sans/27BAAD_19_0.svg#wf') format('svg');
+}
+
+// Pluto Sans Condensed Medium
+@font-face {
+	font-family: 'psMediumCond';
+	src: url('../fonts/pluto_sans/27BAAD_1A_0.eot');
+	src: url('../fonts/pluto_sans/27BAAD_1A_0.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/pluto_sans/27BAAD_1A_0.svg#wf') format('svg'),
+		url('../fonts/pluto_sans/27BAAD_1A_0.woff') format('woff'),
+		url('../fonts/pluto_sans/27BAAD_1A_0.ttf') format('truetype');
+}
+
+/* Unused
+
+Pluto Sans Bold
+@font-face {font-family: 'psBold';src: url('../fonts/pluto_sans/27BAAD_14_0.eot');src: url('../fonts/pluto_sans/27BAAD_14_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_14_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_14_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_14_0.svg#wf') format('svg');}
+@font-face {font-family: 'psBold-Italic';src: url('../fonts/pluto_sans/27BAAD_1_0.eot');src: url('../fonts/pluto_sans/27BAAD_1_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_1_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_1_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_1_0.svg#wf') format('svg');}
+
+Pluto Sans Light
+@font-face {font-family: 'psLight';src: url('../fonts/pluto_sans/27BAAD_1E_0.eot');src: url('../fonts/pluto_sans/27BAAD_1E_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_1E_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_1E_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_1E_0.svg#wf') format('svg');}
+@font-face {font-family: 'psLight-Italic';src: url('../fonts/pluto_sans/27BAAD_4_0.eot');src: url('../fonts/pluto_sans/27BAAD_4_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_4_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_4_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_4_0.svg#wf') format('svg');}
+
+Pluto Sans Extra Light
+@font-face {font-family: 'psExtraLight';src: url('../fonts/pluto_sans/27BAAD_1C_0.eot');src: url('../fonts/pluto_sans/27BAAD_1C_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_1C_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_1C_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_1C_0.svg#wf') format('svg');}
+@font-face {font-family: 'psExtraLight-Italic';src: url('../fonts/pluto_sans/27BAAD_2_0.eot');src: url('../fonts/pluto_sans/27BAAD_2_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_2_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_2_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_2_0.svg#wf') format('svg');}
+
+Pluto Sans Heavy
+@font-face {font-family: 'psHeavy';src: url('../fonts/pluto_sans/27BAAD_1D_0.eot');src: url('../fonts/pluto_sans/27BAAD_1D_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_1D_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_1D_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_1D_0.svg#wf') format('svg');}
+@font-face {font-family: 'psHeavy-Italic';src: url('../fonts/pluto_sans/27BAAD_3_0.eot');src: url('../fonts/pluto_sans/27BAAD_3_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_3_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_3_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_3_0.svg#wf') format('svg');}
+
+Pluto Sans Black
+@font-face {font-family: 'psBlack';src: url('../fonts/pluto_sans/27BAAD_10_0.eot');src: url('../fonts/pluto_sans/27BAAD_10_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_10_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_10_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_10_0.svg#wf') format('svg');}
+@font-face {font-family: 'psBlack-Italic';src: url('../fonts/pluto_sans/27BAAD_0_0.eot');src: url('../fonts/pluto_sans/27BAAD_0_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_0_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_0_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_0_0.svg#wf') format('svg');}
+
+Pluto Sans Thin
+@font-face {font-family: 'psThin';src: url('../fonts/pluto_sans/27BAAD_11_0.eot');src: url('../fonts/pluto_sans/27BAAD_11_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_11_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_11_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_11_0.svg#wf') format('svg');}
+@font-face {font-family: 'psThin-Italic';src: url('../fonts/pluto_sans/27BAAD_7_0.eot');src: url('../fonts/pluto_sans/27BAAD_7_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_7_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_7_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_7_0.svg#wf') format('svg');}
+
+Pluto Sans Condensed Black
+@font-face {font-family: 'psCondBlack';src: url('../fonts/pluto_sans/27BAAD_15_0.eot');src: url('../fonts/pluto_sans/27BAAD_15_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_15_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_15_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_15_0.svg#wf') format('svg');}
+@font-face {font-family: 'psCondBlack-Italic';src: url('../fonts/pluto_sans/27BAAD_8_0.eot');src: url('../fonts/pluto_sans/27BAAD_8_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_8_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_8_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_8_0.svg#wf') format('svg');}
+
+Pluto Sans Condensed Bold
+@font-face {font-family: 'psCondBold';src: url('../fonts/pluto_sans/27BAAD_16_0.eot');src: url('../fonts/pluto_sans/27BAAD_16_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_16_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_16_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_16_0.svg#wf') format('svg');}
+@font-face {font-family: 'psCondBold-Italic';src: url('../fonts/pluto_sans/27BAAD_9_0.eot');src: url('../fonts/pluto_sans/27BAAD_9_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_9_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_9_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_9_0.svg#wf') format('svg');}
+
+Pluto Sans Condensed Extra Light
+@font-face {font-family: 'psCondExLight-Italic';src: url('../fonts/pluto_sans/27BAAD_A_0.eot');src: url('../fonts/pluto_sans/27BAAD_A_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_A_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_A_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_A_0.svg#wf') format('svg');}
+@font-face {font-family: 'psCondExLight';src: url('../fonts/pluto_sans/27BAAD_17_0.eot');src: url('../fonts/pluto_sans/27BAAD_17_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_17_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_17_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_17_0.svg#wf') format('svg');}
+
+Pluto Sans Condensed Heavy
+@font-face {font-family: 'psCondHeavy';src: url('../fonts/pluto_sans/27BAAD_18_0.eot');src: url('../fonts/pluto_sans/27BAAD_18_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_18_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_18_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_18_0.svg#wf') format('svg');}
+@font-face {font-family: 'psCondHeavy-Italic';src: url('../fonts/pluto_sans/27BAAD_B_0.eot');src: url('../fonts/pluto_sans/27BAAD_B_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_B_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_B_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_B_0.svg#wf') format('svg');}
+
+Pluto Sans Condensed Light
+@font-face {font-family: 'psCondLight';src: url('../fonts/pluto_sans/27BAAD_19_0.eot');src: url('../fonts/pluto_sans/27BAAD_19_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_19_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_19_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_19_0.svg#wf') format('svg');}
+@font-face {font-family: 'psCondLight-Italic';src: url('../fonts/pluto_sans/27BAAD_C_0.eot');src: url('../fonts/pluto_sans/27BAAD_C_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_C_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_C_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_C_0.svg#wf') format('svg');}
+
+Pluto Sans Condensed Regular
+@font-face {font-family: 'psCondRegular';src: url('../fonts/pluto_sans/27BAAD_1B_0.eot');src: url('../fonts/pluto_sans/27BAAD_1B_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_1B_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_1B_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_1B_0.svg#wf') format('svg');}
+@font-face {font-family: 'psCondRegular-Italic';src: url('../fonts/pluto_sans/27BAAD_E_0.eot');src: url('../fonts/pluto_sans/27BAAD_E_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_E_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_E_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_E_0.svg#wf') format('svg');}
+
+Pluto Sans Condensed Thin
+@font-face {font-family: 'psCondThin';src: url('../fonts/pluto_sans/27BAAD_12_0.eot');src: url('../fonts/pluto_sans/27BAAD_12_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_12_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_12_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_12_0.svg#wf') format('svg');}
+@font-face {font-family: 'psCondThin-Italic';src: url('../fonts/pluto_sans/27BAAD_F_0.eot');src: url('../fonts/pluto_sans/27BAAD_F_0.eot?#iefix') format('embedded-opentype'),url('../fonts/pluto_sans/27BAAD_F_0.woff') format('woff'),url('../fonts/pluto_sans/27BAAD_F_0.ttf') format('truetype'),url('../fonts/pluto_sans/27BAAD_F_0.svg#wf') format('svg');}
+
+*/
+
+// Use rem w/ px fallback for IE8
+@mixin rem($value) {
+	font-size: $value + px;
+	font-size: rem-calc($value);
+}

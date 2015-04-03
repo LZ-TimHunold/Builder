@@ -1,0 +1,16 @@
+// Footer
+
+footer {
+	>div {
+		@include center($max_width: $container, $pad: $margin-standard);
+		@include breakpoint($mobile) {
+			@include center($max_width: $container, $pad: $margin-mobile);
+		}
+		padding-top: 1.5em;
+		padding-bottom: .25em;
+	}
+	background: $dark-blue;
+	color: #fff;
+}
+
+

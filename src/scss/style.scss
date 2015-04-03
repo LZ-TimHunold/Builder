@@ -1,0 +1,57 @@
+// GLOBAL STYLESHEET
+
+// Jeet
+@import "../jeet/index";
+
+// Compass and Breakpoint
+/*@import "compass/css3";*/
+@import "../bower_components/breakpoint-sass/stylesheets/breakpoint";
+
+// Third Party
+// Note: Files imported as css (not scss) are only referenced as an import rule.
+@import "../../bower_components/slick.js/slick/slick.css";
+
+// Base Styles
+@import "base/functions";
+@import "base/fixes";
+@import "base/variables";
+@import "base/components";
+@import "base/typography";
+@import "base/icons";
+@import "base/standard";
+@import "base/buttons";
+@import "base/forms";
+@import "base/form_buttons";
+@import "base/form_custom";
+@import "base/fontello";
+
+// Template Styles
+@import "templates/background";
+@import "templates/section";
+@import "templates/header";
+@import "templates/footer";
+@import "templates/modal";
+@import "templates/tooltip";
+@import "templates/tabs";
+@import "templates/carousel";
+@import "templates/date_picker";
+@import "templates/sign_in";
+@import "templates/hero";
+@import "templates/video";
+@import "templates/map";
+@import "templates/other";
+
+html, body {
+	@include span(1);
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	-webkit-font-smoothing:antialiased;
+	font-family: $base_font;
+	font-size: 14px;
+	background-image: url('../img/background-1@2x.jpg');
+	background-size: 100px 100px;
+}
+
+// Jeet helper
+// @include edit();

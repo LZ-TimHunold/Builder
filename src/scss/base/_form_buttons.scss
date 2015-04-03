@@ -1,0 +1,437 @@
+// Form Buttons
+
+//------------------------------------------------
+// Variables
+$form-button-margin-bottom: 1.6em;
+$form-button-margin-bottom-mobile: .6em;
+
+//------------------------------------------------
+// Form Buttons
+
+.form-input-row {
+	.form-buttons {
+		// Text
+		h1, h2, h3, h4, h5, p {
+			margin: 0 0 .5em 0;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		p {
+			line-height: 1.3em;
+		}
+		//------------------------------------------------
+		// Radio
+		input[type=radio], 
+		input[type=checkbox] {
+			width: 100%;
+			margin: 0;
+			height: 0;
+			display: none;
+		}
+		.radio-input,
+		.checkbox-input {
+			input[type=radio]:not(old),
+			input[type=checkbox]:not(old) {
+				width: 2em;
+				margin: 0;
+				padding: 0;
+				font-size: 1em;
+				opacity: 0;
+			}
+			input[type=radio]:not(old) + label, 
+			input[type=checkbox]:not(old) + label {
+				background: #fff;
+				display: block;
+				margin: 0;
+				width: 100%;
+				border-radius: $corner-radius;
+				border: 1px solid $input-border-color;
+				margin: 0 0 $form-button-margin-bottom 0;
+				text-align: center;
+				&:hover {
+					border: 1px solid $action-blue;
+				}
+				> div {
+					position: relative;
+					padding: 1.5em .75em;
+				}
+				@include breakpoint($mobile) {
+					margin: 0 0 $form-button-margin-bottom-mobile 0;
+				}
+			}
+			input[type=radio]:not(old):checked + label,
+			input[type=checkbox]:not(old):checked + label {
+				border: 1px solid $legalzoom-blue;
+				background: $action-blue;
+				color: #fff;
+				h1, h2, h3, h4, h5, p, .font_icon {
+					color: #fff;
+				}
+			}
+			label {
+				font-weight: normal;
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
+		//------------------------------------------------
+		// Span
+		
+		// Tweaks to button style to fix border on right.
+		// Because buttons are now touching, if we don't make 
+		// any adjustments borders between buttons will be 2px.
+		&.span1 {
+			li {@include span(1/1);}
+		}
+		&.span2 {
+			li {@include span(1/2);}
+		}
+		&.span3 {
+			li {@include span(1/3);}
+		}
+		&.span4 {
+			li {@include span(1/4);}
+		}
+		&.span5 {
+			li {@include span(1/5);}
+		}
+		&.span6 {
+			li {@include span(1/6);}
+		}
+		&.span7 {
+			li {@include span(1/7);}
+		}
+		&.span8 {
+			li {@include span(1/8);}
+		}
+		&.span9 {
+			li {@include span(1/9);}
+		}
+		&.span10 {
+			li {@include span(1/10);}
+		}
+		&.span1,
+		&.span2,
+		&.span3,
+		&.span4,
+		&.span5,
+		&.span6,
+		&.span7,
+		&.span8,
+		&.span9,
+		&.span10 {
+			// ------------------------------------------------------------
+			// Desktop
+			@include breakpoint($desktop) {
+				.radio-input,
+				.checkbox-input {
+					input[type=radio]:not(old) + label, 
+					input[type=checkbox]:not(old) + label {
+						border-right: none;
+						border-radius: 0;
+						> div {
+							border-right: 1px solid transparent;
+						}
+						&:hover {
+							> div {
+								border-right: 1px solid $action-blue;
+								position: relative;
+								left: 1px;
+								> div {
+									position: relative;
+									left: -1px;
+								}
+							}
+						}
+					}
+					&:first-child {
+						input[type=radio]:not(old) + label, 
+						input[type=checkbox]:not(old) + label {
+							border-top-left-radius: $corner-radius;
+							border-bottom-left-radius: $corner-radius;
+						}
+					}
+					&:last-child {
+						input[type=radio]:not(old) + label, 
+						input[type=checkbox]:not(old) + label {
+							border-right: 1px solid $input-border-color;
+							border-top-right-radius: $corner-radius;
+							border-bottom-right-radius: $corner-radius;
+							&:hover {
+								border-right: 1px solid $action-blue;
+							}
+						}
+					}
+				}
+			}
+			// ------------------------------------------------------------
+			// Mobile
+			@include breakpoint($mobile) {
+				margin: 0 0 $form-button-margin-bottom 0;
+				input[type=radio]:not(old) + label, 
+				input[type=checkbox]:not(old) + label {
+					text-align: left;
+					margin: 0;
+				}
+				li {
+					@include stack;
+					margin: 0;
+				}
+				.radio-input,
+				.checkbox-input {
+					input[type=radio]:not(old) + label, 
+					input[type=checkbox]:not(old) + label {
+						border-bottom: none;
+						border-radius: 0;
+						> div {
+							border-bottom: 1px solid transparent;
+						}
+						&:hover {
+							> div {
+								border-bottom: 1px solid $action-blue;
+								position: relative;
+								top: 1px;
+								> div {
+									position: relative;
+									top: -1px;
+								}
+							}
+						}
+					}
+					&:first-child {
+						input[type=radio]:not(old) + label, 
+						input[type=checkbox]:not(old) + label {
+							border-top-left-radius: $corner-radius;
+							border-top-right-radius: $corner-radius;
+						}
+					}
+					&:last-child {
+						input[type=radio]:not(old) + label, 
+						input[type=checkbox]:not(old) + label {
+							border-bottom: 1px solid $input-border-color;
+							border-bottom-left-radius: $corner-radius;
+							border-bottom-right-radius: $corner-radius;
+							&:hover {
+								border-bottom: 1px solid $action-blue;
+							}
+						}
+					}
+				}
+			}
+		}
+		//------------------------------------------------
+		// Columns
+		
+		&.col1 {
+			li {@include col(1/1);}
+			li:nth-of-type(1n+0) {margin-right: 0;}
+		}
+		&.col2 {
+			li {@include col(1/2);}
+			li:nth-of-type(2n+0) {margin-right: 0;}
+		}
+		&.col3 {
+			li {@include col(1/3);}
+			li:nth-of-type(3n+0) {margin-right: 0;}
+		}
+		&.col4 {
+			li {@include col(1/4);}
+			li:nth-of-type(4n+0) {margin-right: 0;}
+		}
+		&.col5 {
+			li {@include col(1/5);}
+			li:nth-of-type(5n+0) {margin-right: 0;}
+		}
+		&.col6 {
+			li {@include col(1/6);}
+			li:nth-of-type(6n+0) {margin-right: 0;}
+		}
+		&.col7 {
+			li {@include col(1/7);}
+			li:nth-of-type(7n+0) {margin-right: 0;}
+		}
+		&.col8 {
+			li {@include col(1/8);}
+			li:nth-of-type(8n+0) {margin-right: 0;}
+		}
+		&.col9 {
+			li {@include col(1/9);}
+			li:nth-of-type(9n+0) {margin-right: 0;}
+		}
+		&.col10 {
+			li {@include col(1/10);}
+			li:nth-of-type(10n+0) {margin-right: 0;}
+		}
+		&.col1, 
+		&.col2, 
+		&.col3, 
+		&.col4, 
+		&.col5, 
+		&.col6, 
+		&.col7, 
+		&.col8, 
+		&.col9, 
+		&.col10 {
+			@include breakpoint($mobile) {
+				li {
+					@include stack;
+				}
+				input[type=radio]:not(old) + label, 
+				input[type=checkbox]:not(old) + label {
+					text-align: left;
+				}
+			}
+		}
+		//------------------------------------------------
+		// Sizes
+		&.sm {
+			h1, h2, h3, h4, h5, p {
+				font-size: .75em;
+			}
+			input[type=radio]:not(old) + label, 
+			input[type=checkbox]:not(old) + label {
+				> div {
+					padding: .5em;
+				}
+			}
+		}
+		&.sm-med {
+			h1, h2, h3, h4, h5, p {
+				font-size: .88em;
+			}
+			input[type=radio]:not(old) + label, 
+			input[type=checkbox]:not(old) + label {
+				> div {
+					padding: 1em .75em;
+				}
+			}
+		}
+		&.med {
+			input[type=radio]:not(old) + label, 
+			input[type=checkbox]:not(old) + label {
+				> div {
+					padding: 1.5em .75em;
+					@include breakpoint($mobile) {
+						padding: 1em .75em;
+					}
+				}
+			}
+		}
+		&.med-lg {
+			input[type=radio]:not(old) + label, 
+			input[type=checkbox]:not(old) + label {
+				> div {
+					padding: 2em .75em;
+					@include breakpoint($mobile) {
+						padding: 1em .75em;
+					}
+				}
+			}
+		}
+		&.lg {
+			input[type=radio]:not(old) + label, 
+			input[type=checkbox]:not(old) + label {
+				> div {
+					padding: 2.5em .75em;
+					@include breakpoint($mobile) {
+						padding: 1em .75em;
+					}
+				}
+			}
+		}
+		//------------------------------------------------
+		// Force Height
+		@include breakpoint($desktop) {
+			&.height100,
+			&.height110,
+			&.height120,
+			&.height130,
+			&.height140,
+			&.height150,
+			&.height160,
+			&.height170,
+			&.height180,
+			&.height190,
+			&.height200 {
+				input[type=radio]:not(old) + label, 
+				input[type=checkbox]:not(old) + label {
+					> div {
+						> div {
+							width: 100%;
+							@include centerVH();
+							padding: 0 .75em;
+						}
+					}
+				}
+			}
+			&.height100 {
+				input[type=radio]:not(old) + label, 
+				input[type=checkbox]:not(old) + label {
+					> div {height: 100px;}
+				}
+			}
+			&.height110 {
+				input[type=radio]:not(old) + label, 
+				input[type=checkbox]:not(old) + label {
+					> div {height: 110px;}
+				}
+			}
+			&.height120 {
+				input[type=radio]:not(old) + label, 
+				input[type=checkbox]:not(old) + label {
+					> div {height: 120px;}
+				}
+			}
+			&.height130 {
+				input[type=radio]:not(old) + label, 
+				input[type=checkbox]:not(old) + label {
+					> div {height: 130px;}
+				}
+			}
+			&.height140 {
+				input[type=radio]:not(old) + label, 
+				input[type=checkbox]:not(old) + label {
+					> div {height: 140px;}
+				}
+			}
+			&.height150 {
+				input[type=radio]:not(old) + label, 
+				input[type=checkbox]:not(old) + label {
+					> div {height: 150px;}
+				}
+			}
+			&.height160 {
+				input[type=radio]:not(old) + label, 
+				input[type=checkbox]:not(old) + label {
+					> div {height: 160px;}
+				}
+			}
+			&.height170 {
+				input[type=radio]:not(old) + label, 
+				input[type=checkbox]:not(old) + label {
+					> div {height: 170px;}
+				}
+			}
+			&.height180 {
+				input[type=radio]:not(old) + label, 
+				input[type=checkbox]:not(old) + label {
+					> div {height: 180px;}
+				}
+			}
+			&.height190 {
+				input[type=radio]:not(old) + label, 
+				input[type=checkbox]:not(old) + label {
+					> div {height: 190px;}
+				}
+			}
+			&.height200 {
+				input[type=radio]:not(old) + label, 
+				input[type=checkbox]:not(old) + label {
+					> div {height: 200px;}
+				}
+			}
+		}
+	}
+}

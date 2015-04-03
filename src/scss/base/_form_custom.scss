@@ -1,0 +1,119 @@
+// Form Custom Styles
+
+.form-input-row {
+	//------------------------------------------------
+	// Custom Style 1
+	//   No border around text and select inputs.
+	//   Just a line on the bottom
+	//   Labels floated left so label and input sit on same line
+	//   JavaScript used to resize input field to remaining width after label width
+	//   Style only applies to desktop. Mobile is default style and functionality.
+	
+	&.form-style-1 {
+		@include breakpoint($desktop) {
+			$font-family: psLight;
+			$input-margin-bottom: .3em;
+		
+			font-family: $font-family;
+			font-size: 3em;
+			//------------------------------------------------
+			// Label
+			label {
+				display: inline-block;
+				float: left;
+				color: $legalzoom-blue;
+				margin-right: 10px;
+			}
+			//------------------------------------------------
+			// Input Container
+			.input-container {
+				display: inline-block;
+			}
+			//------------------------------------------------
+			// Text
+			input[type=text] {
+				display: inline-block;
+				background: transparent;
+				padding: 0;
+				margin: 0 0 $input-margin-bottom 0;
+				//width: auto;
+				width: 100%;
+				overflow: visible;
+				font-family: $font-family;
+				font-size: 1em;
+				border: none;
+				//border-bottom: 1px solid #ddd;
+				&:focus {
+					border: none;
+					//border-bottom: 1px solid #ddd;
+				}
+			}
+			//------------------------------------------------
+			// Underline
+			.input-underline {
+				position: absolute;
+				width: 100px;
+				border-bottom: 1px solid #d9d9d9;
+				&:hover {
+					cursor: text;
+				}
+			}
+			//------------------------------------------------
+			// Select
+			.select-input {
+				width: auto;
+				position: relative;
+				display: inline-block;
+				//background: rgba(0,0,255,.15);
+				.select-input-border {
+					padding: 0;
+					background: transparent;
+					border: none;
+				}
+				select {
+					padding: 0;
+					font-family: $font-family;
+					margin: 0;
+					color: $placeholder-text-color;
+					width: auto;
+					//background: rgba(255,0,0,.15);
+				}
+				.form-icon {
+					position: absolute;
+					right: 1px;
+					font-size: 1em;
+					top: 0;
+					left: 0;
+					i {
+						display: block;
+						position: relative;
+						//padding: $input-padding-sm ($input-padding-sm * .75);
+						padding: 0;
+						top: 11px;
+						border-radius: $corner-radius;
+						font-size: .65em;
+					}
+				}
+			}
+			//------------------------------------------------
+			// AutoSuggest Modifications
+			ul.as-list {
+				li.as-result-item {
+					font-size: .5em;
+					background: transparent;
+					border: 0;
+					padding: .15em 0;
+					&.active {
+						background: transparent;
+						color: $action-blue;
+					}
+				}
+			}
+			ul.as-selections {
+				.as-original {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

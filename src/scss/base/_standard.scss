@@ -1,0 +1,193 @@
+// Standard
+
+//------------------------------------------------
+// Links
+
+a {
+	color: $legalzoom-blue;
+	text-decoration: none;
+	&:hover {
+		cursor: pointer;
+		color: transparentize($legalzoom-blue, $hover-transparentize);
+	}
+}
+
+//------------------------------------------------
+// Headings
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: psLight;
+	font-weight: normal;
+	line-height: 1.25em;
+	margin: .7em 0 1em 0;
+	color: $dark-blue;
+	strong {
+		font-family: psMedium;
+	}
+	@include breakpoint($mobile) {
+		//margin: 0 0 .36em 0;
+	}
+}
+
+@mixin mobile-font-size($font-size) {
+	font-size: $font-size * .75;
+}
+
+h1 {
+	$font-size: 2.25em;
+	font-size: $font-size;
+	@include breakpoint($mobile) {
+		//margin: 0 0 .5em 0;
+		@include mobile-font-size($font-size);
+	}
+}
+
+h2 {
+	$font-size: 1.6em;
+	font-family: psRegular;
+	font-size: $font-size;
+	margin-bottom: 1.5em;
+	@include breakpoint($mobile) {
+		//margin: 0 0 .5em 0;
+		@include mobile-font-size($font-size);
+	}
+}
+
+h3 {
+	$font-size: 1.45em;
+	font-family: psRegular;
+	font-size: $font-size;
+	margin-bottom: 1.5em;
+	@include breakpoint($mobile) {
+		@include mobile-font-size($font-size);
+	}
+}
+
+h4 {
+	$font-size: 1.28em;
+	font-family: psMedium;
+	font-size: $font-size;
+	margin-bottom: 1.5em;
+	@include breakpoint($mobile) {
+		@include mobile-font-size($font-size);
+	}
+}
+
+h5 {
+	$font-size: 1.15em;
+	font-family: psMedium;
+	font-size: $font-size;
+	margin: .7em 0 1.5em 0;
+	@include breakpoint($mobile) {
+		@include mobile-font-size($font-size);
+	}
+}
+
+//------------------------------------------------
+// Paragraph
+
+p {
+	font-size: 1.1em;
+	line-height: 1.6em;
+	margin: 0 0 1.6em 0;
+	@include breakpoint($mobile) {
+		font-size: .9em;
+		margin: 0 0 1.1em 0;
+	}
+	a {
+		text-decoration: underline;
+	}
+	img {
+		margin-top: .7em;
+	}
+}
+
+//------------------------------------------------
+// Line
+
+hr {
+	height: 1px;
+	background: #ddd;
+	border: 0;
+}
+section {
+	hr {
+		margin: 1em 0 1.75em 0;
+	}
+}
+
+//------------------------------------------------
+// Lists
+
+ul, ol {
+	padding-left: 2.14285714em;
+	margin: 0 0 2em 0;
+	li {
+		margin: 0 0 .5em 0;
+	}
+	&.icon_list {
+		padding-left: 0;
+		list-style-type: none;
+		li {
+			position: relative;
+		}
+		.font_icon {
+			position: absolute;
+		}
+		&.icon_list-sm {
+			margin-left: 2.14285714em;
+			.font_icon {
+				left: -1.64em;
+			}
+		}
+		&.icon_list-med {
+			margin-left: 3.3em;
+			.font_icon {
+				left: -1.55em;
+				top: -.15em;
+			}
+			li {
+				min-height: $font_icon-med;
+				margin: 0 0 1.75em 0;
+			}
+			&.icon_list-med-short {
+				.font_icon {
+					top: 0em;
+				}
+				li {
+					line-height: $font_icon-med;
+				margin: 0 0 1em 0;
+				}
+			}
+		}
+		&.icon_list-lg {
+			margin-left: 4.6em;
+			.font_icon {
+				left: -1.52em;
+				top: -.17em;
+			}
+			li {
+				min-height: $font_icon-lg;
+				margin: 0 0 1.75em 0;
+			}
+		}
+	}
+}
+
+//------------------------------------------------
+// Superscript Subscript
+
+sup, 
+sub {
+	vertical-align: baseline;
+	position: relative;
+	top: -.4em;
+}
+sub {
+	top: .4em;
+}
+

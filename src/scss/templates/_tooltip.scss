@@ -1,0 +1,172 @@
+// Tooltip
+
+//------------------------------------------------
+// Tooltip Default
+
+
+section.tooltip {
+	$pointer-size: 10px;
+	$pointer-position-from-top-for-left-and-right: 23px;
+	$border-color: #d3d3d3;
+
+	z-index: 999;
+	overflow: visible;
+	display: none;
+	background: white;
+	border-radius: .25rem;
+	padding: 1.75em;
+	position: absolute;
+	top: 350px;
+	left: 330px;
+	border: 1px solid $border-color;
+	//-webkit-filter: drop-shadow(0 0 0.15rem rgba(104, 104, 104, 0.5));
+	//-webkit-transform: translateZ(0);
+	
+	// Pointer position
+	&.tooltip-right {
+		&::after {
+			content: " ";
+			border-right: ($pointer-size + 1) solid white;
+			border-top: $pointer-size solid transparent;
+			border-bottom: $pointer-size solid transparent;
+			position: absolute;
+			left: -($pointer-size - .5);
+			top: $pointer-position-from-top-for-left-and-right;
+		}
+		&::before {
+			content: " ";
+			border-right: ($pointer-size + 1) solid $border-color;
+			border-top: ($pointer-size + 0) solid transparent;
+			border-bottom: ($pointer-size + 0) solid transparent;
+			position: absolute;
+			z-index: 0;
+			left: -($pointer-size + 1);
+			top: $pointer-position-from-top-for-left-and-right - 0;
+		}
+	}
+	&.tooltip-left {
+		&::after {
+			content: " ";
+			border-left: ($pointer-size + 1) solid white;
+			border-top: $pointer-size solid transparent;
+			border-bottom: $pointer-size solid transparent;
+			position: absolute;
+			right: -($pointer-size - .5);
+			top: $pointer-position-from-top-for-left-and-right;
+		}
+		&::before {
+			content: " ";
+			border-left: ($pointer-size + 1) solid $border-color;
+			border-top: ($pointer-size + 0) solid transparent;
+			border-bottom: ($pointer-size + 0) solid transparent;
+			position: absolute;
+			z-index: 0;
+			right: -($pointer-size + 1);
+			top: $pointer-position-from-top-for-left-and-right - 0;
+		}
+	}
+	&.tooltip-top {
+		&::after {
+			content: " ";
+			border-top: ($pointer-size + 1) solid white;
+			border-left: $pointer-size solid transparent;
+			border-right: $pointer-size solid transparent;
+			position: absolute;
+			bottom: -($pointer-size - .5);
+		}
+		&::before {
+			content: " ";
+			border-top: ($pointer-size + 1) solid $border-color;
+			border-left: ($pointer-size + 0) solid transparent;
+			border-right: ($pointer-size + 0) solid transparent;
+			position: absolute;
+			z-index: 0;
+			bottom: -($pointer-size + 1);
+		}
+	}
+	&.tooltip-bottom {
+		&::after {
+			content: " ";
+			border-bottom: ($pointer-size + 1) solid white;
+			border-left: $pointer-size solid transparent;
+			border-right: $pointer-size solid transparent;
+			position: absolute;
+			top: -($pointer-size - .5);
+		}
+		&::before {
+			content: " ";
+			border-bottom: ($pointer-size + 1) solid $border-color;
+			border-left: ($pointer-size + 0) solid transparent;
+			border-right: ($pointer-size + 0) solid transparent;
+			position: absolute;
+			z-index: 0;
+			top: -($pointer-size + 1);
+		}
+	}
+	
+	// Content
+	h1, h2, h3, h4, h5 {
+		font-family: $base-font;
+		font-size: 1.1em;
+		font-weight: bold;
+		margin-top: 0;
+	}
+	p {
+		font-size: .9em;
+		//line-height: 1.4em;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	// Widths
+	&.tooltip-sm {
+		$width: 300px;
+		width: $width;
+		&.tooltip-top, &.tooltip-bottom {
+			&::after, &::before {
+				left: ($width * .5) - $pointer-size;
+			}
+		}
+	}
+	&.tooltip-sm-med {
+		$width: 385px;
+		width: $width;
+		&.tooltip-top, &.tooltip-bottom {
+			&::after, &::before {
+				left: ($width * .5) - $pointer-size;
+			}
+		}
+	}
+	&.tooltip-med {
+		$width: 470px;
+		width: $width;
+		&.tooltip-top, &.tooltip-bottom {
+			&::after, &::before {
+				left: ($width * .5) - $pointer-size;
+			}
+		}
+	}
+	&.tooltip-med-lg {
+		$width: 555px;
+		width: $width;
+		&.tooltip-top, &.tooltip-bottom {
+			&::after, &::before {
+				left: ($width * .5) - $pointer-size;
+			}
+		}
+	}
+	&.tooltip-lg {
+		$width: 640px;
+		width: $width;
+		&.tooltip-top, &.tooltip-bottom {
+			&::after, &::before {
+				left: ($width * .5) - $pointer-size;
+			}
+		}
+	}
+	&.tooltip-full {
+		width: 92%;
+	}
+}
+

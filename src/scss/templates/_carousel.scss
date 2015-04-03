@@ -1,0 +1,49 @@
+// Carousel
+
+// Container
+.slick-slider {
+	//overflow: hidden;
+}
+
+.slider {
+	overflow: hidden;
+	margin-bottom: 0;
+}
+
+// Arrows
+.slick-prev,
+.slick-next {
+	@include breakpoint($mobile) {
+		display: none !important;
+	}
+}
+
+.slick-prev {
+	left: 40px;
+}
+.slick-next {
+	right: 40px;
+}
+
+// Dots
+.slick-dots {
+	bottom: 0px;
+	@include breakpoint($mobile) {
+		bottom: -10px;
+	}
+}
+
+.slick-dots li button:before {
+	color: white;
+	opacity: 1;
+}
+
+.slick-dots li.slick-active button:before {
+	color: $action-blue;
+}
+
+.slider-no-bullets {
+	.slick-dots {
+		display: none !important;
+	}
+}

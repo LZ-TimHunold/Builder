@@ -26,7 +26,7 @@ npm install gulp-sass
 npm install --save-dev gulp-uglify
 npm install --save gulp-uglifycss
 npm install --save gulp-uglifyjs
-npm install gulp-htmlclean --save-dev
+npm install gulp-html-minifier
 npm install gulp-if
 npm update
 ```

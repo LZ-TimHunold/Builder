@@ -1,0 +1,52 @@
+// Other
+
+//------------------------------------------------
+// Color Bar
+
+section.color_bar {
+	@include cf;
+	background: $legalzoom-blue;
+	height: 5px;
+	div.color_bar-color_extend {
+		background: $dark-blue;
+		width: $logo-width + ($margin-standard * 1.67) + 80px;
+		@include breakpoint($tablet) {
+			width: $logo-width + ($margin-standard * 1.67);
+		}
+		@include breakpoint($mobile) {
+			width: $logo-width_mobile + ($margin-standard * 1.85);
+		}
+		height: 5px;
+		margin: 0;
+		padding: 0;
+	}
+}
+
+//------------------------------------------------
+// Overlay
+
+.overlay-dark {
+	width: 100%;
+	max-width:100%;
+	background: rgba(0,0,0,.35);
+}
+
+//------------------------------------------------
+// Disclaimer
+
+section.disclaimer {
+	li, p {
+		font-size: 1em;
+		line-height: 1.2em;
+		margin: 0 0 1em 0;
+	}
+}
+
+section.disclaimer-sm {
+	li, p {
+		font-size: .85em;
+		line-height: 1.2em;
+		margin: 0 0 1em 0;
+	}
+}
+*,*:before,*:after {box-sizing: border-box;}

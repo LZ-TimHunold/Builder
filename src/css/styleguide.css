@@ -1,0 +1,33 @@
+section.styleguide-menu {
+  color: #fff;
+  background-color: #030077; }
+  section.styleguide-menu h1, section.styleguide-menu h2, section.styleguide-menu p {
+    color: #fff; }
+  section.styleguide-menu ul {
+    margin: 0 0 2em 0;
+    padding: 0; }
+  section.styleguide-menu li {
+    font-size: .96em;
+    display: inline-block;
+    padding: 0;
+    margin: 0 .6em 1em 0; }
+    section.styleguide-menu li a {
+      color: #2293f9; }
+      section.styleguide-menu li a:hover {
+        opacity: .85; }
+    section.styleguide-menu li.active a {
+      color: #fff !important; }
+      section.styleguide-menu li.active a:hover {
+        opacity: 1; }
+  section.styleguide-menu hr {
+    background: rgba(255, 255, 255, 0.5);
+    mix-blend-mode: overlay; }
+
+.styleguide-background_position {
+  text-align: center;
+  width: 100% !important; }
+  .styleguide-background_position div {
+    text-align: center;
+    width: 100% !important; }
+    .styleguide-background_position div h3 {
+      margin-bottom: 1em; }

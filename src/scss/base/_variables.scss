@@ -1,0 +1,61 @@
+// Variables
+
+//------------------------------------------------
+// Colors
+
+// Primary blues
+
+$legalzoom-blue:	#247bd4;
+$dark-blue:			#030077;
+$action-blue:		#2293f9;
+$fake-ignore:		#ffffff;
+
+// Secondary blues - from light (1) to dark (4)
+
+$secondary-blue-1:	#e9f1fb;
+$secondary-blue-2:	#c8def4;
+$secondary-blue-3:	#8eb2e1;
+$secondary-blue-4:	#133ba3;
+
+// Grays - from light (1) to dark (4)
+
+$gray-1:			#eeeeee;
+$gray-2:			#c1c5c3;
+$gray-3:			#949897;
+$gray-4:			#676b6a;
+$gray-5:			#3a3d3c;
+$gray-6:			#292a29;
+
+$default-text:		#222222;
+
+$error-red:			#dc0101;
+
+//------------------------------------------------
+// Breakpoints
+
+$mobile: max-width 640px;
+$tablet: max-width 980px;
+$desktop: min-width 641px;
+
+//------------------------------------------------
+// Container Max Width
+
+$container: 1200px;
+
+//------------------------------------------------
+// Margins
+
+$margin-standard: 20px;
+$margin-mobile: 15px;
+$box-sizing: border-box;
+
+//------------------------------------------------
+// Corner radius
+
+$corner-radius: .25rem;
+
+//------------------------------------------------
+// Hover Opacity Change
+
+$hover-opacity: .85;
+$hover-transparentize: .09;

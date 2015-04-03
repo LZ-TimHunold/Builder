@@ -1,0 +1,311 @@
+// For pieces of the site that can be used in more than one place, basically.
+
+//------------------------------------------------
+// Clear
+
+.clear {
+	clear: both;
+}
+
+@mixin clear-after-fix() {
+	&:after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: ' ';
+		clear: both;
+		height: 0;
+	}
+}
+
+//------------------------------------------------
+// List element converted horizontal list with no bullets
+// Commonly used for tabs or navigation lists
+
+@mixin list-inline-no-bullet() {
+	ul, ol {
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		display: inline;
+		padding: 0;
+		margin: 0;
+	}
+}
+
+@mixin list-no-bullet() {
+	ul, ol {
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		display: block;
+		padding: 0;
+		margin: 0;
+	}
+}
+
+//------------------------------------------------
+// Color Reverse (Knockout)
+// All elements colored white
+
+.color-reverse {
+	color: #fff;
+	h1, h2, h3, h4, h5, p, li, .font_icon
+	&h1, &h2, &h3, &h4, &h5, &p, &li, &.font_icon {
+		color: #fff;
+	}
+	a,
+	&a {
+		color: $action-blue !important;
+		&:hover {
+			opacity: $hover-opacity;
+		}
+	}
+	path,
+	polygon {
+		fill: #fff;
+	}
+	hr,
+	&hr {
+		background: #fff;
+	}
+}
+
+//------------------------------------------------
+// Reverse link hover opacity
+// Default behavior for links is to begin at 100% opacity and become slightly transparent on hover
+// In some edge cases, we want the opposite behavior, beginning slightly transparent and becoming 100% on hover.
+
+@mixin reverse-link-opacity() {
+	a {
+		opacity: $hover-opacity;
+		&:hover {
+			opacity: 1 !important;
+		}
+	}
+}
+//------------------------------------------------
+// Colors
+
+// Primary blues
+	
+.legalzoom-blue {color: $legalzoom-blue;}
+.dark-blue {color: $dark-blue;}
+.action-blue {color: $action-blue;}
+	
+// Secondary blues - from light (1) to dark (4)
+	
+.secondary-blue-1 {color: $secondary-blue-1;}
+.secondary-blue-2 {color: $secondary-blue-2;}
+.secondary-blue-3 {color: $secondary-blue-3;}
+.secondary-blue-4 {color: $secondary-blue-4;}
+	
+// Grays - from light (1) to dark (4)
+	
+.gray-1 {color: $gray-1;}
+.gray-2 {color: $gray-2;}
+.gray-3 {color: $gray-3;}
+.gray-4 {color: $gray-4;}
+.gray-5 {color: $gray-5;}
+
+.error-red {color: $error-red;}
+
+//------------------------------------------------
+// Background Colors
+
+// Primary blues
+
+.background-legalzoom-blue		{background-color: $legalzoom-blue;}
+.background-dark-blue			{background-color: $dark-blue;}
+
+// Secondary blues - from light (1) to dark (4)
+
+.background-secondary-blue-1	{background-color: $secondary-blue-1;}
+.background-secondary-blue-2	{background-color: $secondary-blue-2;}
+.background-secondary-blue-3	{background-color: $secondary-blue-3;}
+.background-secondary-blue-4	{background-color: $secondary-blue-4;}
+
+// Grays - from light (1) to dark (4)
+
+.background-gray-1				{background-color: $gray-1;}
+.background-gray-2				{background-color: $gray-2;}
+.background-gray-3				{background-color: $gray-3;}
+.background-gray-4				{background-color: $gray-4;}
+.background-gray-5				{background-color: $gray-5;}
+.background-gray-6				{background-color: $gray-6;}
+
+// White
+
+.background-white				{background-color: #fff;}
+
+//------------------------------------------------
+// Text Alignment
+
+.center {
+	text-align: center !important;
+}
+
+//------------------------------------------------
+// Centering Div
+
+.centerV,
+.centerH,
+.centerVH {
+	@include col(1);
+}
+
+.centerV {
+	@include align($direction: v);
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	@include breakpoint($mobile) {
+		//@include center($max_width: $container, $pad: $margin-mobile);
+		@include center($max_width: $container, $pad: 0);
+		padding: 0;
+		margin: 0;
+		//@include col(1);
+		//@include align($direction: both);
+	}
+}
+
+.centerH {
+	@include align($direction: h);
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+}
+
+.centerVH {
+	@include align($direction: both);
+	-webkit-transform: translateY(-50%, -50%);
+	-moz-transform: translateY(-50%, -50%);
+	-ms-transform: translateY(-50%, -50%);
+	-o-transform: translateY(-50%, -50%);
+}
+
+@mixin centerVH() {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	-moz-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	-o-transform: translateY(-50%) translateX(-50%);
+}
+
+//------------------------------------------------
+// Hide or Display on Mobile, Desktop or Tablet
+
+.desktop-only {
+	@include breakpoint($mobile) {
+		display: none;
+	}
+	@include breakpoint($tablet) {
+		display: none !important;
+	}
+}
+
+.mobile-only {
+	@include breakpoint($desktop) {
+		display: none;
+	}
+}
+
+.desktop-tablet-only {
+	@include breakpoint($mobile) {
+		display: none;
+	}
+}
+
+//------------------------------------------------
+// Text Transform
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+//------------------------------------------------
+// Font size
+
+.em_8 {
+	font-size: .8em;
+}
+.em_9 {
+	font-size: .9em;
+}
+.em1 {
+	font-size: 1em;
+}
+.em1_1 {
+	font-size: 1.1em;
+}
+.em1_2 {
+	font-size: 1.2em;
+}
+.em1_3 {
+	font-size: 1.3em;
+}
+.em1_4 {
+	font-size: 1.4em;
+}
+.em1_5 {
+	font-size: 1.5em;
+}
+.em1_6 {
+	font-size: 1.6em;
+}
+.em1_7 {
+	font-size: 1.7em;
+}
+.em1_8 {
+	font-size: 1.8em;
+}
+.em1_9 {
+	font-size: 1.9em;
+}
+.em2 {
+	font-size: 2em;
+}
+
+//------------------------------------------------
+// Force Position Type
+
+.relative {
+	position: relative !important;
+}
+
+.absolute {
+	position: absolute !important;
+}
+
+.fixed {
+	position: fixed !important;
+}
+
+//------------------------------------------------
+// Overflow
+
+.overflow-visible {
+	overflow: visible !important;
+}
+
+.overflow-hidden {
+	overflow: hidden !important;
+}
+
+
+//------------------------------------------------
+// No Padding / No Margin
+
+.nopad {
+	padding: 0 !important;
+}
+
+.nomargin {
+	margin: 0 !important;
+}

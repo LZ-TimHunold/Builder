@@ -1,0 +1,164 @@
+/* DATE PICKER */
+
+.choose_date, 
+.datepicker {
+	$day-cell-height: 80px;
+	$day-cell-height-mobile: 40px;
+	margin: 0 0 1.6em 0;
+	text-align: center;
+	position: relative;
+	header {
+		position: relative;
+		width: 100%;
+		margin: auto;
+		height: 45px;
+		h1 {
+			text-align: center;
+			line-height: 30px;
+			white-space: nowrap;
+			font-size: 1.75em;
+			line-height: 1.2em;
+			@include breakpoint($mobile) {
+				font-size: 1.3em;
+				line-height: 1.6em;
+			}
+		}
+		.button-previous, 
+		.button-next {
+			position: absolute;
+			width: 30px;
+			height: 30px;
+			background: $action-blue;
+			top: 0;
+			-webkit-border-radius: 999px;
+			-moz-border-radius: 999px;
+			border-radius: 999px;
+			&:hover {
+				cursor: pointer;
+			}
+			&.inactive {
+				background: #ddd;
+				&:hover {
+					cursor: default;
+				}
+			}
+			.button-arrow {
+				position: absolute;
+			}
+		}
+		.button-previous {
+			left: 0;
+			.button-arrow {
+				left: 3px;
+				top: 7px;
+			}
+		}
+		.button-next {
+			right: 0;
+			.button-arrow {
+				left: 5px;
+				top: 7px;
+			}
+		}
+	}
+	.day-container {
+		position: relative;
+		width: 100%;
+		.days {
+			box-sizing:border-box;
+			position: relative;
+			padding: 0;
+			width: 100%;
+			.day {
+				position: relative;
+				width: 13.4284%;
+				height: $day-cell-height;
+				float: left;
+				margin: 0 1% 0 0;
+				color: #1b1a13;
+				text-align: center;
+				&:nth-of-type(7n+0) {
+					margin-right: 0;
+				}
+				&.day_empty {
+					background: $gray-1;
+					opacity: .7;
+					width: 14.4284%;
+					margin-right: 0;
+				}
+				&.day_inactive {
+					background: #ececea;
+					color: #aaa;
+				}
+				&.day_holiday {
+					background: #ccc;
+					&:hover {
+						cursor: default;
+					}
+				}
+				&.day_active {
+					background: #ececea;
+					&:hover {
+						opacity: .5;
+						cursor: pointer;
+					}
+					&.active {
+						background: $action-blue;
+						color: #fff;
+						&:hover {
+							opacity: 1;
+						}
+					}
+				}
+				&.day_today {
+					background: $secondary-blue-1;
+					&:hover {
+						opacity: .85;
+					}
+				}
+				@include breakpoint($mobile) {
+					height: $day-cell-height-mobile;
+				}
+			}
+			.day_number {
+				@include centerVH();
+				font-family: psLight;
+				font-size: 1.4em;
+				@include breakpoint($mobile) {
+					font-size: 1em;
+				}
+			}
+			.day_text_top {
+				@include centerVH();
+				width: 96%;
+				top: 20%;
+				font-size: .8em;
+				text-transform: uppercase;
+				@include breakpoint($mobile) {
+					display: none;
+				}
+			}
+			.day_text_bottom {
+				@include centerVH();
+				width: 96%;
+				top: 77%;
+				font-size: .7em;
+				@include breakpoint($mobile) {
+					display: none;
+				}
+			}
+			.day_of_week {
+				width: 13.4284%;
+				float: left;
+				margin: 0 1% 0 0;
+				padding: 1em 0;
+				&:nth-of-type(7) {
+					margin-right: 0;
+				}
+				@include breakpoint($mobile) {
+					font-size: .8em;
+				}
+			}
+		}
+	}
+}

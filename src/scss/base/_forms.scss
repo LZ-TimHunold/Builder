@@ -1,0 +1,752 @@
+// Forms
+
+//------------------------------------------------
+// Reset
+
+$placeholder-text-color: #bbb;
+
+input, 
+textarea, 
+select {
+	font-family: $base_font;
+	font-weight: normal;
+	-webkit-font-smoothing:antialiased;
+	&::-ms-clear {
+		display: none;
+	}
+
+	// Placeholder text color
+	&::-webkit-input-placeholder {
+		color: $placeholder-text-color;
+	}
+	&:-moz-placeholder { /* Firefox 18- */
+		color: $placeholder-text-color;  
+	}
+	&::-moz-placeholder {  /* Firefox 19+ */
+		color: $placeholder-text-color;  
+	}
+	&:-ms-input-placeholder {  
+		color: $placeholder-text-color;  
+	}
+}
+
+//------------------------------------------------
+// Variables
+$input-border-color: #ccc;
+$input-radio-and-checkbox-size: 20px;
+$input-padding-sm: .8em;
+$input-margin-bottom: 1.6em;
+
+//------------------------------------------------
+// Form Input Row
+
+.form-input-row {
+	@include clear-after-fix();
+	@include list-no-bullet();
+	width: 100%;
+	li {
+		display: inline-block;
+		float: left;
+		width: 100%;
+	}
+	//------------------------------------------------
+	// General attributes specifically in forms
+	input,
+	textarea, 
+	select {
+		box-sizing: border-box;
+		width: 100%;
+		border-radius: $corner-radius;
+		margin: 0 0 $input-margin-bottom 0;
+	}
+	//------------------------------------------------
+	// 2 Columns
+	&.col2 {
+		li {
+			@include col(1/2);
+			&:nth-of-type(2n+0) {
+				margin-right: 0;
+			}
+			li {
+				@include col(1);
+			}
+		}
+		&.stack {
+			@include breakpoint($mobile) {
+				li {
+					@include stack;
+				}
+			}
+		}
+	}
+	//------------------------------------------------
+	// 3 Columns
+	&.col3 {
+		li {
+			@include col(1/3);
+			&:nth-of-type(3n+0) {
+				margin-right: 0;
+			}
+			li {
+				@include col(1);
+			}
+		}
+		&.stack {
+			@include breakpoint($mobile) {
+				li {
+					@include stack;
+				}
+			}
+		}
+	}
+	&.col1_2 {
+		li {
+			@include col(1/3);
+			&:nth-of-type(2n+0) {
+				@include col(2/3);
+				margin-right: 0;
+				@include breakpoint($mobile) {
+					@include col(1/2);
+				}
+			}
+			li {
+				@include col(1);
+			}
+			@include breakpoint($mobile) {
+				@include col(1/2);
+			}
+		}
+		&.stack {
+			@include breakpoint($mobile) {
+				li {
+					@include stack;
+				}
+			}
+		}
+	}
+	&.col2_1 {
+		li {
+			@include col(1/3);
+			&:nth-of-type(2n+1) {
+				@include col(2/3);
+				@include breakpoint($mobile) {
+					@include col(1/2);
+				}
+			}
+			&:nth-of-type(2n+0) {
+				margin-right: 0;
+			}
+			li {
+				@include col(1);
+			}
+			@include breakpoint($mobile) {
+				@include col(1/2);
+			}
+		}
+		&.stack {
+			@include breakpoint($mobile) {
+				li {
+					@include stack;
+				}
+			}
+		}
+	}
+	//------------------------------------------------
+	// 4 Columns
+	&.col4 {
+		li {
+			@include col(1/4);
+			&:nth-of-type(4n+0) {
+				margin-right: 0;
+			}
+			li {
+				@include col(1);
+			}
+			@include breakpoint($mobile) {
+				@include col(1/2);
+				&:nth-of-type(2n+0) {
+					margin-right: 0;
+				}
+			}
+		}
+		&.stack {
+			@include breakpoint($mobile) {
+				li {
+					@include stack;
+				}
+			}
+		}
+	}
+	&.col2_1_1 {
+		li {
+			@include col(1/4);
+			&:nth-of-type(3n+0) {
+				margin-right: 0;
+			}
+			&:nth-of-type(3n+1) {
+				@include col(1/2);
+				@include breakpoint($mobile) {
+					@include stack;
+				}
+			}
+			li {
+				@include col(1);
+			}
+			@include breakpoint($mobile) {
+				@include col(1/2);
+				&:nth-of-type(3n+0) {
+					margin-right: 0;
+				}
+			}
+		}
+		&.stack {
+			@include breakpoint($mobile) {
+				li {
+					@include stack;
+				}
+			}
+		}
+	}
+	&.col1_1_2 {
+		li {
+			@include col(1/4);
+			&:nth-of-type(3n+0) {
+				margin-right: 0;
+			}
+			&:nth-of-type(3n+3) {
+				@include col(1/2);
+				@include breakpoint($mobile) {
+					@include stack;
+				}
+			}
+			li {
+				@include col(1);
+			}
+			@include breakpoint($mobile) {
+				@include col(1/2);
+				&:nth-of-type(3n+2) {
+					margin-right: 0;
+				}
+			}
+		}
+		&.stack {
+			@include breakpoint($mobile) {
+				li {
+					@include stack;
+				}
+			}
+		}
+	}
+	&.col1_2_1 {
+		li {
+			@include col(1/4);
+			&:nth-of-type(3n+0) {
+				margin-right: 0;
+			}
+			&:nth-of-type(3n+2) {
+				@include col(1/2);
+				@include breakpoint($mobile) {
+					@include stack;
+				}
+			}
+			li {
+				@include col(1);
+			}
+			@include breakpoint($mobile) {
+				@include stack;
+			}
+		}
+		&.stack {
+			@include breakpoint($mobile) {
+				li {
+					@include stack;
+				}
+			}
+		}
+	}
+	//------------------------------------------------
+	// 5 Columns
+	&.col5 {
+		li {
+			@include col(1/5);
+			&:nth-of-type(5n+0) {
+				margin-right: 0;
+			}
+			li {
+				@include col(1);
+			}
+			@include breakpoint($mobile) {
+				@include col(1/2);
+				&:nth-of-type(2n+0) {
+					margin-right: 0;
+				}
+			}
+		}
+		&.stack {
+			@include breakpoint($mobile) {
+				li {
+					@include stack;
+				}
+			}
+		}
+	}
+	//------------------------------------------------
+	// 6 Columns
+	&.col6 {
+		li {
+			@include col(1/6);
+			&:nth-of-type(6n+0) {
+				margin-right: 0;
+			}
+			li {
+				@include col(1);
+			}
+			@include breakpoint($mobile) {
+				@include col(1/2);
+				&:nth-of-type(2n+0) {
+					margin-right: 0;
+				}
+			}
+		}
+		&.stack {
+			@include breakpoint($mobile) {
+				li {
+					@include stack;
+				}
+			}
+		}
+	}
+	//------------------------------------------------
+	// 7 Columns
+	&.col7 {
+		li {
+			@include col(1/7);
+			&:nth-of-type(7n+0) {
+				margin-right: 0;
+			}
+			li {
+				@include col(1);
+			}
+			@include breakpoint($mobile) {
+				@include col(1/2);
+				&:nth-of-type(2n+0) {
+					margin-right: 0;
+				}
+			}
+		}
+		&.stack {
+			@include breakpoint($mobile) {
+				li {
+					@include stack;
+				}
+			}
+		}
+	}
+	//------------------------------------------------
+	// 8 Columns
+	&.col8 {
+		li {
+			@include col(1/8);
+			&:nth-of-type(8n+0) {
+				margin-right: 0;
+			}
+			li {
+				@include col(1);
+			}
+			@include breakpoint($mobile) {
+				@include col(1/2);
+				&:nth-of-type(2n+0) {
+					margin-right: 0;
+				}
+			}
+		}
+		&.stack {
+			@include breakpoint($mobile) {
+				li {
+					@include stack;
+				}
+			}
+		}
+	}
+	//------------------------------------------------
+	// Label
+	label {
+		font-weight: bold;
+		font-size: 1em;
+		margin: 0 0 .5em 0;
+		display: inline-block;
+		.normal {
+			font-weight: normal;
+		}
+	}
+	//------------------------------------------------
+	// Text
+	input[type=text] {
+		background: #fff;
+		padding: $input-padding-sm;
+		font-family: $base-font;
+		font-size: 1em;
+		border: 1px solid $input-border-color;
+		&:focus {
+			border: 1px solid $legalzoom-blue;
+		}
+	}
+	//------------------------------------------------
+	// Textarea
+	textarea {
+		@extend input[type=text];
+		resize: none;
+		overflow: auto;
+	}
+	.textarea-character-count {
+		width: 100%;
+		text-align: right;
+		font-size: .9em;
+		position: relative;
+		top: -1.3em;
+		.good {
+		}
+		.bad {
+			color: $error-red;
+		}
+	}
+	//------------------------------------------------
+	// Radio
+	input[type=radio] {
+		width: auto;
+	}
+	.radio-input {
+		input[type=radio]:not(old) {
+			width: 2em;
+			margin: 0;
+			padding: 0;
+			font-size: 1em;
+			opacity: 0;
+		}
+		input[type=radio]:not(old) + label {
+			display: inline-block;
+			margin-left: -2em;
+			line-height: 1.5em;
+		}
+		input[type=radio]:not(old) + label > span {
+			display: inline-block;
+			width: $input-radio-and-checkbox-size;
+			height: $input-radio-and-checkbox-size;
+			margin: 0.25em 0.5em 0.25em 0.25em;
+			border-radius: 999em;
+			background: #fff;
+			border: 1px solid $input-border-color;
+			vertical-align: bottom;
+			position: relative;
+			top: 2px;
+		}
+		input[type=radio]:not(old):checked + label > span {
+			//border: 1px solid $legalzoom-blue;
+		}
+		input[type=radio]:not(old):checked + label > span > span {
+			display: block;
+			width: $input-radio-and-checkbox-size - 10px;
+			height: $input-radio-and-checkbox-size - 10px;
+			margin: 4px;
+			border-radius: 999em;
+			background: $legalzoom-blue;
+		}
+		label:hover {
+			cursor: pointer;
+		}
+	}
+	//------------------------------------------------
+	// Checkbox
+	.checkbox-input {
+		input[type=checkbox]:not(old) {
+			width: 2em;
+			margin: 0;
+			padding: 0;
+			font-size: 1em;
+			opacity: 0;
+		}
+		input[type=checkbox]:not(old) + label {
+			display: inline-block;
+			margin-left: -2em;
+			line-height: 1.5em;
+		}
+		input[type=checkbox]:not(old) + label > span {
+			display: inline-block;
+			width: $input-radio-and-checkbox-size;
+			height: $input-radio-and-checkbox-size;
+			margin: 0.25em 0.5em 0.25em 0.25em;
+			border-radius: $corner-radius;
+			background: #fff;
+			border: 1px solid $input-border-color;
+			vertical-align: bottom;
+			position: relative;
+			top: 2px;
+		}
+		input[type=checkbox]:not(old):checked + label > span {
+			//border: 1px solid $legalzoom-blue;
+		}
+		input[type=checkbox]:not(old):checked + label > span:before {
+			font-family: 'legalzoom';
+			content: '\e809';
+			display: block;
+			width: $input-radio-and-checkbox-size;
+			color: $legalzoom-blue;
+			font-size: 1.25em;
+			line-height: 1.15em;
+			text-align: center;
+		}
+		label:hover {
+			cursor: pointer;
+		}
+	}
+	//------------------------------------------------
+	// Select
+	.select-input {
+		width: 100%;
+		position: relative;
+		.select-input-border {
+			position: absolute;
+			padding: $input-padding-sm;
+			background: #fff;
+			width: 100%;
+			border: 1px solid $input-border-color;
+			border-radius: $corner-radius;
+		}
+		select {
+			position: relative;
+			background: transparent;
+			padding: $input-padding-sm;
+			font-size: 1em;
+			-webkit-appearance: none;
+			outline: none;
+			border: none;
+			width: 100%;
+			&:hover {
+				cursor: pointer;
+			}
+			
+			// Remove arrow in Firefox
+			&:-moz-focusring {
+				color: transparent;
+				text-shadow: 0 0 0 #000;
+			}
+			-moz-appearance:window;
+			
+			// Remove arrow in IE
+			&::-ms-expand {
+				display: none;
+			}
+		}
+		.form-icon {
+			position: absolute;
+			right: 1px;
+			font-size: 1em;
+			top: 0;
+			right: 0;
+			i {
+				display: block;
+				position: relative;
+				padding: $input-padding-sm ($input-padding-sm * .75);
+				top: 1px;
+				border-radius: $corner-radius;
+			}
+		}
+	}
+	//------------------------------------------------
+	// Upload
+	input[type=file] {
+		opacity: 0;
+		position: absolute;
+	}
+	.upload-input-button {
+		position: relative;
+		background: #fff;
+		padding: $input-padding-sm;
+		font-family: $base-font;
+		font-size: 1em;
+		border: 1px solid $input-border-color;
+		&:focus {
+			border: 1px solid $legalzoom-blue;
+		}
+		border-radius: $corner-radius;
+		margin: 0 0 1em 0;
+		span {
+			color: $legalzoom-blue;
+		}
+		span.nofile {
+			color: $gray-2;
+		}
+		&:disabled {
+			cursor: default;
+		}
+	}
+	//------------------------------------------------
+	// Disabled
+	$disabled-input-opacity: .4;
+	.disabled {
+		opacity: $disabled-input-opacity;
+		label, 
+		.form-icon {
+			opacity: $disabled-input-opacity * .5;
+		}
+		.radio-input,
+		.checkbox-input {
+			label {
+				opacity: .6;
+				> span > span {
+					opacity: 1;
+				}
+				&:hover {
+					cursor: default;
+				}
+			}
+		}
+		.select-input {
+			select {
+				&:hover {
+					cursor: default;
+				}
+			}
+		}
+	}
+	//------------------------------------------------
+	// Icons Inisde Input Field
+	.icon-right {
+		input[type=text] {
+			padding-right: 34px;
+		}
+		.form-icon {
+			position: absolute;
+			z-index: 1;
+			right: 1px;
+			font-size: 1em;
+			i,
+			span {
+				display: block;
+				position: relative;
+				padding: $input-padding-sm ($input-padding-sm * .75);
+				background: #fff;
+				top: 1px;
+				border-radius: $corner-radius;
+			}
+			span {
+				font-style: normal;
+				color: #7a7a7a;
+				padding: $input-padding-sm;
+			}
+		}
+	}
+	.icon-left {
+		input[type=text] {
+			padding-left: 34px;
+		}
+		.form-icon {
+			position: absolute;
+			z-index: 1;
+			left: 1px;
+			font-size: 1em;
+			i {
+				display: block;
+				position: relative;
+				padding: $input-padding-sm ($input-padding-sm * .75);
+				top: 1px;
+				border-radius: $corner-radius;
+			}
+		}
+	}
+}
+
+//------------------------------------------------
+// AutoSuggest
+// AutoSuggest CSS - Version 1.2
+
+// Input Field
+input[type=text].as-input {
+	&.showing-results {
+		margin-bottom: 0;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+}
+
+// Result List
+ul.as-list {
+	position: relative;
+	top: -1px;
+	width: 100% !important;
+	li.as-result-item {
+		box-sizing:border-box;
+		margin: 0;
+		padding: $input-padding-sm;
+		background: #fff;
+		border: 1px solid $input-border-color;
+		border-left: 1px solid $legalzoom-blue;
+		border-right: 1px solid $legalzoom-blue;
+		border-bottom: none;
+		cursor: pointer;
+		//&:first-child {
+		//	border-top-left-radius: $corner-radius;
+		//	border-top-right-radius: $corner-radius;
+		//}
+		&:last-child {
+			border-bottom-left-radius: $corner-radius;
+			border-bottom-right-radius: $corner-radius;
+			border-bottom: 1px solid $legalzoom-blue;
+			margin: 0 0 $input-margin-bottom 0;
+		}
+		&.active {
+			background-color: $secondary-blue-1;
+		}
+		em { 
+			font-style: normal; 
+		}
+	}
+}
+ul.as-selections {
+	.as-original {
+	}
+}
+/* Webkit Hacks  */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	ul.as-selections {
+		border-top-width: 2px;
+	}
+	ul.as-selections li.as-selection-item {
+		padding-top: 3px;
+		padding-bottom: 3px;
+	}
+	ul.as-selections li.as-selection-item a.as-close {
+		margin-top: -1px;
+	}
+	//ul.as-selections li.as-original input {
+	//	height: 19px;
+	//}
+}
+
+/* Opera Hacks  */
+@media all and (-webkit-min-device-pixel-ratio:10000), not all and (-webkit-min-device-pixel-ratio:0) {
+	ul.as-list {
+		border: 1px solid #888;
+	}
+	ul.as-selections li.as-selection-item a.as-close {
+		margin-left: 4px;
+		margin-top: 0;
+	}
+}
+
+/* IE Hacks  */
+ul.as-list {
+	border: 1px solid #888\9;
+}
+ul.as-selections li.as-selection-item a.as-close {
+	margin-left: 4px\9;
+	margin-top: 0\9;
+}
+
+/* Firefox 3.0 Hacks */
+ul.as-list,  x:-moz-any-link, x:default { 
+	border: 1px solid #888;
+}
+BODY:first-of-type ul.as-list, x:-moz-any-link, x:default { /* Target FF 3.5+ */
+	border: none;
+}

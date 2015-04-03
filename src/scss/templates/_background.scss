@@ -1,0 +1,482 @@
+// Backgrounds
+
+//------------------------------------------------
+// Section Background Image
+
+section.background-center,
+section.background-left,
+section.background-right,
+section.background-0,
+section.background-5,
+section.background-10,
+section.background-15,
+section.background-20,
+section.background-25,
+section.background-30,
+section.background-35,
+section.background-40,
+section.background-45,
+section.background-50,
+section.background-55,
+section.background-60,
+section.background-65,
+section.background-70,
+section.background-75,
+section.background-80,
+section.background-85,
+section.background-90,
+section.background-95,
+section.background-100 {
+	background-size: cover;
+	background-repeat: no-repeat;
+	>div {
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+}
+
+section.background {
+	background-position: center center;
+	>div {
+		background-position: center center;
+	}
+}
+
+section.background-left {
+	background-position: left center;
+	&.background-top {
+		background-position: left top;
+	}
+	&.background-bottom {
+		background-position: left bottom;
+	}
+	>div {
+		background-position: left center;
+		&.background-top {
+			background-position: left top;
+		}
+		&.background-bottom {
+			background-position: left bottom;
+		}
+	}
+}
+
+section.background-right {
+	background-position: right center;
+	&.background-top {
+		background-position: right top;
+	}
+	&.background-bottom {
+		background-position: right bottom;
+	}
+	>div {
+		background-position: right center;
+		&.background-top {
+			background-position: right top;
+		}
+		&.background-bottom {
+			background-position: right bottom;
+		}
+	}
+}
+
+section.background-0 {
+	$percentage: 0%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-5 {
+	$percentage: 5%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-10 {
+	$percentage: 10%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-15 {
+	$percentage: 15%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-20 {
+	$percentage: 20%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-25 {
+	$percentage: 25%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-30 {
+	$percentage: 30%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-35 {
+	$percentage: 35%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-40 {
+	$percentage: 40%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-45 {
+	$percentage: 45%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-50 {
+	$percentage: 50%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-55 {
+	$percentage: 55%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-60 {
+	$percentage: 60%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-65 {
+	$percentage: 65%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-70 {
+	$percentage: 70%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-75 {
+	$percentage: 75%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-80 {
+	$percentage: 80%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-85 {
+	$percentage: 85%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-90 {
+	$percentage: 90%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-95 {
+	$percentage: 95%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+section.background-100 {
+	$percentage: 100%;
+	background-position: $percentage center;
+	&.background-top {
+		background-position: $percentage top;
+	}
+	&.background-bottom {
+		background-position: $percentage bottom;
+	}
+	>div {
+		background-position: $percentage center;
+		&.background-top {
+			background-position: $percentage top;
+		}
+		&.background-bottom {
+			background-position: $percentage bottom;
+		}
+	}
+}
+

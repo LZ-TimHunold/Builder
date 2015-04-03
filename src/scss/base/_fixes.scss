@@ -1,0 +1,42 @@
+// Fixes
+
+//------------------------------------------------
+// Box sizing fix
+
+/*
+*,
+*:before,
+*:after {
+	@include box-sizing(border-box);
+}
+*/
+//------------------------------------------------
+// Forms no outline on focus
+
+*:focus {
+	outline: 0;
+}
+
+//------------------------------------------------
+// Custom selection color
+
+::selection {
+	background: #7a7a7a;
+	color: #fff;
+}
+
+//------------------------------------------------
+// SVG fix for IE9
+
+svg:not(:root) {
+	overflow:hidden;
+}
+
+//------------------------------------------------
+// Ensure images don't go out of bounds for print
+
+@media print {
+	img{
+		max-width:100% !important;
+	}
+}

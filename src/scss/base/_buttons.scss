@@ -1,0 +1,207 @@
+// Buttons
+
+button {
+	font-family: psRegular;
+	border: 0;
+	border-radius: 4px;
+	margin: 0 0 .3em 0;
+	width: 100%;
+	&:hover {
+		cursor: pointer;
+	}
+	@include breakpoint($mobile) {
+		max-width: 100%;
+	}
+	
+	// Button Size
+	&.button-sm {
+		font-family: psMedium;
+		font-size: .8em;
+		width: auto;
+		max-width: 320px;
+		padding: .6em 0 .4em 0;
+	}
+	&.button-sm-med {
+		font-size: 1em;
+		width: auto;
+		max-width: 320px;
+		padding: .7em 0 .6em 0;
+	}
+	&.button-med {
+		font-size: 1.1em;
+		max-width: 320px;
+		padding: .75em 0 .55em 0;
+	}
+	&.button-med-lg {
+		font-size: 1.3em;
+		max-width: 400px;
+		padding: .7em 0;
+	}
+	&.button-lg {
+		font-size: 1.5em;
+		max-width: 480px;
+		padding: .7em 0;
+	}
+	
+	// Button Icon Padding Adjustment
+	$button-icon-pad-adjustment: 5px;
+
+	// Button Padding
+	&.button-pad-5 {
+		$pad: 5px;
+		padding-left: $pad;
+		padding-right: $pad;
+		&.button-icon-right {
+			padding-right: $pad - $button-icon-pad-adjustment;
+		}
+		&.button-icon-left {
+			padding-left: $pad - $button-icon-pad-adjustment;
+		}
+	}
+	&.button-pad-10 {
+		$pad: 10px;
+		padding-left: $pad;
+		padding-right: $pad;
+		&.button-icon-right {
+			padding-right: $pad - $button-icon-pad-adjustment;
+		}
+		&.button-icon-left {
+			padding-left: $pad - $button-icon-pad-adjustment;
+		}
+	}
+	&.button-pad-15 {
+		$pad: 15px;
+		padding-left: $pad;
+		padding-right: $pad;
+		&.button-icon-right {
+			padding-right: $pad - $button-icon-pad-adjustment;
+		}
+		&.button-icon-left {
+			padding-left: $pad - $button-icon-pad-adjustment;
+		}
+	}
+	&.button-pad-20 {
+		$pad: 20px;
+		padding-left: $pad;
+		padding-right: $pad;
+		&.button-icon-right {
+			padding-right: $pad - $button-icon-pad-adjustment;
+		}
+		&.button-icon-left {
+			padding-left: $pad - $button-icon-pad-adjustment;
+		}
+	}
+	&.button-pad-25 {
+		$pad: 25px;
+		padding-left: $pad;
+		padding-right: $pad;
+		&.button-icon-right {
+			padding-right: $pad - $button-icon-pad-adjustment;
+		}
+		&.button-icon-left {
+			padding-left: $pad - $button-icon-pad-adjustment;
+		}
+	}
+	&.button-pad-30 {
+		$pad: 30px;
+		padding-left: $pad;
+		padding-right: $pad;
+		&.button-icon-right {
+			padding-right: $pad - $button-icon-pad-adjustment;
+		}
+		&.button-icon-left {
+			padding-left: $pad - $button-icon-pad-adjustment;
+		}
+	}
+	&.button-pad-35 {
+		$pad: 35px;
+		padding-left: $pad;
+		padding-right: $pad;
+		&.button-icon-right {
+			padding-right: $pad - $button-icon-pad-adjustment;
+		}
+		&.button-icon-left {
+			padding-left: $pad - $button-icon-pad-adjustment;
+		}
+	}
+	&.button-pad-40 {
+		$pad: 40px;
+		padding-left: $pad;
+		padding-right: $pad;
+		&.button-icon-right {
+			padding-right: $pad - $button-icon-pad-adjustment;
+		}
+		&.button-icon-left {
+			padding-left: $pad - $button-icon-pad-adjustment;
+		}
+	}
+	
+	// Button Force Width
+	&.button-width-60 {$width: 60px;width: $width !important;max-width: $width !important;}
+	&.button-width-80 {$width: 80px;width: $width !important;max-width: $width !important;}
+	&.button-width-100 {$width: 100px;width: $width !important;max-width: $width !important;}
+	&.button-width-120 {$width: 120px;width: $width !important;max-width: $width !important;}
+	&.button-width-140 {$width: 140px;width: $width !important;max-width: $width !important;}
+	&.button-width-160 {$width: 160px;width: $width !important;max-width: $width !important;}
+	&.button-width-180 {$width: 180px;width: $width !important;max-width: $width !important;}
+	&.button-width-200 {$width: 200px;width: $width !important;max-width: $width !important;}
+	&.button-width-220 {$width: 220px;width: $width !important;max-width: $width !important;}
+	&.button-width-240 {$width: 240px;width: $width !important;max-width: $width !important;}
+	&.button-width-260 {$width: 260px;width: $width !important;max-width: $width !important;}
+	&.button-width-280 {$width: 280px;width: $width !important;max-width: $width !important;}
+	&.button-width-300 {$width: 300px;width: $width !important;max-width: $width !important;}
+	&.button-width-320 {$width: 320px;width: $width !important;max-width: $width !important;}
+	&.button-width-340 {$width: 340px;width: $width !important;max-width: $width !important;}
+	&.button-width-360 {$width: 360px;width: $width !important;max-width: $width !important;}
+	&.button-width-380 {$width: 380px;width: $width !important;max-width: $width !important;}
+	&.button-width-400 {$width: 400px;width: $width !important;max-width: $width !important;}
+	&.button-width-420 {$width: 420px;width: $width !important;max-width: $width !important;}
+	&.button-width-440 {$width: 440px;width: $width !important;max-width: $width !important;}
+	&.button-width-460 {$width: 460px;width: $width !important;max-width: $width !important;}
+	&.button-width-480 {$width: 480px;width: $width !important;max-width: $width !important;}
+
+	// Button Fluidity
+	&.button-fluid-strong {
+		width: 100%;
+		max-width: 100%;
+	}
+	&.button-fluid-weak {
+		// This class has no actual function. But it's referenced in button tags so it's clear it can be changed to "strong"
+	}
+	
+	// Button Color
+	&.button-blue {
+		color: #fff;
+		background-color: $action-blue;
+		text-shadow: rgba(0,0,0,.1) 0 1px 0px;
+		&:hover {
+			background-color: transparentize($action-blue, $hover-transparentize);
+		}
+	}
+	&.button-dark {
+		color: #fff;
+		background-color: $dark-blue;
+		text-shadow: rgba(0,0,0,.1) 0 1px 0px;
+		&:hover {
+			background-color: transparentize($dark-blue, $hover-transparentize * 1.5);
+		}
+	}
+	&.button-light {
+		color: #222;
+		background-color: #fff;
+		&:hover {
+			background-color: transparentize(#ffffff, $hover-transparentize * 2.5);
+		}
+	}
+
+	// Inactive
+	&.button-inactive {
+		color: #fff;
+		background: rgba(100,100,100,.5);
+		opacity: .5 !important;
+		&:hover {
+			cursor: default;
+		}
+	}
+	
+}
