@@ -76,6 +76,8 @@ This is a manifest file that contains things like name and ownership along with 
 
 [GulpFiction](http://gulpfiction.divshot.io/) will also build a `package.json` file for you.
 
+[package.json validator](http://package-json-validator.com/) will help you should you go down the dangerous road of `npm update` and `package.json` errors.
+
 
 ## Working
 

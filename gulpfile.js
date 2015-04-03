@@ -45,12 +45,12 @@ gulp.task('sass', function () {
   
 gulp.task('needle',function(){
   gulp.src('./src/template.html')
-    .pipe(inject(gulp.src(['./src/metard.html']), {starttag: '<!-- inject:head:{{ext}} -->',transform: function (filePath, file) {
+    .pipe(inject(gulp.src(['./src/templates/fragments/meta.html']), {starttag: '<!-- inject:meta:{{ext}} -->',transform: function (filePath, file) {
       // return file contents as string 
       return file.contents.toString('utf8')
       }
       }))
-    .pipe(inject(gulp.src(['./src/footer.html']), {starttag: '<!-- inject:footer:{{ext}} -->',transform: function (filePath, file) {
+    .pipe(inject(gulp.src(['./src/templates/fragments/footer.html']), {starttag: '<!-- inject:footer:{{ext}} -->',transform: function (filePath, file) {
       // return file contents as string 
       return file.contents.toString('utf8')
       }
@@ -59,3 +59,25 @@ gulp.task('needle',function(){
     .pipe(gulp.dest('./'));
 
       });
+
+gulp.task('templatemaker',function(){
+  gulp.src('./src/templates/*.html')//MAKE THIS YOUR FILENAME OR WILDCARD IT *.HTML
+    .pipe(inject(gulp.src(['./src/templates/fragments/meta.html']), {starttag: '<!-- inject:head:{{ext}} -->',transform: function (filePath, file) {
+      // return file contents as string 
+      return file.contents.toString('utf8')
+      }
+      }))
+      .pipe(inject(gulp.src(['./src/templates/fragments/hero.html']), {starttag: '<!-- inject:hero:{{ext}} -->',transform: function (filePath, file) {
+      // return file contents as string 
+      return file.contents.toString('utf8')
+      }
+      }))
+    .pipe(inject(gulp.src(['./src/templates/fragments/footer.html']), {starttag: '<!-- inject:footer:{{ext}} -->',transform: function (filePath, file) {
+      // return file contents as string 
+      return file.contents.toString('utf8')
+      }
+      }))
+    //UNCOMMENT IF YOU WANT TO MINIFY YOUR HTML .pipe(htmlclean())
+    .pipe(gulp.dest('./'));
+
+});
