@@ -6,7 +6,6 @@
   var uglify = require('gulp-uglify');
   var uglifycss = require('gulp-uglifycss');
   var concat = require("gulp-concat");
-  var htmlclean = require('gulp-htmlclean');
   var gulpif = require('gulp-if');
   var htmlmin = require('gulp-html-minifier');
   
