@@ -92,3 +92,8 @@ There are two ways
 1. In explorer go to your dev folder and open your file.
 2. If you push to Github and want to share, use the `ghpages` branch in your project.
 3. Remember that in your task `.pipe(gulp.dest("./"));` defines the destination *relative to* `gulpfile.js` where it outputs.
+
+
+### Possible expansions
+
+In building templates, we can investigate using Cheerio and a gulp-dom alternative. Cherrio will allow us to write jQuery directly in the `gulpfile.js` while `gulp-dom` appears to be useful, but is no longer supported on top of `node.js` so we will investigate.
