@@ -10,6 +10,7 @@
   var gulpif = require('gulp-if');
   var htmlmin = require('gulp-html-minifier');
   var cheerio = require('gulp-cheerio');
+  var rev = require('gulp-rev');
 
 //blank defaut task. Just let it go dude.
 gulp.task("default", []);

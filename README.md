@@ -1,4 +1,4 @@
-TOC: [Builder](#builder) | [Development](#development) | [Setup](#setup) | [DOM Manipulation](#dom-manipulation-from-gulp)[Running](#running) | [Viewing](#development-viewing)
+TOC: [Builder](#builder) | [Development](#development) | [Setup](#setup) | [DOM Manipulation](#dom-manipulation-from-gulp) | [Running](#running) | [Viewing](#development-viewing)
 
 # Builder
 Gulp process for templates, JS and SASS. This documentation's premise is to document the workings of the development process of the project, the build process for the project & patterns used throughout the project for future development by LZ.
@@ -22,7 +22,7 @@ Node is really only going top be used for node package manager aka [NPM](https:/
 npm install gulp -g
 npm install --save gulp-concat
 npm install --save-dev gulp-plumber
-npm install --save-dev gulp-inject**strong text**
+npm install --save-dev gulp-inject
 npm install gulp-sass
 npm install --save-dev gulp-uglify
 npm install --save gulp-uglifycss
@@ -30,6 +30,7 @@ npm install --save gulp-uglifyjs
 npm install gulp-html-minifier
 npm install gulp-if
 npm install gulp-cheerio
+npm install gulp-rev
 npm update
 ```
 
@@ -109,8 +110,3 @@ There are two ways
 1. In explorer go to your dev folder and open your file.
 2. If you push to Github and want to share, use the `ghpages` branch in your project.
 3. Remember that in your task `.pipe(gulp.dest("./"));` defines the destination *relative to* `gulpfile.js` where it outputs.
-
-
-### Possible expansions
-
-In building templates, we can investigate using Cheerio and a gulp-dom alternative. Cherrio will allow us to write jQuery directly in the `gulpfile.js` while `gulp-dom` appears to be useful, but is no longer supported on top of `node.js` so we will investigate.
