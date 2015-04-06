@@ -1,4 +1,5 @@
-  // Untitled Project - created with Gulp Fiction
+  // all the requirements - created with Gulp Fiction
+  // when running gulp and you get errors make sure all these are installed in your local project
   var gulp = require("gulp");
   var plumber = require('gulp-plumber');
   var inject = require('gulp-inject');
@@ -8,42 +9,55 @@
   var concat = require("gulp-concat");
   var gulpif = require('gulp-if');
   var htmlmin = require('gulp-html-minifier');
-  
-  gulp.task("default", [
-]);
-  gulp.task('html:prod', function () {
+  var cheerio = require('gulp-cheerio');
+
+//blank defaut task. Just let it go dude.
+gulp.task("default", []);
+
+
+gulp.task('html:prod', function () {
   gulp.src('./src/*.html')
     .pipe(gulp.dest('./'));
   });
+
 gulp.task('sass', function () {
-    gulp.src('./src/scss/theme.scss')
-        .pipe(plumber())
+  gulp.src('./src/scss/theme.scss')
+    .pipe(plumber())
 		.pipe(sass())
-        .pipe(gulp.dest('src/css'));
+    .pipe(gulp.dest('src/css'));
 });
-  gulp.task('css:prod', function () {
-    gulp.src('./src/**/*.css')
-        .pipe(concat("global.css"))
-        .pipe(uglifycss())
-        .pipe(gulp.dest('./css'));
+
+gulp.task('css:prod', function () {
+  gulp.src('./src/**/*.css')
+    .pipe(concat("global.css"))
+    .pipe(uglifycss())
+    .pipe(gulp.dest('./css'));
   });
-  gulp.task('js:prod', function(){
-        gulp.src('./src/js/*.js')
-            .pipe(concat("global.js"))
-            .pipe(uglify({preserveComments : false,mangle : false}))
-            .pipe(gulp.dest('js'));
+
+gulp.task('js:prod', function(){
+  gulp.src('./src/js/*.js')
+    .pipe(concat("global.js"))
+    .pipe(uglify({preserveComments : false,mangle : false}))
+    .pipe(gulp.dest('js'));
     });
-  gulp.task('watch:production', function() {
+
+gulp.task('watch:production', function() {
   gulp.watch('./src/scss/*.scss', ['css:prod']);
   gulp.watch('./src/js/*.js', ['js:prod']);
   gulp.watch('./src/*.html', ['html:prod']);
   });
-  gulp.task('build', function() {
+
+//BUILD SCRIPTS
+gulp.task('build:prod', function() {
   gulp.start('sass:build', 'js:prod', 'html:prod', 'css:prod');
-  });
+});
+
+gulp.task('build:dev', function () {
+  gulp.start('css:dev', 'js:dev', 'html:dev');
+});
   
   
-////Bruteforce////
+////Bruteforce templating////
 gulp.task('html:dev',function(){
   gulp.src('./src/templates/*.html')//MAKE THIS YOUR FILENAME OR WILDCARD IT *.HTML
 .pipe(inject(gulp.src(['./src/templates/fragments/containers/span/cont_span_1col.html']), {starttag: '<!-- inject:cont_span_1col:{{ext}} -->',transform: function (filePath, file) { return file.contents.toString('utf8')} }))
@@ -82,10 +96,12 @@ gulp.task('html:dev',function(){
 .pipe(inject(gulp.src(['./src/templates/fragments/tabs.html']), {starttag: '<!-- inject:tabs:{{ext}} -->',transform: function (filePath, file) { return file.contents.toString('utf8')} }))
 .pipe(inject(gulp.src(['./src/templates/fragments/tabs_mobile.html']), {starttag: '<!-- inject:tabs_mobile:{{ext}} -->',transform: function (filePath, file) { return file.contents.toString('utf8')} }))
 .pipe(inject(gulp.src(['./src/templates/fragments/tabs_side.html']), {starttag: '<!-- inject:tabs_side:{{ext}} -->',transform: function (filePath, file) { return file.contents.toString('utf8')} }))
-    .pipe(htmlmin({removeComments: true }))
-    //.pipe(htmlmin({collapseWhitespace: true })) UGLIFY HTML
-    .pipe(gulp.dest('./dev'));
-
+//.pipe(htmlmin({removeComments: true }))
+//.pipe(htmlmin({collapseWhitespace: true })) UGLIFY HTML
+.pipe(cheerio(function ($, file) {
+  $("img:not([alt])").attr("alt", ""); //this adds a blank alt tag to images without an alt
+}))
+.pipe(gulp.dest('./dev'));
 });
 
 gulp.task('js:dev', function(){
@@ -94,6 +110,7 @@ gulp.task('js:dev', function(){
             //.pipe(uglify())
             .pipe(gulp.dest('./dev/js/'));
 });
+
 gulp.task('css:dev', function () {
     gulp.src('./src/scss/style.scss')
     .pipe(plumber())
@@ -107,7 +124,4 @@ gulp.task('css:prod', function () {
         .pipe(concat("global.css"))
         .pipe(uglifycss())
         .pipe(gulp.dest('./dev/css/'));
-  });
-  gulp.task('build:dev', function () {
-    gulp.start('css:dev', 'js:dev', 'html:dev');
   });
