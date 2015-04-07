@@ -31,6 +31,8 @@ npm install gulp-html-minifier
 npm install gulp-if
 npm install gulp-cheerio
 npm install gulp-rev
+npm install --save-dev gulp-clean
+npm install --save-dev gulp-changed
 npm update
 ```
 

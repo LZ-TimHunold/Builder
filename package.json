@@ -15,7 +15,9 @@
     "grunt-notify": "^0.4.1",
     "gulp": "*",
     "gulp-add-src": "^0.2.0",
+    "gulp-clean": "^0.3.1",
     "gulp-concat": "*",
+    "gulp-csso": "^1.0.0",
     "gulp-html-minifier": "^0.1.6",
     "gulp-htmlclean": "^2.6.3",
     "gulp-htmlmin": "^1.1.1",
@@ -25,6 +27,7 @@
     "gulp-rev": "^3.0.1",
     "gulp-uglify": "^1.1.0",
     "gulp-uglifycss": "^1.0.4",
+    "gulp-uncss": "^1.0.1",
     "livereload": "*"
   },
   "dependencies": {

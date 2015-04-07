@@ -11,6 +11,9 @@
   var htmlmin = require('gulp-html-minifier');
   var cheerio = require('gulp-cheerio');
   var rev = require('gulp-rev');
+  var clean = require('gulp-clean');
+  var uncss = require('gulp-uncss');
+  var csso = require('gulp-csso');
 
 //blank defaut task. Just let it go dude.
 gulp.task("default", []);
@@ -53,6 +56,7 @@ gulp.task('build:prod', function() {
   gulp.start('sass:build', 'js:prod', 'html:prod', 'css:prod');
 });
 
+////build all your dev stuff
 gulp.task('build:dev', function () {
   gulp.start('css:dev', 'js:dev', 'html:dev');
 });
@@ -109,20 +113,52 @@ gulp.task('js:dev', function(){
         gulp.src('./src/js/*.js')
             .pipe(concat("global.js"))
             //.pipe(uglify())
+            .pipe(rev())
             .pipe(gulp.dest('./dev/js/'));
 });
 
 gulp.task('css:dev', function () {
-    gulp.src('./src/scss/style.scss')
+  gulp.start('nukecss:dev')
+  gulp.src('./src/scss/style.scss')
     .pipe(plumber())
     .pipe(concat("global.css"))
     .pipe(sass())
+    //.pipe(uncss({html: ['dev/*.html','src/**/*.html'] }))
+    .pipe(csso())
     .pipe(uglifycss())
+    //.pipe(rev())
     .pipe(gulp.dest('./dev/css/'));
 });
-gulp.task('css:prod', function () {
-    gulp.src('./src/*.css')
-        .pipe(concat("global.css"))
-        .pipe(uglifycss())
-        .pipe(gulp.dest('./dev/css/'));
-  });
+//this deletes unwanted selectors
+gulp.task('csso:dev', function() {
+  return gulp.src('dev/css/*.css')
+    .pipe(uncss({html: ['dev/*.html','src/**/*.html'] }))
+    .pipe(csso())
+    .pipe(gulp.dest('./out'));
+});
+
+
+//NUCLEAR OPTIONS the delete directory contents
+gulp.task('stoneage:dev', function () {
+  gulp.start('nukecss:dev', 'nukejs:dev', 'nukehtml:dev');
+});
+gulp.task('nukecss:dev', function () {
+  return gulp.src('dev/css/*.css', {read: false})
+    .pipe(clean());
+});
+gulp.task('nukejs:dev', function () {
+  return gulp.src('dev/js/*.js', {read: false})
+    .pipe(clean());
+});
+gulp.task('nukehtml:dev', function () {
+  return gulp.src('dev/*.html', {read: false})
+    .pipe(clean());
+});
+gulp.task('nukeimages:dev', function () {
+  return gulp.src('dev/img/*.*', {read: false})
+    .pipe(clean());
+});
+gulp.task('nukefonts:dev', function () {
+  return gulp.src('dev/fonts/*.*', {read: false})
+    .pipe(clean());
+});
