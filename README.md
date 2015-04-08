@@ -110,5 +110,5 @@ If you get an error, please contact Tim. Most of the time it is a missing librar
 ### Development Viewing
 There are two ways
 1. In explorer go to your dev folder and open your file.
+	1.1 Remember that in your task `.pipe(gulp.dest("./"));` defines the destination *relative to* `gulpfile.js` where it outputs.
 2. If you push to Github and want to share, use the `ghpages` branch in your project.
-3. Remember that in your task `.pipe(gulp.dest("./"));` defines the destination *relative to* `gulpfile.js` where it outputs.

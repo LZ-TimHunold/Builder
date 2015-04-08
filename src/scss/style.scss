@@ -5,11 +5,11 @@
 
 // Compass and Breakpoint
 /*@import "compass/css3";*/
-@import "../bower_components/breakpoint-sass/stylesheets/breakpoint";
+@import "./breakpoint";
 
 // Third Party
 // Note: Files imported as css (not scss) are only referenced as an import rule.
-@import "../../bower_components/slick.js/slick/slick.css";
+//@import "../../bower_components/slick.js/slick/slick.css";
 
 // Base Styles
 @import "base/functions";
@@ -55,4 +55,3 @@ html, body {
 
 // Jeet helper
 // @include edit();
-// test

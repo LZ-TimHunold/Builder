@@ -15,11 +15,7 @@
   var uncss = require('gulp-uncss');
   var csso = require('gulp-csso');
   var rename = require("gulp-rename");
-  var filter = require('gulp-filter');
-  var useref = require('gulp-useref');
-  var revReplace = require('gulp-rev-replace');
-  var gutil = require('gulp-util');
-  var glob = require("glob")
+  var gulpFilter = require('gulp-filter');
 
 //blank defaut task. Just let it go dude.
 gulp.task("default", []);
@@ -49,7 +45,7 @@ gulp.task('build:dev', function () {
   
 ////Bruteforce templating////
 gulp.task('html:dev',function(){
-  gulp.src('./src/templates/*.html')//MAKE THIS YOUR FILENAME OR WILDCARD IT *.HTML and it takes all from that directory in to the task
+  gulp.src('./src/templates/*.html')//MAKE THIS YOUR FILENAME OR WILDCARD IT *.HTML
 .pipe(inject(gulp.src(['./src/templates/fragments/containers/span/cont_span_1col.html']), {starttag: '<!-- inject:cont_span_1col:{{ext}} -->',transform: function (filePath, file) { return file.contents.toString('utf8')} }))
 .pipe(inject(gulp.src(['./src/templates/fragments/containers/span/cont_span_2col_stack.html']), {starttag: '<!-- inject:cont_span_2col_stack:{{ext}} -->',transform: function (filePath, file) { return file.contents.toString('utf8')} }))
 .pipe(inject(gulp.src(['./src/templates/fragments/containers/span/cont_span_3col_stack.html']), {starttag: '<!-- inject:cont_span_3col_stack:{{ext}} -->',transform: function (filePath, file) { return file.contents.toString('utf8')} }))
@@ -87,11 +83,11 @@ gulp.task('html:dev',function(){
 .pipe(inject(gulp.src(['./src/templates/fragments/tabs_mobile.html']), {starttag: '<!-- inject:tabs_mobile:{{ext}} -->',transform: function (filePath, file) { return file.contents.toString('utf8')} }))
 .pipe(inject(gulp.src(['./src/templates/fragments/tabs_side.html']), {starttag: '<!-- inject:tabs_side:{{ext}} -->',transform: function (filePath, file) { return file.contents.toString('utf8')} }))
 //.pipe(htmlmin({removeComments: true }))
-//.pipe(htmlmin({collapseWhitespace: true })) //UGLIFY HTML
+//.pipe(htmlmin({collapseWhitespace: true })) UGLIFY HTML
 .pipe(cheerio(function ($, file) {
   $("img:not([alt])").attr("alt", ""); //this adds a blank alt tag to images without an alt
 }))
-.pipe(gulp.dest('./dev'));//Spits out all the content here
+.pipe(gulp.dest('./dev'));
 });
 
 gulp.task('js:dev', function(){
@@ -100,15 +96,6 @@ gulp.task('js:dev', function(){
             //.pipe(plumber())
             //.pipe(gulp.dest('./dev/js/'))
             .pipe(rev())
-            .pipe(uglify())
-            .pipe(gulp.dest('./dev/js/'));
-});
-gulp.task('js2:dev', function(){
-        gulp.src('./src/js2/main.js')
-            //.pipe(concat("globals.js"))
-            //.pipe(plumber())
-            //.pipe(gulp.dest('./dev/js/'))
-            //.pipe(rev())
             .pipe(uglify())
             .pipe(gulp.dest('./dev/js/'));
 });
@@ -121,14 +108,14 @@ gulp.task('css:dev', function () {
     //.pipe(uncss({html: ['dev/*.html','src/**/*.html'] }))
     .pipe(csso())
     .pipe(uglifycss())
-    //.pipe(rev())
+    .pipe(rev())
     .pipe(gulp.dest('./dev/css/'));
 });
 //this deletes unwanted selectors, be aware of making a whitelist for DOM elements created by JS
 gulp.task('csso:dev', function() {
   return gulp.src('dev/css/*.css')
-    //.pipe(uncss({html: ['dev/*.html','src/**/*.html'] }))//reads html files, then removes the unused css WARNING make a whitelist.html for anything created in the DOM by JS.
-    .pipe(csso())//shorthands your CSS
+    //.pipe(uncss({html: ['dev/*.html','src/**/*.html'] }))
+    .pipe(csso())
     .pipe(gulp.dest('./out'));
 });
 
@@ -160,22 +147,22 @@ gulp.task('nukefonts:dev', function () {
 
 
 gulp.task("index", function() {
-  var jsFilter = filter("./dev/js/*.js");
-  var cssFilter = filter("./dev/css/*.css");
+  var jsFilter = filter("**/*.js");
+  var cssFilter = filter("**/*.css");
  
   var userefAssets = useref.assets();
  
-  return gulp.src("./*.html")
+  return gulp.src("src/*.html")
     .pipe(userefAssets)      // Concatenate with gulp-useref 
-    //.pipe(jsFilter)
-    //.pipe(uglify())             // Minify any javascript sources 
-    //.pipe(jsFilter.restore())
-    //.pipe(cssFilter)
-    //.pipe(csso())               // Minify any CSS sources 
-    //.pipe(cssFilter.restore())
-    //.pipe(rev())                // Rename the concatenated files 
-    //.pipe(userefAssets.restore())
-    //.pipe(useref())
-    //.pipe(revReplace())         // Substitute in new filenames 
+    .pipe(jsFilter)
+    .pipe(uglify())             // Minify any javascript sources 
+    .pipe(jsFilter.restore())
+    .pipe(cssFilter)
+    .pipe(csso())               // Minify any CSS sources 
+    .pipe(cssFilter.restore())
+    .pipe(rev())                // Rename the concatenated files 
+    .pipe(userefAssets.restore())
+    .pipe(useref())
+    .pipe(revReplace())         // Substitute in new filenames 
     .pipe(gulp.dest('public'));
 });
