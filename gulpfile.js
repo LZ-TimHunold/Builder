@@ -45,7 +45,7 @@ gulp.task('watch:production', function() {
 
 ////build all your dev stuff
 gulp.task('build:dev', function () {
-  gulp.start('css:dev', 'js:dev', 'html:dev');
+  gulp.start('css:dev', 'js2:dev', 'html:dev');
 });
   
   
@@ -136,7 +136,7 @@ gulp.task('csso:dev', function() {
 });
 
 
-//NUCLEAR OPTIONS the delete directory contents
+//NUCLEAR OPTIONS that delete directory contents
 gulp.task('stoneage:dev', function () {
   gulp.start('nukecss:dev', 'nukejs:dev', 'nukehtml:dev');
 });
