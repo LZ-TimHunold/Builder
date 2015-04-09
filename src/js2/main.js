@@ -6349,135 +6349,135 @@ System.register("npm:process@0.10.0/browser", [], true, function(require, export
 
 
 System.register("app/modal", ["github:components/jquery@2.1.3", "npm:lodash@3.2.0", "app/quick-log"], function (_export) {
-	"use strict";
+  "use strict";
 
-	var $, _, lg, $modal, $modal_link, $modal_margin;
-	return {
-		setters: [function (_githubComponentsJquery213) {
-			$ = _githubComponentsJquery213["default"];
-		}, function (_npmLodash320) {
-			_ = _npmLodash320["default"];
-		}, function (_appQuickLog) {
-			lg = _appQuickLog.lg;
-		}],
-		execute: function () {
-			$modal = $(".modal");
-			$modal_link = $(".modal-link");
-			$modal_margin = $(".modal-margin");
-			// Margin surrounding modal that can be clicked to close
+  var $, _, lg, $modal, $modal_link, $modal_margin;
+  return {
+    setters: [function (_githubComponentsJquery213) {
+      $ = _githubComponentsJquery213["default"];
+    }, function (_npmLodash320) {
+      _ = _npmLodash320["default"];
+    }, function (_appQuickLog) {
+      lg = _appQuickLog.lg;
+    }],
+    execute: function () {
+      $modal = $(".modal");
+      $modal_link = $(".modal-link");
+      $modal_margin = $(".modal-margin");
+      // Margin surrounding modal that can be clicked to close
 
-			if ($modal.length) {
-				(function () {
-					var show_modal =
-					// Show modal
-					function ($modal, scrollY) {
-						var window_width = $(window).width(),
-						    // Viewport width
-						window_height = $(window).height(); // Viewport height
+      if ($modal.length) {
+        (function () {
+          var show_modal =
+          // Show modal
+          function ($modal, scrollY) {
+            var window_width = $(window).width(),
+                // Viewport width
+            window_height = $(window).height(); // Viewport height
 
-						// Show modal but hide with opacity, because we need to check if modal content is taller than viewport to make quick adjustments before making it fully visible.
-						$modal.css({ opacity: 0, height: window_height }).show();
+            // Show modal but hide with opacity, because we need to check if modal content is taller than viewport to make quick adjustments before making it fully visible.
+            $modal.css({ opacity: 0, height: window_height }).show();
 
-						var $article = $modal.find("article"); // The modal content area.
-						var close_btn_margin = 40; // Extra margin to accommodate the Close button that sits outside modal content area.
+            var $article = $modal.find("article"); // The modal content area.
+            var close_btn_margin = 40; // Extra margin to accommodate the Close button that sits outside modal content area.
 
-						// If modal content is taller than viewport height
-						if ($article.outerHeight() + close_btn_margin * 2 > window_height) {
-							$modal.find(".modal-inner-margin").removeClass("centerV");
-							$modal.find(".modal-margin").css({ height: $article.outerHeight() + close_btn_margin * 2 });
-							$modal.css({ overflow: "scroll" });
-							$article.css({ top: close_btn_margin });
-							// If modal content is shorter than viewport height
-						} else {
-							$modal.find(".modal-inner-margin").addClass("centerV");
-							$modal.find(".modal-margin").css({ height: "100%" });
-							$modal.css({ overflow: "visible" });
-							$article.css({ top: 0 });
-							$modal.css({ height: window_height });
-						}
+            // If modal content is taller than viewport height
+            if ($article.outerHeight() + close_btn_margin * 2 > window_height) {
+              $modal.find(".modal-inner-margin").removeClass("centerV");
+              $modal.find(".modal-margin").css({ height: $article.outerHeight() + close_btn_margin * 2 });
+              $modal.css({ overflow: "scroll" });
+              $article.css({ top: close_btn_margin });
+              // If modal content is shorter than viewport height
+            } else {
+              $modal.find(".modal-inner-margin").addClass("centerV");
+              $modal.find(".modal-margin").css({ height: "100%" });
+              $modal.css({ overflow: "visible" });
+              $article.css({ top: 0 });
+              $modal.css({ height: window_height });
+            }
 
-						// Now show the modal
-						$modal.css({ opacity: 1 });
+            // Now show the modal
+            $modal.css({ opacity: 1 });
 
-						// Prevent scrolling of content beneath modal
-						$("body").css({ overflow: "hidden" });
+            // Prevent scrolling of content beneath modal
+            $("body").css({ overflow: "hidden" });
 
-						// Check if modal contains video. If so, autoplay video.
-						// We can assume there will only be one video.
-						// There should not be any modals that contain multiple videos or videos with extensive text.
-						var $video = $modal.find(".video");
-						if ($video.length) {
-							// All we need to do is trigger the click event on the play button.
-							$video.find(".video-controls").find(".play").trigger("click");
-						}
-					};
+            // Check if modal contains video. If so, autoplay video.
+            // We can assume there will only be one video.
+            // There should not be any modals that contain multiple videos or videos with extensive text.
+            var $video = $modal.find(".video");
+            if ($video.length) {
+              // All we need to do is trigger the click event on the play button.
+              $video.find(".video-controls").find(".play").trigger("click");
+            }
+          };
 
-					var close_all_modals =
+          var close_all_modals =
 
-					// Close modal
-					function () {
-						$modal.map(function (v, k) {
-							if ($(k).css("display") === "block") {
-								$(k).scrollTop(0).hide().css({ height: $(window).height() });
-								//let lg_1 = $(k).attr(`class`).replace(`modal `, ``);
-								//lg(`modal {blue{hidden}}: {purple{${lg_1 }}}`);
-							}
-						});
+          // Close modal
+          function () {
+            $modal.map(function (v, k) {
+              if ($(k).css("display") === "block") {
+                $(k).scrollTop(0).hide().css({ height: $(window).height() });
+                //let lg_1 = $(k).attr(`class`).replace(`modal `, ``);
+                //lg(`modal {blue{hidden}}: {purple{${lg_1 }}}`);
+              }
+            });
 
-						// Reset body overflow to visible
-						$("body").css({ overflow: "visible" });
+            // Reset body overflow to visible
+            $("body").css({ overflow: "visible" });
 
-						// Check if modal contains video. If so, then stop playback and reset playhead to the beginning.
-						var $video = $modal.find(".video");
-						if ($video.length) {
-							var $id = $video.find("video").attr("id");
-							var $v = document.getElementById($id);
-							$v.pause();
-							$v.currentTime = 0;
-						}
-					};
+            // Check if modal contains video. If so, then stop playback and reset playhead to the beginning.
+            var $video = $modal.find(".video");
+            if ($video.length) {
+              var $id = $video.find("video").attr("id");
+              var $v = document.getElementById($id);
+              $v.pause();
+              $v.currentTime = 0;
+            }
+          };
 
-					// Close modal debounce
-					var debounce_close_all_modals = _.debounce(close_all_modals, 200);
+          // Close modal debounce
+          var debounce_close_all_modals = _.debounce(close_all_modals, 200);
 
-					// Open modal on click
-					$modal_link.on("click", function (e) {
-						e.preventDefault();
-						var x = $(this).attr("data-modal");
-						var y = $(window).scrollTop();
-						show_modal($("." + x), y);
-						lg("modal {blue{shown}}: {purple{" + x + "}}");
-					});
+          // Open modal on click
+          $modal_link.on("click", function (e) {
+            e.preventDefault();
+            var x = $(this).attr("data-modal");
+            var y = $(window).scrollTop();
+            show_modal($("." + x), y);
+            lg("modal {blue{shown}}: {purple{" + x + "}}");
+          });
 
-					// Close modal on click
-					$modal_margin.on("click", function (e) {
-						if ($(e.target).is($modal_margin) || $(e.target).is(".modal-inner-margin") || $(e.target).is(".modal-close") || $(e.target).is(".icon-x")) {
-							// Make sure it's only the area surrounding the modal that is clicked.
-							close_all_modals();
-						}
-					});
+          // Close modal on click
+          $modal_margin.on("click", function (e) {
+            if ($(e.target).is($modal_margin) || $(e.target).is(".modal-inner-margin") || $(e.target).is(".modal-close") || $(e.target).is(".icon-x")) {
+              // Make sure it's only the area surrounding the modal that is clicked.
+              close_all_modals();
+            }
+          });
 
-					// Close modal on keyup of "escape" key
-					$(document).keyup(function (e) {
-						switch (e.keyCode) {
-							case 27:
-								// escape
-								close_all_modals();
-								break;
-						}
-						return;
-					});
+          // Close modal on keyup of "escape" key
+          $(document).keyup(function (e) {
+            switch (e.keyCode) {
+              case 27:
+                // escape
+                close_all_modals();
+                break;
+            }
+            return;
+          });
 
-					// Clean up modals on resize by just hiding all of them. Debounce to throttle.
-					$(window).on("resize", function () {
-						debounce_close_all_modals();
-					});
-				})();
-			}
+          // Clean up modals on resize by just hiding all of them. Debounce to throttle.
+          $(window).on("resize", function () {
+            debounce_close_all_modals();
+          });
+        })();
+      }
 
-			lg("modal {blue{loaded}}");
-		}
-	};
+      lg("modal {blue{loaded}}");
+    }
+  };
 });
 
 // ====================================
@@ -6486,270 +6486,270 @@ System.register("app/modal", ["github:components/jquery@2.1.3", "npm:lodash@3.2.
 // The modals to open/hide
 // What gets clicked to open the modal
 System.register("app/tooltip", ["github:components/jquery@2.1.3", "npm:lodash@3.2.0", "app/quick-log"], function (_export) {
-	"use strict";
+  "use strict";
 
-	var $, _, lg, lgObj, $tooltip, $tooltip_link, $active_tooltip, $active_link;
-	return {
-		setters: [function (_githubComponentsJquery213) {
-			$ = _githubComponentsJquery213["default"];
-		}, function (_npmLodash320) {
-			_ = _npmLodash320["default"];
-		}, function (_appQuickLog) {
-			lg = _appQuickLog.lg;
-			lgObj = _appQuickLog.lgObj;
-		}],
-		execute: function () {
-			$tooltip = $(".tooltip");
-			$tooltip_link = $(".tooltip-link");
-			$active_tooltip = undefined;
-			$active_link = undefined;
-			// Active link to display tooltip
+  var $, _, lg, lgObj, $tooltip, $tooltip_link, $active_tooltip, $active_link;
+  return {
+    setters: [function (_githubComponentsJquery213) {
+      $ = _githubComponentsJquery213["default"];
+    }, function (_npmLodash320) {
+      _ = _npmLodash320["default"];
+    }, function (_appQuickLog) {
+      lg = _appQuickLog.lg;
+      lgObj = _appQuickLog.lgObj;
+    }],
+    execute: function () {
+      $tooltip = $(".tooltip");
+      $tooltip_link = $(".tooltip-link");
+      $active_tooltip = undefined;
+      $active_link = undefined;
+      // Active link to display tooltip
 
-			if ($tooltip.length) {
-				(function () {
-					var show_tooltip =
+      if ($tooltip.length) {
+        (function () {
+          var show_tooltip =
 
-					// Show tooltip
-					function () {
-						// Get desired position of tooltip relative to link (We'll adjust if desired position falls outside of viewport.)
-						var tooltip_position = $active_link.attr("data-tooltip-position");
+          // Show tooltip
+          function () {
+            // Get desired position of tooltip relative to link (We'll adjust if desired position falls outside of viewport.)
+            var tooltip_position = $active_link.attr("data-tooltip-position");
 
-						// Display tooltip but set opacity to 0 so we can set up positioning first
-						$active_tooltip.css({ display: "block", opacity: 0 }).removeClass("tooltip-full");
+            // Display tooltip but set opacity to 0 so we can set up positioning first
+            $active_tooltip.css({ display: "block", opacity: 0 }).removeClass("tooltip-full");
 
-						// Tooltip attributes
-						var tooltip = {
-							height: $active_tooltip.outerHeight(),
-							width: $active_tooltip.outerWidth()
-						};
+            // Tooltip attributes
+            var tooltip = {
+              height: $active_tooltip.outerHeight(),
+              width: $active_tooltip.outerWidth()
+            };
 
-						// Link attributes
-						var link = {
-							width: $active_link.outerWidth(),
-							height: $active_link.outerHeight(),
-							x: $active_link.offset().left,
-							y: $active_link.offset().top
-						};
+            // Link attributes
+            var link = {
+              width: $active_link.outerWidth(),
+              height: $active_link.outerHeight(),
+              x: $active_link.offset().left,
+              y: $active_link.offset().top
+            };
 
-						// Window and viewport bounds from window scroll position
-						var window_width = $(window).width();
-						var scrollPos = {
-							top: $(window).scrollTop(),
-							bottom: $(window).scrollTop() + $(window).height()
-						};
+            // Window and viewport bounds from window scroll position
+            var window_width = $(window).width();
+            var scrollPos = {
+              top: $(window).scrollTop(),
+              bottom: $(window).scrollTop() + $(window).height()
+            };
 
-						// Additional vars for calculating position
-						var pointer_size = 10,
-						    pointer_position_from_top_for_left_and_right = 32,
-						    additional_distance = window_width > 640 ? 5 : 0; // Additional gap between link and tooltip
+            // Additional vars for calculating position
+            var pointer_size = 10,
+                pointer_position_from_top_for_left_and_right = 32,
+                additional_distance = window_width > 640 ? 5 : 0; // Additional gap between link and tooltip
 
-						// Tooltip x/y positions
-						link.top = {
-							x: link.x + link.width / 2 - tooltip.width / 2,
-							y: link.y - pointer_size - additional_distance - tooltip.height
-						};
-						link.bottom = {
-							x: link.x + link.width / 2 - tooltip.width / 2,
-							y: link.y + link.height + pointer_size + additional_distance
-						};
-						link.left = {
-							x: link.x - pointer_size - additional_distance - tooltip.width,
-							y: link.y + link.height / 2 - pointer_position_from_top_for_left_and_right
-						};
-						link.right = {
-							x: link.x + link.width + pointer_size + additional_distance,
-							y: link.y + link.height / 2 - pointer_position_from_top_for_left_and_right
-						};
+            // Tooltip x/y positions
+            link.top = {
+              x: link.x + link.width / 2 - tooltip.width / 2,
+              y: link.y - pointer_size - additional_distance - tooltip.height
+            };
+            link.bottom = {
+              x: link.x + link.width / 2 - tooltip.width / 2,
+              y: link.y + link.height + pointer_size + additional_distance
+            };
+            link.left = {
+              x: link.x - pointer_size - additional_distance - tooltip.width,
+              y: link.y + link.height / 2 - pointer_position_from_top_for_left_and_right
+            };
+            link.right = {
+              x: link.x + link.width + pointer_size + additional_distance,
+              y: link.y + link.height / 2 - pointer_position_from_top_for_left_and_right
+            };
 
-						// Variables to store whether tooltip position will be inbounds or not. Initially set to 1 (yes).
-						var is_in = {
-							top: 1,
-							bottom: 1,
-							left: 1,
-							right: 1,
-							target_pos: "" // The desired target position of the tooltip after calculating which are inbounds or not.
-						};
+            // Variables to store whether tooltip position will be inbounds or not. Initially set to 1 (yes).
+            var is_in = {
+              top: 1,
+              bottom: 1,
+              left: 1,
+              right: 1,
+              target_pos: "" // The desired target position of the tooltip after calculating which are inbounds or not.
+            };
 
-						// Get Corner Coordinates which we'll use to check whether potential tooltip are inbounds or not
-						// Checking all potential positions first to see which are inbounds makes it easier to accommodate fallback positions from the desired position
-						var corners = {
-							pos_top: {
-								corner1: {
-									x: link.top.x,
-									y: link.top.y - scrollPos.top
-								},
-								corner2: {
-									x: link.top.x + tooltip.width,
-									y: link.top.y + tooltip.height - scrollPos.top
-								}
-							},
-							pos_bottom: {
-								corner1: {
-									x: link.bottom.x,
-									y: link.bottom.y - scrollPos.top
-								},
-								corner2: {
-									x: link.bottom.x + tooltip.width,
-									y: link.bottom.y + tooltip.height - scrollPos.top
-								}
-							},
-							pos_left: {
-								corner1: {
-									x: link.left.x,
-									y: link.left.y - scrollPos.top
-								},
-								corner2: {
-									x: link.left.x + tooltip.width,
-									y: link.left.y + tooltip.height - scrollPos.top
-								}
-							},
-							pos_right: {
-								corner1: {
-									x: link.right.x,
-									y: link.right.y - scrollPos.top
-								},
-								corner2: {
-									x: link.right.x + tooltip.width,
-									y: link.right.y + tooltip.height - scrollPos.top
-								}
-							} };
+            // Get Corner Coordinates which we'll use to check whether potential tooltip are inbounds or not
+            // Checking all potential positions first to see which are inbounds makes it easier to accommodate fallback positions from the desired position
+            var corners = {
+              pos_top: {
+                corner1: {
+                  x: link.top.x,
+                  y: link.top.y - scrollPos.top
+                },
+                corner2: {
+                  x: link.top.x + tooltip.width,
+                  y: link.top.y + tooltip.height - scrollPos.top
+                }
+              },
+              pos_bottom: {
+                corner1: {
+                  x: link.bottom.x,
+                  y: link.bottom.y - scrollPos.top
+                },
+                corner2: {
+                  x: link.bottom.x + tooltip.width,
+                  y: link.bottom.y + tooltip.height - scrollPos.top
+                }
+              },
+              pos_left: {
+                corner1: {
+                  x: link.left.x,
+                  y: link.left.y - scrollPos.top
+                },
+                corner2: {
+                  x: link.left.x + tooltip.width,
+                  y: link.left.y + tooltip.height - scrollPos.top
+                }
+              },
+              pos_right: {
+                corner1: {
+                  x: link.right.x,
+                  y: link.right.y - scrollPos.top
+                },
+                corner2: {
+                  x: link.right.x + tooltip.width,
+                  y: link.right.y + tooltip.height - scrollPos.top
+                }
+              } };
 
-						// If any corner of a potential tooltip position falls out of bounds, mark it as out of bounds
-						if (corners.pos_top.corner1.x < 0 || corners.pos_top.corner1.y < 0 || corners.pos_top.corner2.x < 0 || corners.pos_top.corner2.y < 0 || corners.pos_top.corner1.x > window_width || corners.pos_top.corner1.y > scrollPos.bottom || corners.pos_top.corner2.x > window_width || corners.pos_top.corner2.y > scrollPos.bottom) {
-							is_in.top = 0;
-						}
-						if (corners.pos_bottom.corner1.x < 0 || corners.pos_bottom.corner1.y < 0 || corners.pos_bottom.corner2.x < 0 || corners.pos_bottom.corner2.y < 0 || corners.pos_bottom.corner1.x > window_width || corners.pos_bottom.corner1.y > scrollPos.bottom || corners.pos_bottom.corner2.x > window_width || corners.pos_bottom.corner2.y > scrollPos.bottom) {
-							is_in.bottom = 0;
-						}
-						if (corners.pos_left.corner1.x < 0 || corners.pos_left.corner1.y < 0 || corners.pos_left.corner2.x < 0 || corners.pos_left.corner2.y < 0 || corners.pos_left.corner1.x > window_width || corners.pos_left.corner1.y > scrollPos.bottom || corners.pos_left.corner2.x > window_width || corners.pos_left.corner2.y > scrollPos.bottom) {
-							is_in.left = 0;
-						}
-						if (corners.pos_right.corner1.x < 0 || corners.pos_right.corner1.y < 0 || corners.pos_right.corner2.x < 0 || corners.pos_right.corner2.y < 0 || corners.pos_right.corner1.x > window_width || corners.pos_right.corner1.y > scrollPos.bottom || corners.pos_right.corner2.x > window_width || corners.pos_right.corner2.y > scrollPos.bottom) {
-							is_in.right = 0;
-						}
+            // If any corner of a potential tooltip position falls out of bounds, mark it as out of bounds
+            if (corners.pos_top.corner1.x < 0 || corners.pos_top.corner1.y < 0 || corners.pos_top.corner2.x < 0 || corners.pos_top.corner2.y < 0 || corners.pos_top.corner1.x > window_width || corners.pos_top.corner1.y > scrollPos.bottom || corners.pos_top.corner2.x > window_width || corners.pos_top.corner2.y > scrollPos.bottom) {
+              is_in.top = 0;
+            }
+            if (corners.pos_bottom.corner1.x < 0 || corners.pos_bottom.corner1.y < 0 || corners.pos_bottom.corner2.x < 0 || corners.pos_bottom.corner2.y < 0 || corners.pos_bottom.corner1.x > window_width || corners.pos_bottom.corner1.y > scrollPos.bottom || corners.pos_bottom.corner2.x > window_width || corners.pos_bottom.corner2.y > scrollPos.bottom) {
+              is_in.bottom = 0;
+            }
+            if (corners.pos_left.corner1.x < 0 || corners.pos_left.corner1.y < 0 || corners.pos_left.corner2.x < 0 || corners.pos_left.corner2.y < 0 || corners.pos_left.corner1.x > window_width || corners.pos_left.corner1.y > scrollPos.bottom || corners.pos_left.corner2.x > window_width || corners.pos_left.corner2.y > scrollPos.bottom) {
+              is_in.left = 0;
+            }
+            if (corners.pos_right.corner1.x < 0 || corners.pos_right.corner1.y < 0 || corners.pos_right.corner2.x < 0 || corners.pos_right.corner2.y < 0 || corners.pos_right.corner1.x > window_width || corners.pos_right.corner1.y > scrollPos.bottom || corners.pos_right.corner2.x > window_width || corners.pos_right.corner2.y > scrollPos.bottom) {
+              is_in.right = 0;
+            }
 
-						// Set the actual tooltip position based on which potential positions fell within bounds.
-						// If none are inbounds, set the target position to none and we will make an additional accommodation.
-						if (tooltip_position === "top") {
-							is_in.target_pos = is_in.top === 1 ? "top" : is_in.right === 1 ? "right" : is_in.left === 1 ? "left" : is_in.bottom === 1 ? "bottom" : "none";
-						} else if (tooltip_position === "bottom") {
-							is_in.target_pos = is_in.bottom === 1 ? "bottom" : is_in.right === 1 ? "right" : is_in.left === 1 ? "left" : is_in.top === 1 ? "top" : "none";
-						} else if (tooltip_position === "left") {
-							is_in.target_pos = is_in.left === 1 ? "left" : is_in.right === 1 ? "right" : is_in.top === 1 ? "top" : is_in.bottom === 1 ? "bottom" : "none";
-						} else if (tooltip_position === "right") {
-							is_in.target_pos = is_in.right === 1 ? "right" : is_in.left === 1 ? "left" : is_in.top === 1 ? "top" : is_in.bottom === 1 ? "bottom" : "none";
-						}
+            // Set the actual tooltip position based on which potential positions fell within bounds.
+            // If none are inbounds, set the target position to none and we will make an additional accommodation.
+            if (tooltip_position === "top") {
+              is_in.target_pos = is_in.top === 1 ? "top" : is_in.right === 1 ? "right" : is_in.left === 1 ? "left" : is_in.bottom === 1 ? "bottom" : "none";
+            } else if (tooltip_position === "bottom") {
+              is_in.target_pos = is_in.bottom === 1 ? "bottom" : is_in.right === 1 ? "right" : is_in.left === 1 ? "left" : is_in.top === 1 ? "top" : "none";
+            } else if (tooltip_position === "left") {
+              is_in.target_pos = is_in.left === 1 ? "left" : is_in.right === 1 ? "right" : is_in.top === 1 ? "top" : is_in.bottom === 1 ? "bottom" : "none";
+            } else if (tooltip_position === "right") {
+              is_in.target_pos = is_in.right === 1 ? "right" : is_in.left === 1 ? "left" : is_in.top === 1 ? "top" : is_in.bottom === 1 ? "bottom" : "none";
+            }
 
-						// If all tooltips are out of bounds, check whether top or bottom are most inbounds and display that one.
-						// We're only using top and bottom, because the most common reason no potential positions would fall in bounds would be on mobile in portrait mode.
-						// If we find that mobile landscapes are important, we can add additional accommodations.
-						if (is_in.target_pos === "none") {
-							var how_far_out = {
-								top: 0,
-								bottom: 0
-							};
+            // If all tooltips are out of bounds, check whether top or bottom are most inbounds and display that one.
+            // We're only using top and bottom, because the most common reason no potential positions would fall in bounds would be on mobile in portrait mode.
+            // If we find that mobile landscapes are important, we can add additional accommodations.
+            if (is_in.target_pos === "none") {
+              var how_far_out = {
+                top: 0,
+                bottom: 0
+              };
 
-							// Calculate how far out tooltip positioned on top would be
-							how_far_out.top += corners.pos_top.corner1.x < 0 ? corners.pos_top.corner1.x : 0;
-							how_far_out.top -= corners.pos_top.corner1.x > window_width ? corners.pos_top.corner1.x : 0;
-							how_far_out.top += corners.pos_top.corner1.y < 0 ? corners.pos_top.corner1.y : 0;
-							how_far_out.top -= corners.pos_top.corner1.y > scrollPos.bottom ? corners.pos_top.corner1.y : 0;
+              // Calculate how far out tooltip positioned on top would be
+              how_far_out.top += corners.pos_top.corner1.x < 0 ? corners.pos_top.corner1.x : 0;
+              how_far_out.top -= corners.pos_top.corner1.x > window_width ? corners.pos_top.corner1.x : 0;
+              how_far_out.top += corners.pos_top.corner1.y < 0 ? corners.pos_top.corner1.y : 0;
+              how_far_out.top -= corners.pos_top.corner1.y > scrollPos.bottom ? corners.pos_top.corner1.y : 0;
 
-							how_far_out.top += corners.pos_top.corner2.x < 0 ? corners.pos_top.corner2.x : 0;
-							how_far_out.top -= corners.pos_top.corner2.x > window_width ? corners.pos_top.corner2.x : 0;
-							how_far_out.top += corners.pos_top.corner2.y < 0 ? corners.pos_top.corner2.y : 0;
-							how_far_out.top -= corners.pos_top.corner2.y > scrollPos.bottom ? corners.pos_top.corner2.y : 0;
+              how_far_out.top += corners.pos_top.corner2.x < 0 ? corners.pos_top.corner2.x : 0;
+              how_far_out.top -= corners.pos_top.corner2.x > window_width ? corners.pos_top.corner2.x : 0;
+              how_far_out.top += corners.pos_top.corner2.y < 0 ? corners.pos_top.corner2.y : 0;
+              how_far_out.top -= corners.pos_top.corner2.y > scrollPos.bottom ? corners.pos_top.corner2.y : 0;
 
-							// Calculate how far out tooltip positioned on bottom would be
-							how_far_out.bottom += corners.pos_bottom.corner1.x < 0 ? corners.pos_bottom.corner1.x : 0;
-							how_far_out.bottom -= corners.pos_bottom.corner1.x > window_width ? corners.pos_bottom.corner1.x : 0;
-							how_far_out.bottom += corners.pos_bottom.corner1.y < 0 ? corners.pos_bottom.corner1.y : 0;
-							how_far_out.bottom -= corners.pos_bottom.corner1.y > scrollPos.bottom ? corners.pos_bottom.corner1.y : 0;
+              // Calculate how far out tooltip positioned on bottom would be
+              how_far_out.bottom += corners.pos_bottom.corner1.x < 0 ? corners.pos_bottom.corner1.x : 0;
+              how_far_out.bottom -= corners.pos_bottom.corner1.x > window_width ? corners.pos_bottom.corner1.x : 0;
+              how_far_out.bottom += corners.pos_bottom.corner1.y < 0 ? corners.pos_bottom.corner1.y : 0;
+              how_far_out.bottom -= corners.pos_bottom.corner1.y > scrollPos.bottom ? corners.pos_bottom.corner1.y : 0;
 
-							how_far_out.bottom += corners.pos_bottom.corner2.x < 0 ? corners.pos_bottom.corner2.x : 0;
-							how_far_out.bottom -= corners.pos_bottom.corner2.x > window_width ? corners.pos_bottom.corner2.x : 0;
-							how_far_out.bottom += corners.pos_bottom.corner2.y < 0 ? corners.pos_bottom.corner2.y : 0;
-							how_far_out.bottom -= corners.pos_bottom.corner2.y > scrollPos.bottom ? corners.pos_bottom.corner2.y : 0;
+              how_far_out.bottom += corners.pos_bottom.corner2.x < 0 ? corners.pos_bottom.corner2.x : 0;
+              how_far_out.bottom -= corners.pos_bottom.corner2.x > window_width ? corners.pos_bottom.corner2.x : 0;
+              how_far_out.bottom += corners.pos_bottom.corner2.y < 0 ? corners.pos_bottom.corner2.y : 0;
+              how_far_out.bottom -= corners.pos_bottom.corner2.y > scrollPos.bottom ? corners.pos_bottom.corner2.y : 0;
 
-							// Set attributes regardless if it ends up on top or bottom
-							addTooltipClass("tooltip-full");
-							$active_tooltip.css({ left: window_width / 2 - $active_tooltip.outerWidth() / 2 });
+              // Set attributes regardless if it ends up on top or bottom
+              addTooltipClass("tooltip-full");
+              $active_tooltip.css({ left: window_width / 2 - $active_tooltip.outerWidth() / 2 });
 
-							// Recalculate link.top.y position
-							link.top.y = link.y - pointer_size - additional_distance - $active_tooltip.outerHeight();
+              // Recalculate link.top.y position
+              link.top.y = link.y - pointer_size - additional_distance - $active_tooltip.outerHeight();
 
-							// Compare whether top or bottom is more inbounds and show that one
-							if (how_far_out.top >= how_far_out.bottom) {
-								$active_tooltip.css({ top: link.top.y });
-							} else {
-								$active_tooltip.css({ top: link.bottom.y });
-							}
-						} else {
-							// Else position tooltip in following priority of if it is inbounds
-							if (is_in.target_pos === "top") {
-								$active_tooltip.css({ left: link.top.x, top: link.top.y });
-								addTooltipClass("tooltip-top");
-							} else if (is_in.target_pos === "right") {
-								$active_tooltip.css({ left: link.right.x, top: link.right.y });
-								addTooltipClass("tooltip-right");
-							} else if (is_in.target_pos === "left") {
-								$active_tooltip.css({ left: link.left.x, top: link.left.y });
-								addTooltipClass("tooltip-left");
-							} else if (is_in.target_pos === "bottom") {
-								$active_tooltip.css({ left: link.bottom.x, top: link.bottom.y });
-								addTooltipClass("tooltip-bottom");
-							}
-						}
+              // Compare whether top or bottom is more inbounds and show that one
+              if (how_far_out.top >= how_far_out.bottom) {
+                $active_tooltip.css({ top: link.top.y });
+              } else {
+                $active_tooltip.css({ top: link.bottom.y });
+              }
+            } else {
+              // Else position tooltip in following priority of if it is inbounds
+              if (is_in.target_pos === "top") {
+                $active_tooltip.css({ left: link.top.x, top: link.top.y });
+                addTooltipClass("tooltip-top");
+              } else if (is_in.target_pos === "right") {
+                $active_tooltip.css({ left: link.right.x, top: link.right.y });
+                addTooltipClass("tooltip-right");
+              } else if (is_in.target_pos === "left") {
+                $active_tooltip.css({ left: link.left.x, top: link.left.y });
+                addTooltipClass("tooltip-left");
+              } else if (is_in.target_pos === "bottom") {
+                $active_tooltip.css({ left: link.bottom.x, top: link.bottom.y });
+                addTooltipClass("tooltip-bottom");
+              }
+            }
 
-						// Now show the tooltip
-						$active_tooltip.css({ opacity: 1 });
-					};
+            // Now show the tooltip
+            $active_tooltip.css({ opacity: 1 });
+          };
 
-					var addTooltipClass = function (x) {
-						$active_tooltip.removeClass("tooltip-top tooltip-bottom tooltip-left tooltip-right tooltip-full").addClass(x);
-					};
+          var addTooltipClass = function (x) {
+            $active_tooltip.removeClass("tooltip-top tooltip-bottom tooltip-left tooltip-right tooltip-full").addClass(x);
+          };
 
-					var hide_tooltip =
+          var hide_tooltip =
 
-					// Hide tooltip
-					function ($x) {
-						$x.hide();
-					};
+          // Hide tooltip
+          function ($x) {
+            $x.hide();
+          };
 
-					// Show tooltip debounce
-					var debounce_show_tooltip = _.debounce(show_tooltip, 200);
+          // Show tooltip debounce
+          var debounce_show_tooltip = _.debounce(show_tooltip, 200);
 
-					// Show tooltip on hover
-					$tooltip_link.on("mouseenter", function () {
-						$active_tooltip = $("." + $(this).attr("data-tooltip"));
-						$active_link = $(this);
-						debounce_show_tooltip();
-					}).on("mouseleave", function () {
-						debounce_show_tooltip.cancel();
-						hide_tooltip($("." + $(this).attr("data-tooltip")));
-					})
-					// TOUCH: Toggle
-					.on("touchend", function () {
-						$active_tooltip = $("." + $(this).attr("data-tooltip"));
-						$active_link = $(this);
+          // Show tooltip on hover
+          $tooltip_link.on("mouseenter", function () {
+            $active_tooltip = $("." + $(this).attr("data-tooltip"));
+            $active_link = $(this);
+            debounce_show_tooltip();
+          }).on("mouseleave", function () {
+            debounce_show_tooltip.cancel();
+            hide_tooltip($("." + $(this).attr("data-tooltip")));
+          })
+          // TOUCH: Toggle
+          .on("touchend", function () {
+            $active_tooltip = $("." + $(this).attr("data-tooltip"));
+            $active_link = $(this);
 
-						if ($active_tooltip.css("display") === "block") {
-							hide_tooltip($active_tooltip);
-						} else {
-							$tooltip.hide();
-							show_tooltip();
-						}
-					});
+            if ($active_tooltip.css("display") === "block") {
+              hide_tooltip($active_tooltip);
+            } else {
+              $tooltip.hide();
+              show_tooltip();
+            }
+          });
 
-					// TOUCH: Close
-					$tooltip.on("touchend", function () {
-						$(this).hide();
-					});
-				})();
-			}
-			lg("tooltip {blue{loaded}}");
-		}
-	};
+          // TOUCH: Close
+          $tooltip.on("touchend", function () {
+            $(this).hide();
+          });
+        })();
+      }
+      lg("tooltip {blue{loaded}}");
+    }
+  };
 });
 
 // ====================================
@@ -6759,44 +6759,44 @@ System.register("app/tooltip", ["github:components/jquery@2.1.3", "npm:lodash@3.
 // What gets hovered on to open the tooltip
 // Active tooltip
 System.register("app/tab", ["github:components/jquery@2.1.3", "npm:lodash@3.2.0", "app/quick-log"], function (_export) {
-	"use strict";
+  "use strict";
 
-	var $, _, lg, $tab_content, $tab_link;
-	return {
-		setters: [function (_githubComponentsJquery213) {
-			$ = _githubComponentsJquery213["default"];
-		}, function (_npmLodash320) {
-			_ = _npmLodash320["default"];
-		}, function (_appQuickLog) {
-			lg = _appQuickLog.lg;
-		}],
-		execute: function () {
-			$tab_content = $(".tab-content");
-			$tab_link = $(".tab-link");
-			// What gets clicked to open the modal
+  var $, _, lg, $tab_content, $tab_link;
+  return {
+    setters: [function (_githubComponentsJquery213) {
+      $ = _githubComponentsJquery213["default"];
+    }, function (_npmLodash320) {
+      _ = _npmLodash320["default"];
+    }, function (_appQuickLog) {
+      lg = _appQuickLog.lg;
+    }],
+    execute: function () {
+      $tab_content = $(".tab-content");
+      $tab_link = $(".tab-link");
+      // What gets clicked to open the modal
 
-			if ($tab_content.length) {
-				(function () {
-					var show_tab =
-					// Show tab
-					function ($tab) {
-						$tab.siblings(".tab-content").removeClass("active");
-						$tab.addClass("active");
-					};
+      if ($tab_content.length) {
+        (function () {
+          var show_tab =
+          // Show tab
+          function ($tab) {
+            $tab.siblings(".tab-content").removeClass("active");
+            $tab.addClass("active");
+          };
 
-					$tab_link.on("click", function () {
-						$(this).siblings(".tab-link").removeClass("active");
-						$(this).addClass("active");
+          $tab_link.on("click", function () {
+            $(this).siblings(".tab-link").removeClass("active");
+            $(this).addClass("active");
 
-						var x = $(this).attr("data-tab");
-						show_tab($("." + x));
-					});
-				})();
-			}
+            var x = $(this).attr("data-tab");
+            show_tab($("." + x));
+          });
+        })();
+      }
 
-			lg("tab {blue{loaded}}");
-		}
-	};
+      lg("tab {blue{loaded}}");
+    }
+  };
 });
 
 // ====================================
@@ -6804,104 +6804,104 @@ System.register("app/tab", ["github:components/jquery@2.1.3", "npm:lodash@3.2.0"
 
 // The modals to open/hide
 System.register("app/nav-search", ["github:components/jquery@2.1.3", "npm:lodash@3.2.0", "app/quick-log"], function (_export) {
-	"use strict";
+  "use strict";
 
-	var $, _, lg, $input, $button, $results;
-	return {
-		setters: [function (_githubComponentsJquery213) {
-			$ = _githubComponentsJquery213["default"];
-		}, function (_npmLodash320) {
-			_ = _npmLodash320["default"];
-		}, function (_appQuickLog) {
-			lg = _appQuickLog.lg;
-		}],
-		execute: function () {
-			$input = $(".nav-search input");
-			$button = $(".nav-search button");
-			$results = $(".nav_search_results");
-			// Mini results (that display auto-suggestions as user types)
+  var $, _, lg, $input, $button, $results;
+  return {
+    setters: [function (_githubComponentsJquery213) {
+      $ = _githubComponentsJquery213["default"];
+    }, function (_npmLodash320) {
+      _ = _npmLodash320["default"];
+    }, function (_appQuickLog) {
+      lg = _appQuickLog.lg;
+    }],
+    execute: function () {
+      $input = $(".nav-search input");
+      $button = $(".nav-search button");
+      $results = $(".nav_search_results");
+      // Mini results (that display auto-suggestions as user types)
 
-			if ($input.length) {
-				(function () {
-					var show_results =
+      if ($input.length) {
+        (function () {
+          var show_results =
 
-					// Show results menu
-					function () {
-						position_results();
-						$results.show();
-					};
+          // Show results menu
+          function () {
+            position_results();
+            $results.show();
+          };
 
-					var hide_results =
+          var hide_results =
 
-					// Hide results menu
-					function () {
-						$results.hide();
-					};
+          // Hide results menu
+          function () {
+            $results.hide();
+          };
 
-					var position_results =
+          var position_results =
 
-					// Position results menu
-					function () {
-						var x = $input.offset().left,
-						    y = $input.offset().top,
-						    h = $input.height();
+          // Position results menu
+          function () {
+            var x = $input.offset().left,
+                y = $input.offset().top,
+                h = $input.height();
 
-						$results.css({
-							top: y + h,
-							left: x
-						});
-					};
+            $results.css({
+              top: y + h,
+              left: x
+            });
+          };
 
-					var placeholder_text = $input.attr("placeholder"); // Store the placeholder text
+          var placeholder_text = $input.attr("placeholder"); // Store the placeholder text
 
-					// Debounce functions to tweak interaction timing
-					var debounce_show_results = _.debounce(show_results, 240),
-					    debounce_hide_results = _.debounce(hide_results, 400);
+          // Debounce functions to tweak interaction timing
+          var debounce_show_results = _.debounce(show_results, 240),
+              debounce_hide_results = _.debounce(hide_results, 400);
 
-					// Input focus and blur
-					$input.on("focus", function () {
-						// Changes to input field and button appearance
-						$(this).attr({ placeholder: "" });
-						$button.toggleClass("active");
+          // Input focus and blur
+          $input.on("focus", function () {
+            // Changes to input field and button appearance
+            $(this).attr({ placeholder: "" });
+            $button.toggleClass("active");
 
-						// Change results position
-						position_results();
-					}).on("blur", function () {
-						// Changes to input field and button appearance
-						$(this).attr({ placeholder: placeholder_text }).val("");
-						$button.toggleClass("active");
+            // Change results position
+            position_results();
+          }).on("blur", function () {
+            // Changes to input field and button appearance
+            $(this).attr({ placeholder: placeholder_text }).val("");
+            $button.toggleClass("active");
 
-						hide_results();
-					}).on("keypress", function () {
-						debounce_show_results();
-					}).on("click", function () {
-						if ($(this).val() > "") {
-							// Accommodates scenario: User enters text. Menu displays. User mouses over and out of menu without blurring focus of input. Menu hides. User clicks back on input field. Menu shows if the input field contains a value.
-							show_results();
-						}
-					}).on("mouseleave", function () {
-						debounce_show_results.cancel();
-						debounce_hide_results();
-					});
+            hide_results();
+          }).on("keypress", function () {
+            debounce_show_results();
+          }).on("click", function () {
+            if ($(this).val() > "") {
+              // Accommodates scenario: User enters text. Menu displays. User mouses over and out of menu without blurring focus of input. Menu hides. User clicks back on input field. Menu shows if the input field contains a value.
+              show_results();
+            }
+          }).on("mouseleave", function () {
+            debounce_show_results.cancel();
+            debounce_hide_results();
+          });
 
-					// Results mouseenter and mouseleave
-					$results.on("mouseenter", function () {
-						debounce_hide_results.cancel();
-					}).on("mouseleave", function () {
-						debounce_show_results.cancel();
-						debounce_hide_results();
-					});
+          // Results mouseenter and mouseleave
+          $results.on("mouseenter", function () {
+            debounce_hide_results.cancel();
+          }).on("mouseleave", function () {
+            debounce_show_results.cancel();
+            debounce_hide_results();
+          });
 
-					// Clean up on window resize
-					$(window).on("resize", function () {
-						debounce_hide_results();
-					});
-				})();
-			}
+          // Clean up on window resize
+          $(window).on("resize", function () {
+            debounce_hide_results();
+          });
+        })();
+      }
 
-			lg("nav_search {blue{loaded}}");
-		}
-	};
+      lg("nav_search {blue{loaded}}");
+    }
+  };
 });
 
 // ====================================
@@ -6910,96 +6910,96 @@ System.register("app/nav-search", ["github:components/jquery@2.1.3", "npm:lodash
 // Search input field in header
 // Search button
 System.register("app/forms", ["github:components/jquery@2.1.3", "app/quick-log"], function (_export) {
-	"use strict";
+  "use strict";
 
-	var $, lg, $icon_right, $icon_left, $select_input, $textarea, $upload_input, $upload_input_button;
-	return {
-		setters: [function (_githubComponentsJquery213) {
-			$ = _githubComponentsJquery213["default"];
-		}, function (_appQuickLog) {
-			lg = _appQuickLog.lg;
-		}],
-		execute: function () {
-			// ====================================
-			// Text Fields with Icon on Left or Right
-			//   For input fields with an icon or text placed inside its right side,
-			//   measure the width of the icon or text and add padding to the input field
+  var $, lg, $icon_right, $icon_left, $select_input, $textarea, $upload_input, $upload_input_button;
+  return {
+    setters: [function (_githubComponentsJquery213) {
+      $ = _githubComponentsJquery213["default"];
+    }, function (_appQuickLog) {
+      lg = _appQuickLog.lg;
+    }],
+    execute: function () {
+      // ====================================
+      // Text Fields with Icon on Left or Right
+      //   For input fields with an icon or text placed inside its right side,
+      //   measure the width of the icon or text and add padding to the input field
 
-			$icon_right = $(".icon-right");
-			$icon_left = $(".icon-left");
-			// Field with icon-left class
+      $icon_right = $(".icon-right");
+      $icon_left = $(".icon-left");
+      // Field with icon-left class
 
-			if ($icon_right.length) {
-				$icon_right.map(function (v, k) {
-					var x = $(k).find(".form-icon").outerWidth();
-					$(k).find("input").css({ "padding-right": x + 3 });
-				});
-			}
+      if ($icon_right.length) {
+        $icon_right.map(function (v, k) {
+          var x = $(k).find(".form-icon").outerWidth();
+          $(k).find("input").css({ "padding-right": x + 3 });
+        });
+      }
 
-			// ====================================
-			// Select Fields
-			//   Adjust the width of the select object so it does not cover the custom drop-down arrow icon
+      // ====================================
+      // Select Fields
+      //   Adjust the width of the select object so it does not cover the custom drop-down arrow icon
 
-			$select_input = $(".select-input");
-			// Select input div that contains select input objects
+      $select_input = $(".select-input");
+      // Select input div that contains select input objects
 
-			if ($select_input.length) {
-				$select_input.map(function (v, k) {
-					var x = $(k).find(".form-icon").outerWidth();
-					$(k).find("select").css({ "padding-right": x + 3 });
-				});
-			}
+      if ($select_input.length) {
+        $select_input.map(function (v, k) {
+          var x = $(k).find(".form-icon").outerWidth();
+          $(k).find("select").css({ "padding-right": x + 3 });
+        });
+      }
 
-			// ====================================
-			// Textarea
-			//   Update character count restriction or recommendation
+      // ====================================
+      // Textarea
+      //   Update character count restriction or recommendation
 
-			$textarea = $("textarea");
-			// Textarea
+      $textarea = $("textarea");
+      // Textarea
 
-			if ($textarea.length) {
-				$textarea.map(function (v, k) {
-					// Add event listener only if textarea contains a data-character-limit attribute
-					if ($(k).attr("data-character-limit")) {
-						$(k).on("change keyup paste", function () {
-							var y = $(this).val().length;
-							var z = $(k).attr("data-character-limit");
+      if ($textarea.length) {
+        $textarea.map(function (v, k) {
+          // Add event listener only if textarea contains a data-character-limit attribute
+          if ($(k).attr("data-character-limit")) {
+            $(k).on("change keyup paste", function () {
+              var y = $(this).val().length;
+              var z = $(k).attr("data-character-limit");
 
-							// Update character count display and set class to bad if over the limit
-							$("*[data-textarea-id='" + $(this).attr("id") + "'] span").html(z - y).addClass(z > y ? "good" : "bad").removeClass(z > y ? "bad" : "good");
-						});
-					}
-				});
-			}
+              // Update character count display and set class to bad if over the limit
+              $("*[data-textarea-id='" + $(this).attr("id") + "'] span").html(z - y).addClass(z > y ? "good" : "bad").removeClass(z > y ? "bad" : "good");
+            });
+          }
+        });
+      }
 
-			// ====================================
-			// Upload
-			//   Custom upload button triggers actual file input object
+      // ====================================
+      // Upload
+      //   Custom upload button triggers actual file input object
 
-			$upload_input = $(".upload-input");
-			$upload_input_button = $(".upload-input-button");
-			// The custom upload button
+      $upload_input = $(".upload-input");
+      $upload_input_button = $(".upload-input-button");
+      // The custom upload button
 
-			if ($upload_input.length) {
-				// On click of custom button, trigger actual input field
-				$upload_input_button.on("click", function () {
-					var x = $(this).attr("data-file-input");
-					$("#" + x).trigger("click");
-				});
+      if ($upload_input.length) {
+        // On click of custom button, trigger actual input field
+        $upload_input_button.on("click", function () {
+          var x = $(this).attr("data-file-input");
+          $("#" + x).trigger("click");
+        });
 
-				// On chnage of file input field, update text display with name of selected file
-				$upload_input.on("change", function () {
-					var x = $(this).val();
-					var y = x.substring(x.lastIndexOf("\\") + 1);
+        // On chnage of file input field, update text display with name of selected file
+        $upload_input.on("change", function () {
+          var x = $(this).val();
+          var y = x.substring(x.lastIndexOf("\\") + 1);
 
-					$("*[data-file-input='" + $(this).attr("id") + "'] span").html("<i class=\"font_icon font_icon-sm icon-document legalzoom-blue\"></i>" + y).removeClass("nofile");
-				});
-			}
+          $("*[data-file-input='" + $(this).attr("id") + "'] span").html("<i class=\"font_icon font_icon-sm icon-document legalzoom-blue\"></i>" + y).removeClass("nofile");
+        });
+      }
 
 
-			lg("forms {blue{loaded}}");
-		}
-	};
+      lg("forms {blue{loaded}}");
+    }
+  };
 });
 
 // ====================================
@@ -9953,276 +9953,276 @@ System.register("app/autosuggest", ["github:components/jquery@2.1.3", "npm:lodas
 
 
 System.register("app/date-picker", ["github:components/jquery@2.1.3", "npm:lodash@3.2.0", "app/quick-log"], function (_export) {
-	"use strict";
+  "use strict";
 
-	var $, _, lg, $datepicker, $datepicker_month, $button_previous, $button_next, $days_containers, $days, $readonly_field, datepicker;
-	return {
-		setters: [function (_githubComponentsJquery213) {
-			$ = _githubComponentsJquery213["default"];
-		}, function (_npmLodash320) {
-			_ = _npmLodash320["default"];
-		}, function (_appQuickLog) {
-			lg = _appQuickLog.lg;
-		}],
-		execute: function () {
-			$datepicker = $(".datepicker");
-			$datepicker_month = $(".datepicker > header > h1");
-			$button_previous = $(".datepicker > header > .button-previous");
-			$button_next = $(".datepicker > header > .button-next");
-			$days_containers = $(".day-container");
-			$days = $(".days");
-			$readonly_field = $(".datepicker-readonly-field");
-			// Read-only field that stores selected date for form submission
+  var $, _, lg, $datepicker, $datepicker_month, $button_previous, $button_next, $days_containers, $days, $readonly_field, datepicker;
+  return {
+    setters: [function (_githubComponentsJquery213) {
+      $ = _githubComponentsJquery213["default"];
+    }, function (_npmLodash320) {
+      _ = _npmLodash320["default"];
+    }, function (_appQuickLog) {
+      lg = _appQuickLog.lg;
+    }],
+    execute: function () {
+      $datepicker = $(".datepicker");
+      $datepicker_month = $(".datepicker > header > h1");
+      $button_previous = $(".datepicker > header > .button-previous");
+      $button_next = $(".datepicker > header > .button-next");
+      $days_containers = $(".day-container");
+      $days = $(".days");
+      $readonly_field = $(".datepicker-readonly-field");
+      // Read-only field that stores selected date for form submission
 
-			if ($datepicker.length) {
-				datepicker = {
-					// ====================================
-					// Initialize
-					init: function () {
-						var inputDateString = $readonly_field.val(),
-						    // $readonly_field.val() can be replaced by a date the user has already selected. For example, in an incomplete questionnaire where the user has already selected a date, insert that date here so the calendar will have that date hilited and selected.
-						inputDateParse = inputDateString.split("/"),
-						    inputDate = new Date(inputDateParse[2], inputDateParse[0] - 1, inputDateParse[1]),
-						    isDateValid = inputDate.getTime() === inputDate.getTime(); // We probably will not need this, because we should be validating the date already before we store it, but it's here just in case. Can't hurt.
-						if (isDateValid) {
-							this.date.current = inputDate;
-							this.date.selected = inputDate;
-						} else {
-							this.date.current = new Date();
-							this.date.selected = null;
-						}
-						this.date.today = new Date();
-						this.buildDisplay();
-					},
-					// ====================================
-					// Data
-					date: {
-						today: null, // today's date
-						current: null, // current date is used for which month is displayed
-						selected: null // date selected by user
-					},
-					months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-					holidays: [{ month: 0, day: 1, name: "New Year's Day" }, { month: 0, day: 20, name: "Martin Luther King's Birthday" }, { month: 1, day: 17, name: "George Washington's Birthday" }, { month: 4, day: 26, name: "Memorial Day" }, { month: 5, day: 4, name: "Independence Day" }, { month: 8, day: 1, name: "Labor Day" }, { month: 9, day: 13, name: "Columbus Day" }, { month: 10, day: 11, name: "Veterans Day" }, { month: 10, day: 27, name: "Thanksgiving Day" }, { month: 11, day: 25, name: "Christmas Day" }],
-					options: {
-						allow_weekends: $datepicker.attr("data-allow-weekends"),
-						allow_holidays: $datepicker.attr("data-allow-holidays")
-					},
-					// ====================================
-					// Render the Days of Currently-Viewed Month
-					buildDisplay: function () {
-						// ------------------------------------
-						// Check if selected date already exists from input form and set up so day can be hilited
-						var selectedDay = 0;
-						if (this.date.selected) {
-							var selectedMonth = this.date.selected.getUTCMonth(),
-							    currentMonth = this.date.current.getUTCMonth(),
-							    currentYear = this.date.current.getUTCFullYear(),
-							    todaysYear = this.date.today.getUTCFullYear(),
-							    holidaysThisMonth = _.filter(this.holidays, { month: currentMonth }),
-							    isHoliday = 0;
-							if (selectedMonth === currentMonth && !isHoliday) {
-								selectedDay = this.date.selected.getUTCDate();
-							}
-							// Check if day is holiday. This is if user manually typed a date that is a holiday
-							holidaysThisMonth.map(function (v, k) {
-								if (selectedDay === v.day) {
-									isHoliday = 1;
-									selectedDay = 0;
-								}
-							});
-							// ------------------------------------
-							// Check if year is in current year. This is if user manually entered a year that is not the current year.
-							if (currentYear !== todaysYear || isHoliday) {
-								$readonly_field.val("");
-								datepicker.date.selected = null;
-							}
-						}
+      if ($datepicker.length) {
+        datepicker = {
+          // ====================================
+          // Initialize
+          init: function () {
+            var inputDateString = $readonly_field.val(),
+                // $readonly_field.val() can be replaced by a date the user has already selected. For example, in an incomplete questionnaire where the user has already selected a date, insert that date here so the calendar will have that date hilited and selected.
+            inputDateParse = inputDateString.split("/"),
+                inputDate = new Date(inputDateParse[2], inputDateParse[0] - 1, inputDateParse[1]),
+                isDateValid = inputDate.getTime() === inputDate.getTime(); // We probably will not need this, because we should be validating the date already before we store it, but it's here just in case. Can't hurt.
+            if (isDateValid) {
+              this.date.current = inputDate;
+              this.date.selected = inputDate;
+            } else {
+              this.date.current = new Date();
+              this.date.selected = null;
+            }
+            this.date.today = new Date();
+            this.buildDisplay();
+          },
+          // ====================================
+          // Data
+          date: {
+            today: null, // today's date
+            current: null, // current date is used for which month is displayed
+            selected: null // date selected by user
+          },
+          months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+          holidays: [{ month: 0, day: 1, name: "New Year's Day" }, { month: 0, day: 20, name: "Martin Luther King's Birthday" }, { month: 1, day: 17, name: "George Washington's Birthday" }, { month: 4, day: 26, name: "Memorial Day" }, { month: 5, day: 4, name: "Independence Day" }, { month: 8, day: 1, name: "Labor Day" }, { month: 9, day: 13, name: "Columbus Day" }, { month: 10, day: 11, name: "Veterans Day" }, { month: 10, day: 27, name: "Thanksgiving Day" }, { month: 11, day: 25, name: "Christmas Day" }],
+          options: {
+            allow_weekends: $datepicker.attr("data-allow-weekends"),
+            allow_holidays: $datepicker.attr("data-allow-holidays")
+          },
+          // ====================================
+          // Render the Days of Currently-Viewed Month
+          buildDisplay: function () {
+            // ------------------------------------
+            // Check if selected date already exists from input form and set up so day can be hilited
+            var selectedDay = 0;
+            if (this.date.selected) {
+              var selectedMonth = this.date.selected.getUTCMonth(),
+                  currentMonth = this.date.current.getUTCMonth(),
+                  currentYear = this.date.current.getUTCFullYear(),
+                  todaysYear = this.date.today.getUTCFullYear(),
+                  holidaysThisMonth = _.filter(this.holidays, { month: currentMonth }),
+                  isHoliday = 0;
+              if (selectedMonth === currentMonth && !isHoliday) {
+                selectedDay = this.date.selected.getUTCDate();
+              }
+              // Check if day is holiday. This is if user manually typed a date that is a holiday
+              holidaysThisMonth.map(function (v, k) {
+                if (selectedDay === v.day) {
+                  isHoliday = 1;
+                  selectedDay = 0;
+                }
+              });
+              // ------------------------------------
+              // Check if year is in current year. This is if user manually entered a year that is not the current year.
+              if (currentYear !== todaysYear || isHoliday) {
+                $readonly_field.val("");
+                datepicker.date.selected = null;
+              }
+            }
 
-						// ------------------------------------
-						// Construct month day cells
-						var monthFirstDay = new Date(datepicker.date.current.getUTCFullYear(), datepicker.date.current.getUTCMonth(), 1),
-						    monthLastDay = new Date(datepicker.date.current.getUTCFullYear(), datepicker.date.current.getUTCMonth() + 1, 0),
-						    daysInMonth = monthLastDay.getUTCDate(),
-						    emptyCellsFront = monthFirstDay.getUTCDay(),
-						   
-						//emptyCellsEnd = Math.ceil(daysInMonth/7) - emptyCellsFront,
-						emptyCellsEnd = 6 - monthLastDay.getUTCDay(),
-						    currentMonth = monthFirstDay.getUTCMonth(),
-						    HTMLString = "",
-						    dayCount = 0,
-						    holidaysThisMonth = _.filter(this.holidays, { month: currentMonth }) // Create new object of only holidays of current month since unnecessary to check against all holiday. While not really gaining much, it simplifies that we only need to check against just the day
-						;
+            // ------------------------------------
+            // Construct month day cells
+            var monthFirstDay = new Date(datepicker.date.current.getUTCFullYear(), datepicker.date.current.getUTCMonth(), 1),
+                monthLastDay = new Date(datepicker.date.current.getUTCFullYear(), datepicker.date.current.getUTCMonth() + 1, 0),
+                daysInMonth = monthLastDay.getUTCDate(),
+                emptyCellsFront = monthFirstDay.getUTCDay(),
+               
+            //emptyCellsEnd = Math.ceil(daysInMonth/7) - emptyCellsFront,
+            emptyCellsEnd = 6 - monthLastDay.getUTCDay(),
+                currentMonth = monthFirstDay.getUTCMonth(),
+                HTMLString = "",
+                dayCount = 0,
+                holidaysThisMonth = _.filter(this.holidays, { month: currentMonth }) // Create new object of only holidays of current month since unnecessary to check against all holiday. While not really gaining much, it simplifies that we only need to check against just the day
+            ;
 
-						// ------------------------------------
-						// Set up header
-						$datepicker_month.html(datepicker.months[monthFirstDay.getUTCMonth()] + " " + datepicker.date.current.getUTCFullYear());
+            // ------------------------------------
+            // Set up header
+            $datepicker_month.html(datepicker.months[monthFirstDay.getUTCMonth()] + " " + datepicker.date.current.getUTCFullYear());
 
-						// ------------------------------------
-						// Get width of container
-						var parentOuterWidth = $datepicker.parent().outerWidth();
+            // ------------------------------------
+            // Get width of container
+            var parentOuterWidth = $datepicker.parent().outerWidth();
 
-						// ------------------------------------
-						// Add days of week
+            // ------------------------------------
+            // Add days of week
 
-						HTMLString += "" + "<div class=\"day_of_week\"><span class=\"desktop-tablet-only\">Sun<span class=\"desktop-only\">day</span></span><span class=\"mobile-only\">S</span></div>" + "<div class=\"day_of_week\"><span class=\"desktop-tablet-only\">Mon<span class=\"desktop-only\">day</span></span><span class=\"mobile-only\">M</span></div>" + "<div class=\"day_of_week\"><span class=\"desktop-tablet-only\">Tue<span class=\"desktop-only\">sday</span></span><span class=\"mobile-only\">T</span></div>" + "<div class=\"day_of_week\"><span class=\"desktop-tablet-only\">Wed<span class=\"desktop-only\">nesday</span></span><span class=\"mobile-only\">W</span></div>" + "<div class=\"day_of_week\"><span class=\"desktop-tablet-only\">Thu<span class=\"desktop-only\">rsday</span></span><span class=\"mobile-only\">T</span></div>" + "<div class=\"day_of_week\"><span class=\"desktop-tablet-only\">Fri<span class=\"desktop-only\">day</span></span><span class=\"mobile-only\">F</span></div>" + "<div class=\"day_of_week\"><span class=\"desktop-tablet-only\">Sat<span class=\"desktop-only\">urday</span></span><span class=\"mobile-only\">S</span></div>";
+            HTMLString += "" + "<div class=\"day_of_week\"><span class=\"desktop-tablet-only\">Sun<span class=\"desktop-only\">day</span></span><span class=\"mobile-only\">S</span></div>" + "<div class=\"day_of_week\"><span class=\"desktop-tablet-only\">Mon<span class=\"desktop-only\">day</span></span><span class=\"mobile-only\">M</span></div>" + "<div class=\"day_of_week\"><span class=\"desktop-tablet-only\">Tue<span class=\"desktop-only\">sday</span></span><span class=\"mobile-only\">T</span></div>" + "<div class=\"day_of_week\"><span class=\"desktop-tablet-only\">Wed<span class=\"desktop-only\">nesday</span></span><span class=\"mobile-only\">W</span></div>" + "<div class=\"day_of_week\"><span class=\"desktop-tablet-only\">Thu<span class=\"desktop-only\">rsday</span></span><span class=\"mobile-only\">T</span></div>" + "<div class=\"day_of_week\"><span class=\"desktop-tablet-only\">Fri<span class=\"desktop-only\">day</span></span><span class=\"mobile-only\">F</span></div>" + "<div class=\"day_of_week\"><span class=\"desktop-tablet-only\">Sat<span class=\"desktop-only\">urday</span></span><span class=\"mobile-only\">S</span></div>";
 
-						// ------------------------------------
-						// Add empty cells in front
-						for (var i = 0; i < emptyCellsFront; i++) {
-							dayCount++;
-							if (i + 1 < emptyCellsFront) {
-								HTMLString += "<div class=\"day day_empty\"><div class=\"day_number\"></div></div>";
-							} else {
-								HTMLString += "<div class=\"day day_empty\" style=\"width:" + parentOuterWidth * 0.134284 + "px;margin-right:1%;\"><div class=\"day_number\"></div></div>";
-							}
-						}
-						// ------------------------------------
-						// Add day cells		
-						for (var i = 0; i < daysInMonth; i++) {
-							dayCount++;
+            // ------------------------------------
+            // Add empty cells in front
+            for (var i = 0; i < emptyCellsFront; i++) {
+              dayCount++;
+              if (i + 1 < emptyCellsFront) {
+                HTMLString += "<div class=\"day day_empty\"><div class=\"day_number\"></div></div>";
+              } else {
+                HTMLString += "<div class=\"day day_empty\" style=\"width:" + parentOuterWidth * 0.134284 + "px;margin-right:1%;\"><div class=\"day_number\"></div></div>";
+              }
+            }
+            // ------------------------------------
+            // Add day cells    
+            for (var i = 0; i < daysInMonth; i++) {
+              dayCount++;
 
-							// Check if this is a holiday
-							var isHoliday = null,
-							    holidayName = "";
+              // Check if this is a holiday
+              var isHoliday = null,
+                  holidayName = "";
 
-							holidaysThisMonth.map(function (v, k) {
-								if (v.day === i + 1) {
-									isHoliday = 1;
-									holidayName = v.name;
-								}
-							});
+              holidaysThisMonth.map(function (v, k) {
+                if (v.day === i + 1) {
+                  isHoliday = 1;
+                  holidayName = v.name;
+                }
+              });
 
-							if (isHoliday) {
-								if (datepicker.options.allow_holidays === "no") {
-									HTMLString += "<div class=\"day day_holiday\"><div class=\"day_number\">" + (i + 1) + "</div><div class=\"day_text_bottom\">" + holidayName + "</div></div>";
-								} else {
-									HTMLString += "<div class=\"day day_active day_holiday\"><div class=\"day_number\">" + (i + 1) + "</div><div class=\"day_text_bottom\">" + holidayName + "</div></div>";
-								}
-							} else {
-								if (datepicker.options.allow_weekends === "no" && (dayCount % 7 === 0 || dayCount % 7 === 1)) {
-									HTMLString += "<div class=\"day day_inactive\"><div class=\"day_number\">" + (i + 1) + "</div></div>";
-								} else {
-									if (this.date.current.getUTCMonth() === this.date.today.getUTCMonth() && this.date.current.getFullYear() === this.date.today.getFullYear() && this.date.today.getDate() === i + 1) {
-										HTMLString += "<div class=\"day day_active day_today day" + (i + 1) + "\"><div class=\"day_number\">" + (i + 1) + "</div><div class=\"day_text_top\">Today</div></div>";
-									} else {
-										HTMLString += "<div class=\"day day_active day" + (i + 1) + "\"><div class=\"day_number\">" + (i + 1) + "</div></div>";
-									}
-									//if(selectedDay === (i + 1)){
-									//	HTMLString += '<div class="day day_active active"><div class="day_number">' + (i + 1) + '</div></div>';
-									//} else {
-									//}
-								}
-							}
-						}
-						// ------------------------------------
-						// Add empty cells at end
-						emptyCellsEnd += 42 - (emptyCellsFront + daysInMonth + emptyCellsEnd);
+              if (isHoliday) {
+                if (datepicker.options.allow_holidays === "no") {
+                  HTMLString += "<div class=\"day day_holiday\"><div class=\"day_number\">" + (i + 1) + "</div><div class=\"day_text_bottom\">" + holidayName + "</div></div>";
+                } else {
+                  HTMLString += "<div class=\"day day_active day_holiday\"><div class=\"day_number\">" + (i + 1) + "</div><div class=\"day_text_bottom\">" + holidayName + "</div></div>";
+                }
+              } else {
+                if (datepicker.options.allow_weekends === "no" && (dayCount % 7 === 0 || dayCount % 7 === 1)) {
+                  HTMLString += "<div class=\"day day_inactive\"><div class=\"day_number\">" + (i + 1) + "</div></div>";
+                } else {
+                  if (this.date.current.getUTCMonth() === this.date.today.getUTCMonth() && this.date.current.getFullYear() === this.date.today.getFullYear() && this.date.today.getDate() === i + 1) {
+                    HTMLString += "<div class=\"day day_active day_today day" + (i + 1) + "\"><div class=\"day_number\">" + (i + 1) + "</div><div class=\"day_text_top\">Today</div></div>";
+                  } else {
+                    HTMLString += "<div class=\"day day_active day" + (i + 1) + "\"><div class=\"day_number\">" + (i + 1) + "</div></div>";
+                  }
+                  //if(selectedDay === (i + 1)){
+                  //  HTMLString += '<div class="day day_active active"><div class="day_number">' + (i + 1) + '</div></div>';
+                  //} else {
+                  //}
+                }
+              }
+            }
+            // ------------------------------------
+            // Add empty cells at end
+            emptyCellsEnd += 42 - (emptyCellsFront + daysInMonth + emptyCellsEnd);
 
-						for (var i = emptyCellsEnd; i > 0; i--) {
-							if ((i - 1) % 7 !== 0) {
-								HTMLString += "<div class=\"day day_empty\"><div class=\"day_number\"></div></div>";
-							} else {
-								HTMLString += "<div class=\"day day_empty\" style=\"width:" + parentOuterWidth * 0.134284 + "px;\"><div class=\"day_number\"></div></div>";
-							}
-						}
-						HTMLString += "<br class=\"clear\">";
+            for (var i = emptyCellsEnd; i > 0; i--) {
+              if ((i - 1) % 7 !== 0) {
+                HTMLString += "<div class=\"day day_empty\"><div class=\"day_number\"></div></div>";
+              } else {
+                HTMLString += "<div class=\"day day_empty\" style=\"width:" + parentOuterWidth * 0.134284 + "px;\"><div class=\"day_number\"></div></div>";
+              }
+            }
+            HTMLString += "<br class=\"clear\">";
 
-						// ------------------------------------
-						// Insert HTML to display
-						$days.html(HTMLString);
+            // ------------------------------------
+            // Insert HTML to display
+            $days.html(HTMLString);
 
-						$(".day").map(function (v, k) {
-							$(k).css({
-								"margin-bottom": parentOuterWidth * 0.01
-							});
-						});
+            $(".day").map(function (v, k) {
+              $(k).css({
+                "margin-bottom": parentOuterWidth * 0.01
+              });
+            });
 
-						// ------------------------------------
-						// If a date has already been selected, then hilite that day cell
-						if (selectedDay) {
-							datepicker.selectDate($(".day" + selectedDay));
-						}
+            // ------------------------------------
+            // If a date has already been selected, then hilite that day cell
+            if (selectedDay) {
+              datepicker.selectDate($(".day" + selectedDay));
+            }
 
-						// ------------------------------------
-						// Don't allow navigating to past months
-						if (this.date.current.getUTCMonth() === this.date.today.getUTCMonth() && this.date.current.getFullYear() === this.date.today.getFullYear()) {
-							$button_previous.addClass("inactive");
-						} else {
-							$button_previous.removeClass("inactive");
-						}
+            // ------------------------------------
+            // Don't allow navigating to past months
+            if (this.date.current.getUTCMonth() === this.date.today.getUTCMonth() && this.date.current.getFullYear() === this.date.today.getFullYear()) {
+              $button_previous.addClass("inactive");
+            } else {
+              $button_previous.removeClass("inactive");
+            }
 
-						// ------------------------------------
-						// Bindings
-						var $day_active = $(".day_active"),
-						    $day_holiday = $(".day_holiday");
+            // ------------------------------------
+            // Bindings
+            var $day_active = $(".day_active"),
+                $day_holiday = $(".day_holiday");
 
-						$day_active.on("mouseenter", function () {}).on("mouseleave", function () {
-							var $div = $(this);
-							$div.removeClass("day_style_hover");
-						}).on("click touchend", function () {
-							datepicker.selectDate($(this));
-							datepicker.saveSelection();
-						});
-					},
-					// ====================================
-					// Select Date
-					selectDate: function ($div) {
-						var $day_active = $(".day_active");
+            $day_active.on("mouseenter", function () {}).on("mouseleave", function () {
+              var $div = $(this);
+              $div.removeClass("day_style_hover");
+            }).on("click touchend", function () {
+              datepicker.selectDate($(this));
+              datepicker.saveSelection();
+            });
+          },
+          // ====================================
+          // Select Date
+          selectDate: function ($div) {
+            var $day_active = $(".day_active");
 
-						// Position Selection Border and Style cell
-						var posX = $div.position().left,
-						    posY = $div.position().top;
-						var parentOuterWidth = $datepicker.parent().outerWidth();
-						$day_active.removeClass("active");
-						$div.addClass("active");
+            // Position Selection Border and Style cell
+            var posX = $div.position().left,
+                posY = $div.position().top;
+            var parentOuterWidth = $datepicker.parent().outerWidth();
+            $day_active.removeClass("active");
+            $div.addClass("active");
 
-						// Set Selected Date
-						var thisDay = Number($div.find(".day_number").text());
-						datepicker.date.selected = new Date(datepicker.date.current.getUTCFullYear(), datepicker.date.current.getUTCMonth(), thisDay);
-					},
-					// ====================================
-					// Save Date Data to Read-Only Field
-					saveSelection: function () {
-						if (datepicker.date.selected) {
-							var month = datepicker.date.selected.getUTCMonth() + 1,
-							    day = datepicker.date.selected.getUTCDate(),
-							    year = datepicker.date.selected.getUTCFullYear();
-							$readonly_field.val(month + "/" + day + "/" + year);
-						}
-					}
-				};
+            // Set Selected Date
+            var thisDay = Number($div.find(".day_number").text());
+            datepicker.date.selected = new Date(datepicker.date.current.getUTCFullYear(), datepicker.date.current.getUTCMonth(), thisDay);
+          },
+          // ====================================
+          // Save Date Data to Read-Only Field
+          saveSelection: function () {
+            if (datepicker.date.selected) {
+              var month = datepicker.date.selected.getUTCMonth() + 1,
+                  day = datepicker.date.selected.getUTCDate(),
+                  year = datepicker.date.selected.getUTCFullYear();
+              $readonly_field.val(month + "/" + day + "/" + year);
+            }
+          }
+        };
 
 
-				// Initialize Date Picker
-				datepicker.init();
+        // Initialize Date Picker
+        datepicker.init();
 
-				// Button Previous Month
-				$button_previous.on("click touchend", function (e) {
-					e.preventDefault();
-					if (!$(this).hasClass("inactive")) {
-						datepicker.date.current = new Date(datepicker.date.current.getUTCFullYear(), datepicker.date.current.getUTCMonth() - 1, 1);
-						datepicker.buildDisplay();
-					}
-				});
+        // Button Previous Month
+        $button_previous.on("click touchend", function (e) {
+          e.preventDefault();
+          if (!$(this).hasClass("inactive")) {
+            datepicker.date.current = new Date(datepicker.date.current.getUTCFullYear(), datepicker.date.current.getUTCMonth() - 1, 1);
+            datepicker.buildDisplay();
+          }
+        });
 
-				// Button Next Month
-				$button_next.on("click touchend", function (e) {
-					e.preventDefault();
-					if (!$(this).hasClass("inactive")) {
-						datepicker.date.current = new Date(datepicker.date.current.getUTCFullYear(), datepicker.date.current.getUTCMonth() + 1, 1);
-						datepicker.buildDisplay();
-					}
-				});
+        // Button Next Month
+        $button_next.on("click touchend", function (e) {
+          e.preventDefault();
+          if (!$(this).hasClass("inactive")) {
+            datepicker.date.current = new Date(datepicker.date.current.getUTCFullYear(), datepicker.date.current.getUTCMonth() + 1, 1);
+            datepicker.buildDisplay();
+          }
+        });
 
-				// Window Resize
-				$(window).on("resize", function () {
-					datepicker.init();
-				});
-			}
+        // Window Resize
+        $(window).on("resize", function () {
+          datepicker.init();
+        });
+      }
 
-			lg("date picker {blue{loaded}}");
-		}
-	};
+      lg("date picker {blue{loaded}}");
+    }
+  };
 });
 
 // ====================================
@@ -10235,185 +10235,185 @@ System.register("app/date-picker", ["github:components/jquery@2.1.3", "npm:lodas
 // Parent container of day cells
 // Actual container for day cells
 System.register("app/check-breakpoint", ["github:components/jquery@2.1.3", "app/quick-log"], function (_export) {
-	"use strict";
+  "use strict";
 
-	var $, lg;
+  var $, lg;
 
 
-	function isDesktop() {
-		if ($(window).width() > 640) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	function isMobile() {
-		if ($(window).width() <= 640) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	function isTablet() {
-		if ($(window).width() <= 980) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+  function isDesktop() {
+    if ($(window).width() > 640) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  function isMobile() {
+    if ($(window).width() <= 640) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  function isTablet() {
+    if ($(window).width() <= 980) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-	return {
-		setters: [function (_githubComponentsJquery213) {
-			$ = _githubComponentsJquery213["default"];
-		}, function (_appQuickLog) {
-			lg = _appQuickLog.lg;
-		}],
-		execute: function () {
-			_export("isDesktop", isDesktop);
+  return {
+    setters: [function (_githubComponentsJquery213) {
+      $ = _githubComponentsJquery213["default"];
+    }, function (_appQuickLog) {
+      lg = _appQuickLog.lg;
+    }],
+    execute: function () {
+      _export("isDesktop", isDesktop);
 
-			_export("isTablet", isTablet);
+      _export("isTablet", isTablet);
 
-			_export("isMobile", isMobile);
+      _export("isMobile", isMobile);
 
-			lg("check breakpoint {blue{loaded}}");
-		}
-	};
+      lg("check breakpoint {blue{loaded}}");
+    }
+  };
 });
 
 // ====================================
 // Check Breakpoint
 System.register("app/form-custom", ["github:components/jquery@2.1.3", "npm:lodash@3.2.0", "app/quick-log", "app/check-breakpoint"], function (_export) {
-	"use strict";
+  "use strict";
 
-	var $, _, lg, isDesktop, $form_style_1;
-
-
-	// ====================================
-	// Helper Functions for Custom Styles
-
-	function get_input_width($this) {
-		var x1 = $this.css("font"),
-		    // Get necessary attributes to recreate object with same width
-		x2 = $this.css("padding"),
-		    x3 = $this.css("border-left"),
-		    x4 = $this.css("border-right"),
-		    x5 = $this.val(),
-		    x6 = $this.attr("placeholder");
-		$("body").append("<span class=\"tmp\" style=\"font:" + x1 + ";padding:" + x2 + ";border-left:" + x3 + ";border-right:" + x4 + ";background:orange;width:auto;position:absolute;opacity:0;height:0;\">" + (x5 ? x5 : x6) + "</span>"); // Create temp object
-		var this_width = $(".tmp").outerWidth(); // Measure temp object
-		$(".tmp").remove(); // Delete temp object
-		return this_width; // Return the width
-	}
-
-	return {
-		setters: [function (_githubComponentsJquery213) {
-			$ = _githubComponentsJquery213["default"];
-		}, function (_npmLodash320) {
-			_ = _npmLodash320["default"];
-		}, function (_appQuickLog) {
-			lg = _appQuickLog.lg;
-		}, function (_appCheckBreakpoint) {
-			isDesktop = _appCheckBreakpoint.isDesktop;
-		}],
-		execute: function () {
-			// ====================================
-			// Form Style 1
-
-			$form_style_1 = $(".form-style-1");
+  var $, _, lg, isDesktop, $form_style_1;
 
 
-			if ($form_style_1.length) {
-				(function () {
-					var form_style_1_update = function () {
-						if (isDesktop()) {
-							// On Desktop, style elements
-							$form_style_1.map(function (v, k) {
-								var container_width = $(k).outerWidth(),
-								    label_width = $(k).find("label").outerWidth(),
-								    label_margin = Number($(k).find("label").css("margin-right").replace("px", ""));
+  // ====================================
+  // Helper Functions for Custom Styles
 
-								var $input_container = $(k).find(".input-container"),
-								    // Input Container
-								$input = $(k).find("input"),
-								    // Input Field
-								$input_underline = $(k).find(".input-underline"); // Dynamic underline
+  function get_input_width($this) {
+    var x1 = $this.css("font"),
+        // Get necessary attributes to recreate object with same width
+    x2 = $this.css("padding"),
+        x3 = $this.css("border-left"),
+        x4 = $this.css("border-right"),
+        x5 = $this.val(),
+        x6 = $this.attr("placeholder");
+    $("body").append("<span class=\"tmp\" style=\"font:" + x1 + ";padding:" + x2 + ";border-left:" + x3 + ";border-right:" + x4 + ";background:orange;width:auto;position:absolute;opacity:0;height:0;\">" + (x5 ? x5 : x6) + "</span>"); // Create temp object
+    var this_width = $(".tmp").outerWidth(); // Measure temp object
+    $(".tmp").remove(); // Delete temp object
+    return this_width; // Return the width
+  }
 
-								$input_container.css({ // Set input container width to remaining width
-									width: container_width - label_width - label_margin - 1
-								});
+  return {
+    setters: [function (_githubComponentsJquery213) {
+      $ = _githubComponentsJquery213["default"];
+    }, function (_npmLodash320) {
+      _ = _npmLodash320["default"];
+    }, function (_appQuickLog) {
+      lg = _appQuickLog.lg;
+    }, function (_appCheckBreakpoint) {
+      isDesktop = _appCheckBreakpoint.isDesktop;
+    }],
+    execute: function () {
+      // ====================================
+      // Form Style 1
 
-								$input_underline.css({ width: get_input_width($input) }) // Set initial width of underline to match placeholder
-								.on("click", function () {
-									// On click, set focus on input field. For some reason, I applying any type of position attribute to the input field broke the ability to update the underline width.
-									$input.focus();
-								});
+      $form_style_1 = $(".form-style-1");
 
-								$input.on("change keyup paste", function () {
-									// Update width of underline as user types
-									var x = get_input_width($input);
-									$input_underline.css({ width: x });
-								});
-							});
-						} else {
-							// On Mobile, revert to default
-							$form_style_1.map(function (v, k) {
-								$(k).find(".input-container").css({
-									width: "100%"
-								});
-							});
-						}
-					};
 
-					var debounce_form_style_1_update = _.debounce(form_style_1_update, 50); // Debounce to throttle during window resize
-					debounce_form_style_1_update();
+      if ($form_style_1.length) {
+        (function () {
+          var form_style_1_update = function () {
+            if (isDesktop()) {
+              // On Desktop, style elements
+              $form_style_1.map(function (v, k) {
+                var container_width = $(k).outerWidth(),
+                    label_width = $(k).find("label").outerWidth(),
+                    label_margin = Number($(k).find("label").css("margin-right").replace("px", ""));
 
-					$(window).on("resize", function () {
-						// Re-render on window resize
-						debounce_form_style_1_update();
-					});
-				})();
-			}lg("form custom {blue{loaded}}");
-		}
-	};
+                var $input_container = $(k).find(".input-container"),
+                    // Input Container
+                $input = $(k).find("input"),
+                    // Input Field
+                $input_underline = $(k).find(".input-underline"); // Dynamic underline
+
+                $input_container.css({ // Set input container width to remaining width
+                  width: container_width - label_width - label_margin - 1
+                });
+
+                $input_underline.css({ width: get_input_width($input) }) // Set initial width of underline to match placeholder
+                .on("click", function () {
+                  // On click, set focus on input field. For some reason, I applying any type of position attribute to the input field broke the ability to update the underline width.
+                  $input.focus();
+                });
+
+                $input.on("change keyup paste", function () {
+                  // Update width of underline as user types
+                  var x = get_input_width($input);
+                  $input_underline.css({ width: x });
+                });
+              });
+            } else {
+              // On Mobile, revert to default
+              $form_style_1.map(function (v, k) {
+                $(k).find(".input-container").css({
+                  width: "100%"
+                });
+              });
+            }
+          };
+
+          var debounce_form_style_1_update = _.debounce(form_style_1_update, 50); // Debounce to throttle during window resize
+          debounce_form_style_1_update();
+
+          $(window).on("resize", function () {
+            // Re-render on window resize
+            debounce_form_style_1_update();
+          });
+        })();
+      }lg("form custom {blue{loaded}}");
+    }
+  };
 });
 
 // ====================================
 // Form Buttons
 System.register("app/snippet-convert_time_to_HHMMSS", ["app/quick-log"], function (_export) {
-	"use strict";
+  "use strict";
 
-	var lg;
-	return {
-		setters: [function (_appQuickLog) {
-			lg = _appQuickLog.lg;
-		}],
-		execute: function () {
-			String.prototype.toHHMMSS = function () {
-				var sec_num = parseInt(this, 10); // don't forget the second param
-				var hours = Math.floor(sec_num / 3600);
-				var minutes = Math.floor((sec_num - hours * 3600) / 60);
-				var seconds = sec_num - hours * 3600 - minutes * 60;
+  var lg;
+  return {
+    setters: [function (_appQuickLog) {
+      lg = _appQuickLog.lg;
+    }],
+    execute: function () {
+      String.prototype.toHHMMSS = function () {
+        var sec_num = parseInt(this, 10); // don't forget the second param
+        var hours = Math.floor(sec_num / 3600);
+        var minutes = Math.floor((sec_num - hours * 3600) / 60);
+        var seconds = sec_num - hours * 3600 - minutes * 60;
 
-				if (hours < 10) {
-					hours = "0" + hours;
-				}
-				if (minutes < 10) {
-					minutes = "0" + minutes;
-				}
-				if (seconds < 10) {
-					seconds = "0" + seconds;
-				}
-				var time = "";
-				if (hours > 0) {
-					time += hours + ":";
-				}
-				time += minutes + ":" + seconds;
-				return time;
-			};
+        if (hours < 10) {
+          hours = "0" + hours;
+        }
+        if (minutes < 10) {
+          minutes = "0" + minutes;
+        }
+        if (seconds < 10) {
+          seconds = "0" + seconds;
+        }
+        var time = "";
+        if (hours > 0) {
+          time += hours + ":";
+        }
+        time += minutes + ":" + seconds;
+        return time;
+      };
 
-			lg("snippet-convert_time_to_HHMMSS {blue{loaded}}");
-		}
-	};
+      lg("snippet-convert_time_to_HHMMSS {blue{loaded}}");
+    }
+  };
 });
 
 // ====================================
@@ -10882,67 +10882,74 @@ System.register("npm:slick-carousel@1.4.1", ["npm:slick-carousel@1.4.1/slick/sli
 
 
 System.register("app/form-buttons", ["github:components/jquery@2.1.3", "npm:lodash@3.2.0", "app/quick-log", "app/check-breakpoint"], function (_export) {
-	"use strict";
+  "use strict";
 
-	var $, _, lg, isDesktop, $form_buttons;
-	return {
-		setters: [function (_githubComponentsJquery213) {
-			$ = _githubComponentsJquery213["default"];
-		}, function (_npmLodash320) {
-			_ = _npmLodash320["default"];
-		}, function (_appQuickLog) {
-			lg = _appQuickLog.lg;
-		}, function (_appCheckBreakpoint) {
-			isDesktop = _appCheckBreakpoint.isDesktop;
-		}],
-		execute: function () {
-			$form_buttons = $(".form-buttons").not(".force-height");
-			// List containing radio or checkbox controls to be converted to buttons
+  var $, _, lg, isDesktop, $form_buttons;
+  return {
+    setters: [function (_githubComponentsJquery213) {
+      $ = _githubComponentsJquery213["default"];
+    }, function (_npmLodash320) {
+      _ = _npmLodash320["default"];
+    }, function (_appQuickLog) {
+      lg = _appQuickLog.lg;
+    }, function (_appCheckBreakpoint) {
+      isDesktop = _appCheckBreakpoint.isDesktop;
+    }],
+    execute: function () {
+      $form_buttons = $(".form-buttons").not(".force-height");
+      // List containing radio or checkbox controls to be converted to buttons
 
-			if ($form_buttons.length) {
-				(function () {
-					var conform_button_heights =
+      if ($form_buttons.length) {
+        (function () {
+          var conform_button_heights =
 
-					// ------------------------------------
-					// Check height of tallest button in each button group.
-					// Make all buttons in that group same height.
-					function () {
-						if (isDesktop()) {
-							$form_buttons.map(function (v, k) {
-								var $num_buttons = $(k).find("label");
-								var tallest_height = 0;
-								$num_buttons.map(function (a, b) {
-									var this_height = $(b).outerHeight();
-									tallest_height = this_height > tallest_height ? this_height : tallest_height;
-								});
-								$num_buttons.css({ height: tallest_height });
-							});
-						} else {
-							$form_buttons.map(function (v, k) {
-								var $num_buttons = $(k).find("label");
-								$num_buttons.css({ height: "auto" });
-							});
-						}
-					};
+          // ------------------------------------
+          // Check height of tallest button in each button group.
+          // Make all buttons in that group same height.
+          function () {
+            if (isDesktop()) {
+              $form_buttons.map(function (v, k) {
+                var $num_buttons = $(k).find("label");
+                var tallest_height = 0;
+                $num_buttons.map(function (a, b) {
+                  var this_height = $(b).outerHeight();
+                  tallest_height = this_height > tallest_height ? this_height : tallest_height;
+                });
+                $num_buttons.css({ height: tallest_height });
+              });
+            } else {
+              $form_buttons.map(function (v, k) {
+                var $num_buttons = $(k).find("label");
+                $num_buttons.css({ height: "auto" });
+              });
+            }
+          };
 
-					conform_button_heights();
+          conform_button_heights();
 
-					var debounce_conform_button_heights = _.debounce(conform_button_heights, 100);
+          var debounce_conform_button_heights = _.debounce(conform_button_heights, 100);
 
-					// Resize button heights on window resize
-					$(window).on("resize", function () {
-						debounce_conform_button_heights();
-					});
-				})();
-			}
+          // Resize button heights on window resize
+          $(window).on("resize", function () {
+            debounce_conform_button_heights();
+          });
+        })();
+      }
 
-			lg("form buttons {blue{loaded}}");
-		}
-	};
+      lg("form buttons {blue{loaded}}");
+    }
+  };
 });
 
 // ====================================
+// Form Buttons
 
+// ====================================
+// Video
+// The video object and video controls are referenced against each other by the video objects id and the video controls data-video attribute.
+// This allows the code below to accommodate any number of videos on a page.
+
+// 0: not dragging, 1: dragging. Check if cursor is dragging seek slider or not
 System.register("npm:scriptjs@2.5.7", ["npm:scriptjs@2.5.7/dist/script"], true, function(require, exports, module) {
   var global = System.global,
       __define = global.define;
@@ -10966,15 +10973,42 @@ System.register("npm:asap@1.0.0", ["npm:asap@1.0.0/asap"], true, function(requir
 
 
 System.register("app/quick-log", ["github:components/jquery@2.1.3"], function (_export) {
-	"use strict";
-	function lg(x) {}
-return {
-		setters: [function (_githubComponentsJquery213) {
-		}],
-		execute: function () {
-			_export("lg", lg);
-		}
-	};
+  "use strict";
+
+  var $, html_snippet;
+
+
+  function lg(x) {
+    var y = x
+}
+
+  function lgObj(o) {
+    var out = "";
+    for (var p in o) {
+      out += p + ": " + o[p] + "\n";
+    }
+    lg(out);
+  }return {
+    setters: [function (_githubComponentsJquery213) {
+      $ = _githubComponentsJquery213["default"];
+    }],
+    execute: function () {
+      html_snippet = "<div id=lg style=\"\n\tbackground:rgba(0,0,0,.88);\n\tposition:fixed;\n\tbottom:0;\n\tright:0;\n\tcolor:#ccc;\n\tpadding:5px;\n\tfont-family:Inconsolata, arial;\n\tfont-size:.7em;\n\tz-index:9999;\n\t-webkit-font-smoothing:subpixel-antialiased;\n\tdisplay:none;\n\tline-height:1.1em;\n\tborder-top-left-radius: 5px;\n\t\"><span style=\"color:#3bbb33;\">> Hover over me to hide</span><br></div>";
+
+
+      $("body").append(html_snippet);
+
+      $("#lg").on("mouseenter", function () {
+        $(this).html("").css({ display: "none" });
+      });;
+
+      _export("lg", lg);
+
+      _export("lgObj", lgObj);
+
+      lg("quick-log {blue{loaded}}");
+    }
+  };
 });
 
 // ====================================
@@ -11005,106 +11039,106 @@ System.register("github:jspm/nodelibs-process@0.1.1/index", ["npm:process@0.10.0
 
 
 System.register("app/skrollr", ["github:components/jquery@2.1.3", "app/quick-log", "github:Prinzhorn/skrollr@0.6.29"], function (_export) {
-	"use strict";
+  "use strict";
 
-	var $, lg, s;
-	return {
-		setters: [function (_githubComponentsJquery213) {
-			$ = _githubComponentsJquery213["default"];
-		}, function (_appQuickLog) {
-			lg = _appQuickLog.lg;
-		}, function (_githubPrinzhornSkrollr0629) {
-			s = _githubPrinzhornSkrollr0629["default"];
-		}],
-		execute: function () {
-			if ($(".scroll-motion").length) {
-				lg("skrollr start");
-				s.init();
-			} else {
-				lg("skrollr no start");
-			}
-			lg("skrollr {blue{loaded}}");
-		}
-	};
+  var $, lg, s;
+  return {
+    setters: [function (_githubComponentsJquery213) {
+      $ = _githubComponentsJquery213["default"];
+    }, function (_appQuickLog) {
+      lg = _appQuickLog.lg;
+    }, function (_githubPrinzhornSkrollr0629) {
+      s = _githubPrinzhornSkrollr0629["default"];
+    }],
+    execute: function () {
+      if ($(".scroll-motion").length) {
+        lg("skrollr start");
+        s.init();
+      } else {
+        lg("skrollr no start");
+      }
+      lg("skrollr {blue{loaded}}");
+    }
+  };
 });
 
 // ====================================
 // skrollr
 System.register("app/carousel", ["github:components/jquery@2.1.3", "npm:slick-carousel@1.4.1", "app/quick-log"], function (_export) {
-	"use strict";
+  "use strict";
 
-	var $, slick, lg, $slider;
-	return {
-		setters: [function (_githubComponentsJquery213) {
-			$ = _githubComponentsJquery213["default"];
-		}, function (_npmSlickCarousel141) {
-			slick = _npmSlickCarousel141["default"];
-		}, function (_appQuickLog) {
-			lg = _appQuickLog.lg;
-		}],
-		execute: function () {
-			$slider = $(".slider");
-			// Sliders
+  var $, slick, lg, $slider;
+  return {
+    setters: [function (_githubComponentsJquery213) {
+      $ = _githubComponentsJquery213["default"];
+    }, function (_npmSlickCarousel141) {
+      slick = _npmSlickCarousel141["default"];
+    }, function (_appQuickLog) {
+      lg = _appQuickLog.lg;
+    }],
+    execute: function () {
+      $slider = $(".slider");
+      // Sliders
 
-			if ($slider.length) {
-				(function () {
-					var adjust_slider_height =
+      if ($slider.length) {
+        (function () {
+          var adjust_slider_height =
 
-					// Clean up slider height
-					// For an unknown reason, when slick.js pulls content into the carousel, it retains the "space" where the original content was of the height and width of that content.
-					// This was fixed by specifying a height on the slider element (style="height"450px;), which is not ideal, but the only way I discovered that could fix this issue.
-					// But setting a height on the slider created a new issue, that the height of content elements (such as class height450) is variable between mobile and desktop, and specifying a height directly on the elements causes it to be the same height on desktop and mobile.
-					// So final solution is to check window resize and adjust the height with JavaScript.
-					// None of this is ideal, of course, but after many many tests, this is the only solution I've found.
-					function () {
-						var height_adjustment = 0;
-						$slider.find("section").map(function (v, k) {
-							height_adjustment = $(k).outerHeight() > height_adjustment ? $(k).outerHeight() : height_adjustment;
-						});
-						//lg(`height_adjustment: ${height_adjustment}`);
-						$slider.css({ height: height_adjustment });
-					};
+          // Clean up slider height
+          // For an unknown reason, when slick.js pulls content into the carousel, it retains the "space" where the original content was of the height and width of that content.
+          // This was fixed by specifying a height on the slider element (style="height"450px;), which is not ideal, but the only way I discovered that could fix this issue.
+          // But setting a height on the slider created a new issue, that the height of content elements (such as class height450) is variable between mobile and desktop, and specifying a height directly on the elements causes it to be the same height on desktop and mobile.
+          // So final solution is to check window resize and adjust the height with JavaScript.
+          // None of this is ideal, of course, but after many many tests, this is the only solution I've found.
+          function () {
+            var height_adjustment = 0;
+            $slider.find("section").map(function (v, k) {
+              height_adjustment = $(k).outerHeight() > height_adjustment ? $(k).outerHeight() : height_adjustment;
+            });
+            //lg(`height_adjustment: ${height_adjustment}`);
+            $slider.css({ height: height_adjustment });
+          };
 
-					$slider.map(function (v, k) {
-						var dots = $(this).attr("data-slider-bullets") === "no" ? false : true,
-						    arrows = $(this).attr("data-slider-arrows") === "no" ? false : true,
-						    fade = $(this).attr("data-slider-fade") === "no" ? false : true,
-						    slidesToShow = parseInt($(this).attr("data-slider-slidesToShow")),
-						    slidesToScroll = parseInt($(this).attr("data-slider-slidesToScroll")),
-						    autoplay = $(this).attr("data-slider-autoplay") === "no" ? false : true,
-						    autoplaySpeed = parseInt($(this).attr("data-slider-autoplaySpeed")),
-						    pauseOnHover = $(this).attr("data-slider-pauseOnHover") === "no" ? false : true;
+          $slider.map(function (v, k) {
+            var dots = $(this).attr("data-slider-bullets") === "no" ? false : true,
+                arrows = $(this).attr("data-slider-arrows") === "no" ? false : true,
+                fade = $(this).attr("data-slider-fade") === "no" ? false : true,
+                slidesToShow = parseInt($(this).attr("data-slider-slidesToShow")),
+                slidesToScroll = parseInt($(this).attr("data-slider-slidesToScroll")),
+                autoplay = $(this).attr("data-slider-autoplay") === "no" ? false : true,
+                autoplaySpeed = parseInt($(this).attr("data-slider-autoplaySpeed")),
+                pauseOnHover = $(this).attr("data-slider-pauseOnHover") === "no" ? false : true;
 
-						$(this).slick({
-							dots: dots,
-							infinite: true,
-							speed: 500,
-							slidesToShow: slidesToShow,
-							slidesToScroll: slidesToScroll,
-							arrows: arrows,
-							fade: fade,
-							autoplay: autoplay,
-							autoplaySpeed: autoplaySpeed,
-							pauseOnHover: pauseOnHover,
-							responsive: [{
-								breakpoint: 640,
-								settings: {
-									slidesToShow: 1 // At less than 640px, force only showing 1 slide at a time.
-								}
-							}]
-						});
-						adjust_slider_height();
-					});
+            $(this).slick({
+              dots: dots,
+              infinite: true,
+              speed: 500,
+              slidesToShow: slidesToShow,
+              slidesToScroll: slidesToScroll,
+              arrows: arrows,
+              fade: fade,
+              autoplay: autoplay,
+              autoplaySpeed: autoplaySpeed,
+              pauseOnHover: pauseOnHover,
+              responsive: [{
+                breakpoint: 640,
+                settings: {
+                  slidesToShow: 1 // At less than 640px, force only showing 1 slide at a time.
+                }
+              }]
+            });
+            adjust_slider_height();
+          });
 
-					$(window).on("resize", function () {
-						adjust_slider_height();
-					});
-				})();
-			}
+          $(window).on("resize", function () {
+            adjust_slider_height();
+          });
+        })();
+      }
 
-			lg("carousel {blue{loaded}}");
-		}
-	};
+      lg("carousel {blue{loaded}}");
+    }
+  };
 });
 
 // ====================================
@@ -15339,96 +15373,96 @@ System.register("npm:google-maps-api@1.0.2/index", ["npm:scriptjs@2.5.7", "npm:p
 
 
 System.register("app/nav", ["github:components/jquery@2.1.3", "npm:lodash@3.2.0", "app/quick-log"], function (_export) {
-	"use strict";
+  "use strict";
 
-	var $, _, lg, $nav_menu, $nav_link, menu_state, active_menu;
-	return {
-		setters: [function (_githubComponentsJquery213) {
-			$ = _githubComponentsJquery213["default"];
-		}, function (_npmLodash320) {
-			_ = _npmLodash320["default"];
-		}, function (_appQuickLog) {
-			lg = _appQuickLog.lg;
-		}],
-		execute: function () {
-			// ====================================
-			// Desktop Navigation
+  var $, _, lg, $nav_menu, $nav_link, menu_state, active_menu;
+  return {
+    setters: [function (_githubComponentsJquery213) {
+      $ = _githubComponentsJquery213["default"];
+    }, function (_npmLodash320) {
+      _ = _npmLodash320["default"];
+    }, function (_appQuickLog) {
+      lg = _appQuickLog.lg;
+    }],
+    execute: function () {
+      // ====================================
+      // Desktop Navigation
 
-			$nav_menu = $(".nav_menu");
-			$nav_link = $(".nav-level-1 li");
-			// The nav buttons
+      $nav_menu = $(".nav_menu");
+      $nav_link = $(".nav-level-1 li");
+      // The nav buttons
 
-			menu_state = 0;
-			active_menu = "";
-			// The currently active menu
+      menu_state = 0;
+      active_menu = "";
+      // The currently active menu
 
-			if ($nav_menu.length) {
-				(function () {
-					var show_menu =
+      if ($nav_menu.length) {
+        (function () {
+          var show_menu =
 
-					// Show menu function
-					function () {
-						$nav_menu.hide();
-						$("." + active_menu).show();
-						menu_state = 1;
-						lg("menu {blue{shown}}: {purple{" + active_menu + "}}");
-					};
+          // Show menu function
+          function () {
+            $nav_menu.hide();
+            $("." + active_menu).show();
+            menu_state = 1;
+            lg("menu {blue{shown}}: {purple{" + active_menu + "}}");
+          };
 
-					var hide_menu =
+          var hide_menu =
 
-					// Hide menu function
-					function () {
-						if (menu_state === 1) {
-							$nav_menu.hide();
-							menu_state = 0;
-							lg("all menus {blue{hidden}}");
-						}
-					};
+          // Hide menu function
+          function () {
+            if (menu_state === 1) {
+              $nav_menu.hide();
+              menu_state = 0;
+              lg("all menus {blue{hidden}}");
+            }
+          };
 
-					// Debounce functions to tweak interaction timing
-					var debounce_show_menu = _.debounce(show_menu, 300),
-					    debounce_hide_menu = _.debounce(hide_menu, 150);
+          // Debounce functions to tweak interaction timing
+          var debounce_show_menu = _.debounce(show_menu, 300),
+              debounce_hide_menu = _.debounce(hide_menu, 150);
 
-					// Nav menu buttons
-					$nav_link.on("mouseenter", function () {
-						debounce_hide_menu.cancel();
-						active_menu = $(this).attr("data-menu");
-						if (menu_state === 0) {
-							debounce_show_menu();
-						} else if (menu_state === 1) {
-							show_menu();
-						}
-					}).on("mouseleave", function () {
-						debounce_show_menu.cancel();
-						debounce_hide_menu();
-					});
+          // Nav menu buttons
+          $nav_link.on("mouseenter", function () {
+            debounce_hide_menu.cancel();
+            active_menu = $(this).attr("data-menu");
+            if (menu_state === 0) {
+              debounce_show_menu();
+            } else if (menu_state === 1) {
+              show_menu();
+            }
+          }).on("mouseleave", function () {
+            debounce_show_menu.cancel();
+            debounce_hide_menu();
+          });
 
-					// Nav menus
-					$nav_menu.on("mouseenter", function () {
-						debounce_hide_menu.cancel();
-					}).on("mouseleave", function () {
-						debounce_show_menu.cancel();
-						debounce_hide_menu();
-					});
+          // Nav menus
+          $nav_menu.on("mouseenter", function () {
+            debounce_hide_menu.cancel();
+          }).on("mouseleave", function () {
+            debounce_show_menu.cancel();
+            debounce_hide_menu();
+          });
 
-					// ====================================
-					// Mobile Navigation
+          // ====================================
+          // Mobile Navigation
 
-					var $nav_menu_mobile = $(".nav_menu_mobile"),
-					    // The hidden mobile nav menu
-					$nav_mobile_link = $(".nav-mobile_menu"); // The mobile nav button
+          var $nav_menu_mobile = $(".nav_menu_mobile"),
+              // The hidden mobile nav menu
+          $nav_mobile_link = $(".nav-mobile_menu"); // The mobile nav button
 
-					$nav_mobile_link.on("click", function (e) {
-						e.preventDefault();
-						$nav_menu_mobile.toggle();
-						$(this).toggleClass("active");
-					});
-				})();
-			}
+          $nav_mobile_link.on("click", function (e) {
+            e.preventDefault();
+            $nav_menu_mobile.toggle();
+            $(this).toggleClass("active");
+          });
+        })();
+      }
 
-			lg("nav {blue{loaded}}");
-		}
-	};
+      lg("nav {blue{loaded}}");
+    }
+  };
 });
 
 // ====================================
@@ -15483,17 +15517,17 @@ System.register("app/map", ["npm:google-maps-api@1.0.2", "github:components/jque
 
 
 System.register("app/main", ["app/quick-log", "app/nav", "app/modal", "app/tooltip", "app/tab", "app/nav-search", "app/forms", "app/skrollr", "app/carousel", "app/autosuggest", "app/date-picker", "app/form-buttons", "app/form-custom", "app/map"], function (_export) {
-													"use strict";
+                          "use strict";
 
-													var lg;
-													return {
-																										setters: [function (_appQuickLog) {
-																																							lg = _appQuickLog.lg;
-																										}, function (_appNav) {}, function (_appModal) {}, function (_appTooltip) {}, function (_appTab) {}, function (_appNavSearch) {}, function (_appForms) {}, function (_appSkrollr) {}, function (_appCarousel) {}, function (_appAutosuggest) {}, function (_appDatePicker) {}, function (_appFormButtons) {}, function (_appFormCustom) {}, function (_appVideo) {}, function (_appMap) {}],
-																										execute: function () {
-																																							lg("{orange{main loaded}}");
-																										}
-													};
+                          var lg;
+                          return {
+                                                    setters: [function (_appQuickLog) {
+                                                                              lg = _appQuickLog.lg;
+                                                    }, function (_appNav) {}, function (_appModal) {}, function (_appTooltip) {}, function (_appTab) {}, function (_appNavSearch) {}, function (_appForms) {}, function (_appSkrollr) {}, function (_appCarousel) {}, function (_appAutosuggest) {}, function (_appDatePicker) {}, function (_appFormButtons) {}, function (_appFormCustom) {}, function (_appVideo) {}, function (_appMap) {}],
+                                                    execute: function () {
+                                                                              lg("{orange{main loaded}}");
+                                                    }
+                          };
 });
 
 // Global
