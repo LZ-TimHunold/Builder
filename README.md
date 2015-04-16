@@ -20,9 +20,9 @@ Node is really only going top be used for node package manager aka [NPM](https:/
 
 ```
 npm install gulp -g
-npm install gulp-if gulp-cheerio gulp-sass gulp-rename gulp-util vinyl-source-stream vinyl-buffer
+npm install gulp-if gulp-cheerio gulp-sass gulp-rename gulp-util vinyl-source-stream vinyl-buffer glob
 npm install --save gulp-concat gulp-uglifycss gulp-uglifyjs
-npm install --save-dev gulp-plumber gulp-inject gulp-uglify gulp-uncss gulp-csso gulp-htmlclean gulp-dev gulp-filter gulp-useref gulp-rev-replace gulp-browserify
+npm install --save-dev gulp-plumber gulp-inject gulp-uglify gulp-uncss gulp-csso gulp-htmlclean gulp-dev gulp-filter gulp-useref gulp-rev-replace browserify
 npm update
 ```
 
