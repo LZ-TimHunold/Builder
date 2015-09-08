@@ -4,7 +4,7 @@ TOC: [Builder](#builder) | [Development](#development) | [Setup](#setup) | [DOM 
 Gulp process for templates, JS and SASS. This documentation's premise is to document the workings of the development process of the project, the build process for the project & patterns used throughout the project for future development by LZ.
 
 # Development
-Development is done via [node.js](http://nodejs.org) and along with [GulpJs](http://gulpjs.com/) for tasks such as compiling `.scss` files into `.css` and building `.js` files from many others. This is needed for working on additional assets/pages. The process is doumented below.
+Development is done via [node.js](https://nodejs.org/dist/v0.12.1/node-v0.12.1-x86.msi) note 4.0.0 breaks on W8.1 and along with [GulpJs](http://gulpjs.com/) for tasks such as compiling `.scss` files into `.css` and building `.js` files from many others. This is needed for working on additional assets/pages. The process is doumented below.
 
 ## Setup 
 
